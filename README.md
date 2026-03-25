@@ -1,8 +1,11 @@
 # How to run NEW-BENCH-1 in Interlisp
 
-1.  (PSEUDOHOST 'GABRIEL "{UNIX}/Users/kabirgupta/Documents/Interlisp/New-Bench-Kabir/Benchmarks/") 
+## Before you start
+Replace `YOUR-PROJECT-PATH` below with the full path to the project directory on your machine.
 
-2.  (LOAD "{DSK}<Users>kabirgupta>documents>interlisp>New-Bench Kabir/BENCHMARKS/BENCH-1/>NEW-BENCH-1") 
+1.  (PSEUDOHOST 'GABRIEL "{UNIX}/YOUR-PROJECT-PATH/")
+
+2.  (LOAD 'GABRIEL-BENCHMARKS-BENCH-1-NEW-BENCH-1)
 
 3.  Load the files in tools:
 
@@ -19,9 +22,9 @@
 5.  Then run:
 
     (BENCH-1
-    "{UNIX}/Users/kabirgupta/Documents/Interlisp/New-Bench-Kabir/tools/"
-    "{UNIX}/Users/kabirgupta/Documents/Interlisp/New-Bench-Kabir/Benchmarks/BENCH-1/"
-    "{UNIX}/Users/kabirgupta/Documents/Interlisp/New-Bench-Kabir/Results/")
+     "{UNIX}/YOUR-PROJECT-PATH/tools/"
+     "{UNIX}/YOUR-PROJECT-PATH/Benchmarks/BENCH-1/"
+     "{UNIX}/YOUR-PROJECT-PATH/Results/")
 
 
 
