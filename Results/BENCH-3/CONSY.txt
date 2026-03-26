@@ -1,0 +1,295 @@
+Lisp Type:          Venue Medley
+Lisp Version:       Medley 2.0 sysout of  7-Jan-2026 01:26:13
+Software Type:      Envos Medley
+Software Version:   Medley 2.0 sysout of  7-Jan-2026 01:26:13, Make-init dates:  7-Jan-2026 01:25:51,  7-Jan-2026 01:25:51
+Machine Type:       i386
+Machine Version:    Emulator created: 17-Jun-20, memory size: 0
+Machine Instance:   0 Kabirs-MacBook-Pro.local
+Site:               Unknown
+Features:           (:CLOS :XEROX-MEDLEY :INTERLISP :XEROX :COMMON :IEEE-FLOATING-POINT :MEDLEY)
+
+***** DERIV Benchmark ***
+
+Deriv
+
+
+Iteration 0 of DERIV
+Timing for :         DERIV
+Elapsed time        =     0.462 seconds
+SWAP time           =     0.002 seconds
+reclaim time        =     0.081 seconds
+net compute time    =     0.379 seconds
+Page faults         =         3
+Storage allocated:
+2002 FIXP, 95645 LISTP, 2 ONED-ARRAY, 1 NEW-ATOM, 105006 ENVIRONMENT, 1 RESTART
+
+
+Iteration 1 of DERIV
+Timing for :         DERIV
+Elapsed time        =     0.458 seconds
+SWAP time           =     0.002 seconds
+reclaim time        =     0.085 seconds
+net compute time    =     0.371 seconds
+Storage allocated:
+2002 FIXP, 95645 LISTP, 2 ONED-ARRAY, 1 NEW-ATOM, 105006 ENVIRONMENT, 1 RESTART
+
+
+
+***** DDERIV Benchmark ***
+
+DDeriv
+
+
+Evaluating setup for DDERIV
+
+Iteration 0 of DDERIV
+Timing for :         DDERIV
+Elapsed time        =     0.567 seconds
+SWAP time           =     0.003 seconds
+reclaim time        =     0.107 seconds
+net compute time    =     0.457 seconds
+Storage allocated:
+2002 FIXP, 48501 LISTP, 2 ONED-ARRAY, 1 NEW-ATOM, 145006 ENVIRONMENT, 1 RESTART
+
+
+Iteration 1 of DDERIV
+Timing for :         DDERIV
+Elapsed time        =     0.566 seconds
+SWAP time           =     0.003 seconds
+reclaim time        =     0.112 seconds
+net compute time    =     0.451 seconds
+Storage allocated:
+2002 FIXP, 48501 LISTP, 2 ONED-ARRAY, 1 NEW-ATOM, 145006 ENVIRONMENT, 1 RESTART
+
+
+
+***** DIV2-1 Benchmark ***
+
+Div2, Iterative
+
+
+Iteration 0 of DIV2-1
+Timing for :         DIV2-1
+Elapsed time        =     1.379 seconds
+SWAP time           =     0.007 seconds
+reclaim time        =     0.443 seconds
+net compute time    =     0.929 seconds
+Page faults         =         3
+Storage allocated:
+243002 FIXP, 615548 LISTP, 2402 ONED-ARRAY, 1201 NEW-ATOM, 4806 ENVIRONMENT, 1 RESTART
+
+
+Iteration 1 of DIV2-1
+Timing for :         DIV2-1
+Elapsed time        =     1.377 seconds
+SWAP time           =     0.008 seconds
+reclaim time        =     0.438 seconds
+net compute time    =     0.931 seconds
+Page faults         =         2
+Storage allocated:
+243002 FIXP, 681084 LISTP, 2402 ONED-ARRAY, 1201 NEW-ATOM, 4806 ENVIRONMENT, 1 RESTART
+
+
+
+***** DIV2-2 Benchmark ***
+
+Div2, Recursive
+
+
+Iteration 0 of DIV2-2
+Timing for :         DIV2-2
+Elapsed time        =     0.630 seconds
+SWAP time           =     0.005 seconds
+reclaim time        =     0.053 seconds
+net compute time    =     0.572 seconds
+Page faults         =         5
+Storage allocated:
+602 FIXP, 62940 LISTP, 2 ONED-ARRAY, 1 NEW-ATOM, 121206 ENVIRONMENT, 1 RESTART
+
+
+Iteration 1 of DIV2-2
+Timing for :         DIV2-2
+Elapsed time        =     0.628 seconds
+SWAP time           =     0.005 seconds
+reclaim time        =     0.054 seconds
+net compute time    =     0.569 seconds
+Storage allocated:
+602 FIXP, 2 ONED-ARRAY, 1 NEW-ATOM, 121206 ENVIRONMENT, 1 RESTART
+
+
+
+***** DESTRU Benchmark ***
+
+Destruct
+
+
+Iteration 0 of DESTRU
+Timing for :         DESTRU
+Elapsed time        =     1.955 seconds
+SWAP time           =     0.010 seconds
+reclaim time        =     0.505 seconds
+net compute time    =     1.440 seconds
+Page faults         =        21
+Storage allocated:
+288190 FIXP, 728969 LISTP, 21260 ONED-ARRAY, 10630 NEW-ATOM, 36517 ENVIRONMENT, 9681 RESTART
+
+
+Iteration 1 of DESTRU
+Timing for :         DESTRU
+Elapsed time        =     1.958 seconds
+SWAP time           =     0.011 seconds
+reclaim time        =     0.518 seconds
+net compute time    =     1.429 seconds
+Page faults         =        19
+Storage allocated:
+290070 FIXP, 728930 LISTP, 21258 ONED-ARRAY, 10629 NEW-ATOM, 36517 ENVIRONMENT, 9681 RESTART
+
+
+
+***** BOYER Benchmark ***
+
+Boyer
+
+
+Evaluating setup for BOYER
+
+Iteration 0 of BOYER
+Timing for :         BOYER
+Elapsed time        =     7.094 seconds
+SWAP time           =     0.066 seconds
+reclaim time        =     0.412 seconds
+net compute time    =     6.616 seconds
+Page faults         =        24
+Storage allocated:
+307218 LISTP, 779788 ENVIRONMENT
+
+
+Iteration 1 of BOYER
+Timing for :         BOYER
+Elapsed time        =     7.160 seconds
+SWAP time           =     0.049 seconds
+reclaim time        =     0.393 seconds
+net compute time    =     6.718 seconds
+Storage allocated:
+307218 LISTP, 779788 ENVIRONMENT
+
+
+
+***** BROWSE Benchmark ***
+
+Browse
+
+
+Iteration 0 of BROWSE
+Timing for :         BROWSE
+Elapsed time        =    11.350 seconds
+SWAP time           =     0.093 seconds
+reclaim time        =     1.584 seconds
+net compute time    =     9.673 seconds
+Page faults         =        18
+Storage allocated:
+176364 FIXP, 1633630 LISTP, 246412 ONED-ARRAY, 9806 NEW-ATOM, 772913 ENVIRONMENT, 704 RESTART
+
+
+Iteration 1 of BROWSE
+Timing for :         BROWSE
+Elapsed time        =    11.246 seconds
+SWAP time           =     0.076 seconds
+reclaim time        =     1.530 seconds
+net compute time    =     9.640 seconds
+Page faults         =        35
+Storage allocated:
+176361 FIXP, 1830065 LISTP, 246406 ONED-ARRAY, 9803 NEW-ATOM, 772913 ENVIRONMENT, 702 RESTART
+
+
+
+***** BROWSE* Benchmark ***
+
+Browse
+
+
+Iteration 0 of BROWSE*
+Timing for :         BROWSE*
+Elapsed time        =    11.160 seconds
+SWAP time           =     0.093 seconds
+reclaim time        =     1.538 seconds
+net compute time    =     9.529 seconds
+Page faults         =        19
+Storage allocated:
+176363 FIXP, 1895709 LISTP, 19610 ONED-ARRAY, 9805 NEW-ATOM, 772913 ENVIRONMENT, 704 RESTART
+
+
+Iteration 1 of BROWSE*
+Timing for :         BROWSE*
+Elapsed time        =    11.002 seconds
+SWAP time           =     0.078 seconds
+reclaim time        =     1.522 seconds
+net compute time    =     9.402 seconds
+Page faults         =        19
+Storage allocated:
+176361 FIXP, 1895601 LISTP, 19606 ONED-ARRAY, 9803 NEW-ATOM, 772913 ENVIRONMENT, 702 RESTART
+
+
+
+***** TRAVERSE-INIT* Benchmark ***
+
+Traverse, Initialize
+
+
+Iteration 0 of TRAVERSE-INIT*
+Timing for :         TRAVERSE-INIT*
+Elapsed time        =    13.571 seconds
+SWAP time           =     0.063 seconds
+reclaim time        =     3.430 seconds
+net compute time    =    10.078 seconds
+Page faults         =        92
+Storage allocated:
+2248133 FIXP, 6904686 LISTP, 48934 ONED-ARRAY, 24467 NEW-ATOM, 134862 ENVIRONMENT, 2 RESTART, 100 TNODE
+
+
+Evaluating after every function for TRAVERSE-INIT*
+
+Iteration 1 of TRAVERSE-INIT*
+Timing for :         TRAVERSE-INIT*
+Elapsed time        =    13.784 seconds
+SWAP time           =     0.079 seconds
+reclaim time        =     3.437 seconds
+net compute time    =    10.268 seconds
+Page faults         =        44
+Storage allocated:
+2249854 FIXP, 6904608 LISTP, 48932 ONED-ARRAY, 24466 NEW-ATOM, 134862 ENVIRONMENT, 1 RESTART, 100 TNODE
+
+
+Evaluating after every function for TRAVERSE-INIT*
+
+
+***** TRAVERSE* Benchmark ***
+
+Traverse, Traverse
+
+
+Evaluating setup for TRAVERSE*
+
+Iteration 0 of TRAVERSE*
+Timing for :         TRAVERSE*
+Elapsed time        =    47.005 seconds
+SWAP time           =     0.296 seconds
+reclaim time        =     4.603 seconds
+net compute time    =    42.106 seconds
+Page faults         =       119
+Storage allocated:
+6215618 FIXP, 10142617 LISTP, 50002 ONED-ARRAY, 25001 NEW-ATOM, 3133505 ENVIRONMENT, 25001 RESTART
+
+
+Iteration 1 of TRAVERSE*
+Timing for :         TRAVERSE*
+Elapsed time        =    46.425 seconds
+SWAP time           =     0.242 seconds
+reclaim time        =     4.607 seconds
+net compute time    =    41.576 seconds
+Page faults         =        42
+Storage allocated:
+6215604 FIXP, 10208069 LISTP, 50002 ONED-ARRAY, 25001 NEW-ATOM, 3133505 ENVIRONMENT, 25001 RESTART
+
+
+Evaluating after function for TRAVERSE*
