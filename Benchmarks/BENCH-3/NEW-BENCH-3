@@ -40,7 +40,7 @@
     (* ;; "run the benchmarks")
 
     (GABRIEL::RUN-BENCHMARKS GABRIEL::*CONSY-BENCHMARKS* (PACKFILENAME.STRING 'DIRECTORY RESULTS-DIR
-                                                                'BODY "CONSY.Results"])
+                                  'BODY "CONSY.txt"])
 )
 (DECLARE%: DONTCOPY
   (FILEMAP (NIL (824 1464 (BENCH-3 834 . 1462)))))

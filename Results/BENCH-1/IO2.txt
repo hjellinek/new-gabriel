@@ -15,10 +15,10 @@ FPrint
 
 Iteration 0 of FPRINT
 Timing for :         FPRINT
-Elapsed time        =     0.012 seconds
-SWAP time           =     0.001 seconds
-net compute time    =     0.011 seconds
-Page faults         =         3
+Elapsed time        =     0.010 seconds
+SWAP time           =     0.002 seconds
+net compute time    =     0.008 seconds
+Page faults         =         2
 Storage allocated:
 84 FIXP, 136 LISTP, 1 STREAM, 58 ONED-ARRAY, 2 PATHNAME, 3 NEW-ATOM, 4 ENVIRONMENT, 2 DIRECTORY-COMPONENT
 
@@ -26,8 +26,8 @@ Storage allocated:
 Iteration 1 of FPRINT
 Timing for :         FPRINT
 Elapsed time        =     0.010 seconds
-SWAP time           =     0.001 seconds
-net compute time    =     0.009 seconds
+SWAP time           =     0.002 seconds
+net compute time    =     0.008 seconds
 Storage allocated:
 83 FIXP, 136 LISTP, 1 STREAM, 58 ONED-ARRAY, 2 PATHNAME, 1 NEW-ATOM, 4 ENVIRONMENT, 2 DIRECTORY-COMPONENT
 
@@ -42,7 +42,8 @@ Iteration 0 of FREAD
 Timing for :         FREAD
 Elapsed time        =     0.009 seconds
 SWAP time           =     0.001 seconds
-net compute time    =     0.008 seconds
+reclaim time        =     0.001 seconds
+net compute time    =     0.007 seconds
 Storage allocated:
 1868 FIXP, 5952 LISTP, 1 STREAM, 59 ONED-ARRAY, 2 PATHNAME, 4 ENVIRONMENT, 2 DIRECTORY-COMPONENT
 
@@ -50,7 +51,7 @@ Storage allocated:
 Iteration 1 of FREAD
 Timing for :         FREAD
 Elapsed time        =     0.009 seconds
-reclaim time        =     0.001 seconds
+SWAP time           =     0.001 seconds
 net compute time    =     0.008 seconds
 Storage allocated:
 1868 FIXP, 5952 LISTP, 1 STREAM, 59 ONED-ARRAY, 2 PATHNAME, 4 ENVIRONMENT, 2 DIRECTORY-COMPONENT
@@ -66,9 +67,9 @@ Evaluating setup for TPRINT
 
 Iteration 0 of TPRINT
 Timing for :         TPRINT
-Elapsed time        =     0.111 seconds
-SWAP time           =     0.015 seconds
-net compute time    =     0.096 seconds
+Elapsed time        =     0.128 seconds
+SWAP time           =     0.016 seconds
+net compute time    =     0.112 seconds
 Storage allocated:
 9 LISTP, 2 ENVIRONMENT
 
@@ -77,9 +78,9 @@ Evaluating after every function for TPRINT
 
 Iteration 1 of TPRINT
 Timing for :         TPRINT
-Elapsed time        =     0.121 seconds
-SWAP time           =     0.014 seconds
-net compute time    =     0.107 seconds
+Elapsed time        =     0.116 seconds
+SWAP time           =     0.016 seconds
+net compute time    =     0.100 seconds
 Storage allocated:
 9 LISTP, 2 ENVIRONMENT
 
@@ -98,18 +99,17 @@ Iteration 0 of READ-FLOAT
 Timing for :         IL:READ-FLOAT
 Elapsed time        =     0.058 seconds
 SWAP time           =     0.001 seconds
-net compute time    =     0.057 seconds
-Page faults         =         2
+reclaim time        =     0.001 seconds
+net compute time    =     0.056 seconds
+Page faults         =         1
 Storage allocated:
-8522 FIXP, 2000 FLOATP, 2054 LISTP, 1 STREAM, 2 COMPILED-CLOSURE, 7 ONED-ARRAY, 4 ENVIRONMENT
+8522 FIXP, 2000 FLOATP, 1 STREAM, 2 COMPILED-CLOSURE, 7 ONED-ARRAY, 4 ENVIRONMENT
 
 
 Iteration 1 of READ-FLOAT
 Timing for :         IL:READ-FLOAT
-Elapsed time        =     0.060 seconds
-SWAP time           =     0.001 seconds
+Elapsed time        =     0.059 seconds
 net compute time    =     0.059 seconds
-Page faults         =         2
 Storage allocated:
 8522 FIXP, 2000 FLOATP, 2046 LISTP, 1 STREAM, 2 COMPILED-CLOSURE, 3 ONED-ARRAY, 4 ENVIRONMENT
 
@@ -122,9 +122,9 @@ Print 2000 Floats to {NULL}
 
 Iteration 0 of PRINT-FLOAT
 Timing for :         IL:PRINT-FLOAT
-Elapsed time        =     0.052 seconds
-reclaim time        =     0.002 seconds
-net compute time    =     0.050 seconds
+Elapsed time        =     0.057 seconds
+reclaim time        =     0.001 seconds
+net compute time    =     0.056 seconds
 Page faults         =         3
 Storage allocated:
 8066 FIXP, 4007 LISTP, 1 STREAM, 4002 ONED-ARRAY, 2 ENVIRONMENT
@@ -132,9 +132,9 @@ Storage allocated:
 
 Iteration 1 of PRINT-FLOAT
 Timing for :         IL:PRINT-FLOAT
-Elapsed time        =     0.050 seconds
-reclaim time        =     0.002 seconds
-net compute time    =     0.048 seconds
+Elapsed time        =     0.053 seconds
+reclaim time        =     0.001 seconds
+net compute time    =     0.052 seconds
 Storage allocated:
 8066 FIXP, 4007 LISTP, 1 STREAM, 4002 ONED-ARRAY, 2 ENVIRONMENT
 
@@ -149,21 +149,21 @@ Evaluating setup for TERMINAL-PRINTING
 
 Iteration 0 of TERMINAL-PRINTING
 Timing for :         IL:TERMINAL-PRINTING
-Elapsed time        =     1.015 seconds
-SWAP time           =     0.196 seconds
-reclaim time        =     0.005 seconds
-net compute time    =     0.814 seconds
-Page faults         =         2
+Elapsed time        =     1.071 seconds
+SWAP time           =     0.198 seconds
+reclaim time        =     0.004 seconds
+net compute time    =     0.869 seconds
+Page faults         =         1
 Storage allocated:
-3012 FIXP, 1 STREAM, 2 ONED-ARRAY, 1 COREFILEINFOBLK, 7 ENVIRONMENT
+3012 FIXP, 26169 LISTP, 1 STREAM, 2 ONED-ARRAY, 1 COREFILEINFOBLK, 7 ENVIRONMENT
 
 
 Iteration 1 of TERMINAL-PRINTING
 Timing for :         IL:TERMINAL-PRINTING
-Elapsed time        =     1.040 seconds
-SWAP time           =     0.205 seconds
+Elapsed time        =     1.112 seconds
+SWAP time           =     0.208 seconds
 reclaim time        =     0.004 seconds
-net compute time    =     0.831 seconds
+net compute time    =     0.900 seconds
 Storage allocated:
 3009 FIXP, 26161 LISTP, 7 ENVIRONMENT
 
@@ -178,20 +178,21 @@ Read 1000 symbols that exist in the sysout already
 
 Iteration 0 of READ-EXISTING-SYMBOLS
 Timing for :         IL:READ-EXISTING-SYMBOLS
-Elapsed time        =     0.033 seconds
+Elapsed time        =     0.034 seconds
 SWAP time           =     0.001 seconds
-net compute time    =     0.032 seconds
-Page faults         =         7
+net compute time    =     0.033 seconds
+Page faults         =         4
 Storage allocated:
-1011 FIXP, 2 FLOATP, 3049 LISTP, 1 STREAM, 2 COMPILED-CLOSURE, 15 ONED-ARRAY, 931 NEW-ATOM, 4 ENVIRONMENT
+1010 FIXP, 2 FLOATP, 3050 LISTP, 1 STREAM, 2 COMPILED-CLOSURE, 15 ONED-ARRAY, 931 NEW-ATOM, 4 ENVIRONMENT
 
 
 Iteration 1 of READ-EXISTING-SYMBOLS
 Timing for :         IL:READ-EXISTING-SYMBOLS
 Elapsed time        =     0.030 seconds
-net compute time    =     0.030 seconds
+SWAP time           =     0.001 seconds
+net compute time    =     0.029 seconds
 Storage allocated:
-1003 FIXP, 3044 LISTP, 1 STREAM, 13 ONED-ARRAY, 4 ENVIRONMENT
+1003 FIXP, 1 STREAM, 13 ONED-ARRAY, 4 ENVIRONMENT
 
 
 
@@ -204,22 +205,22 @@ Evaluating setup for READ-DSK
 
 Iteration 0 of READ-DSK
 Timing for :         IL:READ-DSK
-Elapsed time        =     0.242 seconds
+Elapsed time        =     0.244 seconds
 SWAP time           =     0.002 seconds
-reclaim time        =     0.022 seconds
-net compute time    =     0.218 seconds
+reclaim time        =     0.020 seconds
+net compute time    =     0.222 seconds
 Storage allocated:
-100127 FIXP, 34765 LISTP, 1 STREAM, 24 ONED-ARRAY, 1 NEW-ATOM, 7 ENVIRONMENT, 1 RESTART
+100124 FIXP, 34765 LISTP, 1 STREAM, 24 ONED-ARRAY, 7 ENVIRONMENT, 1 RESTART
 
 
 Iteration 1 of READ-DSK
 Timing for :         IL:READ-DSK
-Elapsed time        =     0.243 seconds
-SWAP time           =     0.002 seconds
-reclaim time        =     0.018 seconds
-net compute time    =     0.223 seconds
+Elapsed time        =     0.242 seconds
+SWAP time           =     0.001 seconds
+reclaim time        =     0.020 seconds
+net compute time    =     0.221 seconds
 Storage allocated:
-100117 FIXP, 100205 LISTP, 1 STREAM, 24 ONED-ARRAY, 7 ENVIRONMENT, 1 RESTART
+100117 FIXP, 34669 LISTP, 1 STREAM, 24 ONED-ARRAY, 7 ENVIRONMENT, 1 RESTART
 
 
 Evaluating after function for READ-DSK
@@ -234,20 +235,20 @@ Evaluating setup for READ-UFS
 
 Iteration 0 of READ-UFS
 Timing for :         IL:READ-UFS
-Elapsed time        =     0.241 seconds
-SWAP time           =     0.001 seconds
-reclaim time        =     0.018 seconds
-net compute time    =     0.222 seconds
+Elapsed time        =     0.249 seconds
+SWAP time           =     0.002 seconds
+reclaim time        =     0.017 seconds
+net compute time    =     0.230 seconds
 Storage allocated:
-100115 FIXP, 34652 LISTP, 1 STREAM, 15 ONED-ARRAY, 7 ENVIRONMENT, 1 RESTART
+100115 FIXP, 100188 LISTP, 1 STREAM, 15 ONED-ARRAY, 7 ENVIRONMENT, 1 RESTART
 
 
 Iteration 1 of READ-UFS
 Timing for :         IL:READ-UFS
-Elapsed time        =     0.238 seconds
+Elapsed time        =     0.245 seconds
 SWAP time           =     0.001 seconds
-reclaim time        =     0.017 seconds
-net compute time    =     0.220 seconds
+reclaim time        =     0.025 seconds
+net compute time    =     0.219 seconds
 Storage allocated:
 100115 FIXP, 34652 LISTP, 1 STREAM, 15 ONED-ARRAY, 7 ENVIRONMENT, 1 RESTART
 
@@ -265,21 +266,21 @@ Evaluating setup for READ-CORE
 Iteration 0 of READ-CORE
 Timing for :         IL:READ-CORE
 Elapsed time        =     0.472 seconds
-SWAP time           =     0.002 seconds
-reclaim time        =     0.026 seconds
-net compute time    =     0.444 seconds
+SWAP time           =     0.003 seconds
+reclaim time        =     0.040 seconds
+net compute time    =     0.429 seconds
 Storage allocated:
-100027 FIXP, 100176 LISTP, 1 STREAM, 10 COMPILED-CLOSURE, 3 ONED-ARRAY, 7 ENVIRONMENT, 1 RESTART
+100024 FIXP, 34639 LISTP, 1 STREAM, 8 COMPILED-CLOSURE, 3 ONED-ARRAY, 7 ENVIRONMENT, 1 RESTART
 
 
 Iteration 1 of READ-CORE
 Timing for :         IL:READ-CORE
-Elapsed time        =     0.479 seconds
-SWAP time           =     0.003 seconds
-reclaim time        =     0.027 seconds
-net compute time    =     0.449 seconds
+Elapsed time        =     0.473 seconds
+SWAP time           =     0.002 seconds
+reclaim time        =     0.033 seconds
+net compute time    =     0.438 seconds
 Storage allocated:
-100029 FIXP, 34640 LISTP, 1 STREAM, 10 COMPILED-CLOSURE, 3 ONED-ARRAY, 1 NEW-ATOM, 7 ENVIRONMENT, 1 RESTART
+100027 FIXP, 100176 LISTP, 1 STREAM, 10 COMPILED-CLOSURE, 3 ONED-ARRAY, 7 ENVIRONMENT, 1 RESTART
 
 
 Evaluating after function for READ-CORE
@@ -292,22 +293,22 @@ Write 50,000 bytes on on {DSK}
 
 Iteration 0 of WRITE-DSK
 Timing for :         IL:WRITE-DSK
-Elapsed time        =     0.258 seconds
-SWAP time           =     0.003 seconds
-reclaim time        =     0.017 seconds
-net compute time    =     0.238 seconds
+Elapsed time        =     0.261 seconds
+SWAP time           =     0.004 seconds
+reclaim time        =     0.020 seconds
+net compute time    =     0.237 seconds
 Storage allocated:
-100217 FIXP, 34678 LISTP, 1 STREAM, 24 ONED-ARRAY, 2 NEW-ATOM, 7 ENVIRONMENT, 1 RESTART
+100216 FIXP, 100214 LISTP, 1 STREAM, 24 ONED-ARRAY, 1 NEW-ATOM, 7 ENVIRONMENT, 1 RESTART
 
 
 Iteration 1 of WRITE-DSK
 Timing for :         IL:WRITE-DSK
-Elapsed time        =     0.252 seconds
+Elapsed time        =     0.251 seconds
 SWAP time           =     0.003 seconds
-reclaim time        =     0.020 seconds
+reclaim time        =     0.019 seconds
 net compute time    =     0.229 seconds
 Storage allocated:
-100217 FIXP, 34678 LISTP, 1 STREAM, 24 ONED-ARRAY, 2 NEW-ATOM, 7 ENVIRONMENT, 1 RESTART
+100217 FIXP, 34678 LISTP, 1 STREAM, 24 ONED-ARRAY, 1 NEW-ATOM, 7 ENVIRONMENT, 1 RESTART
 
 
 Evaluating after function for WRITE-DSK
@@ -320,22 +321,22 @@ Write 50,000 bytes to a file on {UNIX}
 
 Iteration 0 of WRITE-UFS
 Timing for :         IL:WRITE-UFS
-Elapsed time        =     0.253 seconds
+Elapsed time        =     0.247 seconds
 SWAP time           =     0.002 seconds
-reclaim time        =     0.020 seconds
-net compute time    =     0.231 seconds
+reclaim time        =     0.017 seconds
+net compute time    =     0.228 seconds
 Storage allocated:
-100215 FIXP, 100197 LISTP, 1 STREAM, 17 ONED-ARRAY, 1 NEW-ATOM, 7 ENVIRONMENT, 1 RESTART
+100214 FIXP, 34661 LISTP, 1 STREAM, 17 ONED-ARRAY, 7 ENVIRONMENT, 1 RESTART
 
 
 Iteration 1 of WRITE-UFS
 Timing for :         IL:WRITE-UFS
-Elapsed time        =     0.248 seconds
+Elapsed time        =     0.246 seconds
 SWAP time           =     0.002 seconds
-reclaim time        =     0.016 seconds
-net compute time    =     0.230 seconds
+reclaim time        =     0.018 seconds
+net compute time    =     0.226 seconds
 Storage allocated:
-100214 FIXP, 34661 LISTP, 1 STREAM, 17 ONED-ARRAY, 1 NEW-ATOM, 7 ENVIRONMENT, 1 RESTART
+100214 FIXP, 34661 LISTP, 1 STREAM, 17 ONED-ARRAY, 7 ENVIRONMENT, 1 RESTART
 
 
 Evaluating after function for WRITE-UFS
@@ -348,23 +349,23 @@ Write 50,000 bytes to a file on {CORE}
 
 Iteration 0 of WRITE-CORE
 Timing for :         IL:WRITE-CORE
-Elapsed time        =     0.417 seconds
+Elapsed time        =     0.424 seconds
 SWAP time           =     0.003 seconds
-reclaim time        =     0.024 seconds
-net compute time    =     0.390 seconds
+reclaim time        =     0.027 seconds
+net compute time    =     0.394 seconds
 Storage allocated:
-100030 FIXP, 34847 LISTP, 1 STREAM, 10 COMPILED-CLOSURE, 6 ONED-ARRAY, 1 NEW-ATOM, 1 COREFILEINFOBLK, 7 ENVIRONMENT, 1 RESTART
+100031 FIXP, 100383 LISTP, 1 STREAM, 10 COMPILED-CLOSURE, 6 ONED-ARRAY, 1 NEW-ATOM, 1 COREFILEINFOBLK, 7 ENVIRONMENT, 1 RESTART
 
 
 Iteration 1 of WRITE-CORE
 Timing for :         IL:WRITE-CORE
-Elapsed time        =     0.485 seconds
+Elapsed time        =     0.466 seconds
 SWAP time           =     0.004 seconds
-reclaim time        =     0.027 seconds
-net compute time    =     0.454 seconds
+reclaim time        =     0.037 seconds
+net compute time    =     0.425 seconds
 Page faults         =         3
 Storage allocated:
-100124 FIXP, 34842 LISTP, 1 STREAM, 8 COMPILED-CLOSURE, 6 ONED-ARRAY, 1 NEW-ATOM, 1 COREFILEINFOBLK, 7 ENVIRONMENT, 1 RESTART
+100125 FIXP, 34847 LISTP, 1 STREAM, 8 COMPILED-CLOSURE, 9 ONED-ARRAY, 2 NEW-ATOM, 1 COREFILEINFOBLK, 7 ENVIRONMENT, 1 RESTART
 
 
 Evaluating after function for WRITE-CORE

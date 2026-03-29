@@ -1,0 +1,141 @@
+Lisp Type:          Venue Medley
+Lisp Version:       Medley 2.0 sysout of  7-Jan-2026 01:26:13
+Software Type:      Envos Medley
+Software Version:   Medley 2.0 sysout of  7-Jan-2026 01:26:13, Make-init dates:  7-Jan-2026 01:25:51,  7-Jan-2026 01:25:51
+Machine Type:       i386
+Machine Version:    Emulator created: 17-Jun-20, memory size: 0
+Machine Instance:   0 Kabirs-MacBook-Pro.local
+Site:               Unknown
+Features:           (:CLOS :XEROX-MEDLEY :INTERLISP :XEROX :COMMON :IEEE-FLOATING-POINT :MEDLEY)
+
+***** CTAK Benchmark ***
+
+CTak
+
+
+Iteration 0 of CTAK
+Timing for :         CTAK
+Elapsed time        =     0.890 seconds
+SWAP time           =     0.013 seconds
+reclaim time        =     0.043 seconds
+net compute time    =     0.834 seconds
+Page faults         =         2
+Storage allocated:
+95414 FIXP, 93988 LISTP, 63612 ENVIRONMENT
+
+
+Iteration 1 of CTAK
+Timing for :         CTAK
+Elapsed time        =     0.880 seconds
+SWAP time           =     0.013 seconds
+reclaim time        =     0.043 seconds
+net compute time    =     0.824 seconds
+Storage allocated:
+95414 FIXP, 28452 LISTP, 63612 ENVIRONMENT
+
+
+
+***** STAK Benchmark ***
+
+STak
+
+
+Iteration 0 of STAK
+Timing for :         STAK
+Elapsed time        =     0.923 seconds
+SWAP time           =     0.005 seconds
+reclaim time        =     0.090 seconds
+net compute time    =     0.828 seconds
+Page faults         =         1
+Storage allocated:
+109883 LISTP, 127220 ENVIRONMENT
+
+
+Iteration 1 of STAK
+Timing for :         STAK
+Elapsed time        =     0.924 seconds
+SWAP time           =     0.005 seconds
+reclaim time        =     0.085 seconds
+net compute time    =     0.834 seconds
+Storage allocated:
+44347 LISTP, 127220 ENVIRONMENT
+
+
+
+***** TAK Benchmark ***
+
+Tak
+
+
+Iteration 0 of TAK
+Timing for :         TAK
+Elapsed time        =     0.455 seconds
+SWAP time           =     0.002 seconds
+reclaim time        =     0.029 seconds
+net compute time    =     0.424 seconds
+Page faults         =         2
+Storage allocated:
+46271 LISTP, 63611 ENVIRONMENT
+
+
+Iteration 1 of TAK
+Timing for :         TAK
+Elapsed time        =     0.456 seconds
+SWAP time           =     0.002 seconds
+reclaim time        =     0.030 seconds
+net compute time    =     0.424 seconds
+Storage allocated:
+46271 LISTP, 63611 ENVIRONMENT
+
+
+
+***** TAKL Benchmark ***
+
+TakL
+
+
+Iteration 0 of TAKL
+Timing for :         TAKL
+Elapsed time        =     3.357 seconds
+SWAP time           =     0.046 seconds
+reclaim time        =     0.246 seconds
+net compute time    =     3.065 seconds
+Storage allocated:
+160727 LISTP, 536670 ENVIRONMENT
+
+
+Iteration 1 of TAKL
+Timing for :         TAKL
+Elapsed time        =     3.338 seconds
+SWAP time           =     0.047 seconds
+reclaim time        =     0.240 seconds
+net compute time    =     3.051 seconds
+Storage allocated:
+95191 LISTP, 536670 ENVIRONMENT
+
+
+
+***** TAKR Benchmark ***
+
+TakR
+
+
+Iteration 0 of TAKR
+Timing for :         TAKR
+Elapsed time        =     0.462 seconds
+SWAP time           =     0.002 seconds
+reclaim time        =     0.031 seconds
+net compute time    =     0.429 seconds
+Storage allocated:
+46271 LISTP, 63611 ENVIRONMENT
+
+
+Iteration 1 of TAKR
+Timing for :         TAKR
+Elapsed time        =     0.463 seconds
+SWAP time           =     0.002 seconds
+reclaim time        =     0.031 seconds
+net compute time    =     0.430 seconds
+Storage allocated:
+46271 LISTP, 63611 ENVIRONMENT
+

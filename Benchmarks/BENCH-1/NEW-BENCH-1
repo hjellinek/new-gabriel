@@ -47,12 +47,12 @@
 
     (* ;; "run the benchmarks")
 
-    (GABRIEL::RUN-BENCHMARKS GABRIEL::*TAK-TIMERS* (PACKFILENAME.STRING 'DIRECTORY RESULTS-DIR
-                                                          'BODY "AV-TAK.Results"))
+   (GABRIEL::RUN-BENCHMARKS GABRIEL::*TAK-TIMERS* (PACKFILENAME.STRING 'DIRECTORY RESULTS-DIR
+                                            'BODY "AV-TAK.txt"))
     (GABRIEL::RUN-BENCHMARKS GABRIEL::*MAIKO-IO-BENCHMARKS* (PACKFILENAME.STRING 'DIRECTORY 
-                                                                   RESULTS-DIR 'BODY "IO.Results"))
+                                                   RESULTS-DIR 'BODY "IO.txt"))
     (GABRIEL::RUN-BENCHMARKS *ARITH-BENCHMARKS* (PACKFILENAME.STRING 'DIRECTORY RESULTS-DIR
-                                                       'BODY "PAV-ARITH.Results"])
+                                          'BODY "PAV-ARITH.txt"])
 )
 (DECLARE%: DONTCOPY
   (FILEMAP (NIL (1098 2171 (BENCH-1 1108 . 2169)))))
