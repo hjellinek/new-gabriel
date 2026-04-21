@@ -8,11 +8,49 @@ The benchmark set comes from the work documented by Richard P. Gabriel in [*Perf
 
 ## Quick Start
 
-### 1. Clone the repository
+### 0. Clone the repository
 
 ```bash
 git clone https://github.com/hjellinek/new-gabriel.git
 cd gabriel
+```
+
+### 1. Compilation
+
+Compile the files. (WIP)
+
+#### Common utilities
+
+```lisp
+cd {gabriel}<tools>
+(cl:compile-file "gabriel-timers")
+(load "gabriel-timers.dfasl")
+(cl:compile-file "gabriel-other")
+;; get warning that MULTIPLE-TIMED-DURATION was called from RUN-ONE, but not defined!
+(load "gabriel-other.dfasl")
+(cl:compile-file "gabriel-tak")
+(load "gabriel-tak.dfasl")
+```
+
+#### Bench-1
+
+```lisp
+cd {gabriel}<benchmarks>bench-1>
+(cl:compile-file "arith-benchmarks")
+```
+
+Needed to recreate `TAK`.
+
+```lisp
+(cl:compile-file "tak")
+```
+
+Renamed `NEW-BENCH-1` to `BENCH-1`.  After `RENAME`, deleted `FILEDATES` property
+from `BENCH-1`
+
+```lisp
+(makefile 'bench-1)
+(cl:compile-file "bench-1")
 ```
 
 ### 2. Make the runner executable
