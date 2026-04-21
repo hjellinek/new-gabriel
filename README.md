@@ -53,6 +53,20 @@ from `BENCH-1`
 (cl:compile-file "bench-1")
 ```
 
+In `BENCH-2`, renamed `NEW-BENCH-2` to `BENCH-2`.
+```lisp
+cd ../bench-2
+(makefile 'bench-2)
+(cl:compile-file "bench-2")
+```
+
+In `BENCH-3`, renamed `NEW-BENCH-3` to `BENCH-3`.
+```lisp
+cd ../bench-3
+(makefile 'bench-3)
+(cl:compile-file "bench-3")
+```
+
 ### 2. Make the runner executable
 
 ```bash
