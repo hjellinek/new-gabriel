@@ -4,14 +4,14 @@
 
 This repository runs Gabriel benchmark suites in Medley Interlisp.
 
-The benchmark set comes from the work documented by Richard P. Gabriel in *Performance and Evaluation of Lisp Systems*.
+The benchmark set comes from the work documented by Richard P. Gabriel in [*Performance and Evaluation of Lisp Systems*](https://www.dreamsongs.com/Files/Timrep.pdf).
 
 ## Quick Start
 
 ### 1. Clone the repository
 
 ```bash
-git clone -b kabir-benchmarks https://github.com/amkabir/gabriel.git
+git clone https://github.com/hjellinek/new-gabriel.git
 cd gabriel
 ```
 
