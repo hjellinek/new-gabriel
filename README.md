@@ -45,6 +45,8 @@ Needed to recreate `TAK`.
 (cl:compile-file "tak")
 ```
 
+In the files below, added a `define-file-environment` to every source file.
+
 Renamed `NEW-BENCH-1` to `BENCH-1`.  After `RENAME`, deleted `FILEDATES` property
 from `BENCH-1`
 
@@ -65,6 +67,22 @@ In `BENCH-3`, renamed `NEW-BENCH-3` to `BENCH-3`.
 cd ../bench-3
 (makefile 'bench-3)
 (cl:compile-file "bench-3")
+```
+
+In `BENCH-4`, renamed `NEW-BENCH-4` to `BENCH-4`.
+```lisp
+cd ../bench-4
+(makefile 'bench-4)
+(cl:compile-file "bench-4")
+```
+
+In `BENCH-5`, renamed `NEW-BENCH-5` to `BENCH-4`.
+```lisp
+cd ../bench-5
+(makefile 'bench-5)
+(cl:compile-file "bench-5")
+(makefile 'misc-benchmarks)
+(cl:compile-file 'misc-benchmarks)
 ```
 
 ### 2. Make the runner executable
