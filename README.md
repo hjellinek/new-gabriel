@@ -127,23 +127,23 @@ MEDLEYDIR="/absolute/path/to/medley" ./do-bench.sh bench-1
 
 - `bench-1`
    - Main tests: `TAK`, `ARITH`, `IO`
-   - Expected output files: `AV-TAK.txt`, `IO.txt`, `PAV-ARITH.txt` (after recompiling `NEW-BENCH-1`)
+   - Expected output files: `AV-TAK.txt`, `IO.txt`, `PAV-ARITH.txt`
    - Current status: runs
 - `bench-2`
    - Main tests: `AREFY` and related benchmark set
-   - Expected output file: `AREFY.txt` (after recompiling `NEW-BENCH-2`)
+   - Expected output file: `AREFY.txt`
    - Current status: has known storage exhaustion issue
 - `bench-3`
    - Main tests: `CONSY`
-   - Expected output file: `CONSY.txt` (after recompiling `NEW-BENCH-3`)
+   - Expected output file: `CONSY.txt`
    - Current status: runs
 - `bench-4`
    - Main tests: `POLY`
-   - Expected output file: `POLY.txt` (after recompiling `NEW-BENCH-4`)
+   - Expected output file: `POLY.txt`
    - Current status: runs
 - `bench-5`
    - Main tests: `MISC`
-   - Expected output file: `MISC.txt` (after recompiling `NEW-BENCH-5`)
+   - Expected output file: `MISC.txt`
    - Current status: has known stack overflow issue
 
 ## Results
@@ -156,25 +156,9 @@ Each run writes output under `Results/`:
 - `Results/BENCH-4/`
 - `Results/BENCH-5/`
 
-Primary output files now use `.txt` names in the `NEW-BENCH-*` source files.
-
 Important: `do-bench.sh` currently loads `NEW-BENCH-*.LCOM` for all suites. To get `.txt` output in actual runs, recompile each `NEW-BENCH-*` source in Medley so the updated output names are included in the `.LCOM` files.
 
 ## Issue Groups And Recovery Steps
-
-### Group A: BENCH-1 output naming and file replacement behavior
-
-- What happened
-   - BENCH-1 originally writes `.Results` files (`AV-TAK.Results`, `IO.Results`, `PAV-ARITH.Results`).
-- Why
-   - The output names are defined inside `NEW-BENCH-1` and used by the compiled `NEW-BENCH-1.LCOM`.
-- Important behavior
-   - Changing output names to `.txt` creates separate new files.
-   - Existing `.Results` files are not replaced automatically.
-- Step-by-step (to use `.txt` for BENCH-1)
-   - 1. Recompile `NEW-BENCH-1` in Medley so `NEW-BENCH-1.LCOM` includes the new names.
-   - 2. Run `./do-bench.sh bench-1`.
-   - 3. Check `Results/BENCH-1/` for `AV-TAK.txt`, `IO.txt`, `PAV-ARITH.txt`.
    
 ### Group B: BENCH-5 runtime stability issue
 

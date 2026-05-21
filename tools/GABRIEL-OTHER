@@ -1,19 +1,20 @@
-(DEFINE-FILE-INFO READTABLE "XCL" PACKAGE (DEFPACKAGE "GABRIEL"))
-(IL:FILECREATED "28-Jun-88 17:26:33" IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;6 64944  
+(DEFINE-FILE-INFO :PACKAGE "GABRIEL" :READTABLE "INTERLISP" :BASE 10)
 
-      IL:|changes| IL:|to:|  (IL:VARIABLES *CONSY-BENCHMARKS*)
-                             (IL:VARS IL:GABRIEL-OTHERCOMS)
+(IL:FILECREATED "19-May-2026 13:54:24" IL:{GABRIEL}<Tools>GABRIEL-OTHER.;15 65561  
 
-      IL:|previous| IL:|date:| "27-Jun-88 10:02:52" 
-IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
+      :CHANGES-TO (IL:FILES IL:GABRIEL-FILES IL:GABRIEL-TIMERS)
+                  (XCL:FILE-ENVIRONMENTS IL:GABRIEL-OTHER)
 
+      :PREVIOUS-DATE " 4-May-2026 14:03:19" IL:{GABRIEL}<Tools>GABRIEL-OTHER.;11)
 
-; Copyright (c) 1987, 1988 by Xerox Corporation.  All rights reserved.
 
 (IL:PRETTYCOMPRINT IL:GABRIEL-OTHERCOMS)
 
-(IL:RPAQQ IL:GABRIEL-OTHERCOMS 
-          ((IL:FILES IL:GABRIEL-TIMERS)
+(IL:RPAQQ IL:GABRIEL-OTHERCOMS
+          ((IL:FILES (IL:COMPILED)
+                  IL:GABRIEL-FILES)
+           (IL:FILES (IL:FROM IL:VALUEOF IL:*BENCHMARKS-TOOLS-DIR* IL:COMPILED)
+                  IL:GABRIEL-PKG IL:GABRIEL-TIMERS)
            (IL:STRUCTURES TNODE)
            (IL:VARIABLES TYPEMAX SIZE)
            (IL:VARIABLES *A* *ALPHA* *B* *C* *D* *L *P *P* *R* *R2* *R3* *SERIES* *V* *X* *VAR ANSWER
@@ -32,13 +33,13 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                   TRAVERSE-RANDOM TRAVERSE-REMOVE TRAVERSE-SELECT TRIAL TRIANG-TEST TRUEP TRY)
            (IL:COMS 
 
-                  (IL:* IL:|;;| "Modified version of browse which doesn't cons so much")
+                  (IL:* IL:;; "Modified version of browse which doesn't cons so much")
 
                   (IL:FUNCTIONS CHAR1* BROWSE* INVESTIGATE* MATCH*)
                   (TIMERS BROWSE*))
            (IL:COMS 
 
-                  (IL:* IL:|;;| "Modified version of traverse-init to break circularities")
+                  (IL:* IL:;; "Modified version of traverse-init to break circularities")
 
                   (IL:FUNCTIONS CREATE-STRUCTURE* TRAVERSE-REMOVE* RELEASE-TREE RELEASE-TREE-AUX)
                   (TIMERS TRAVERSE* TRAVERSE-INIT*))
@@ -47,16 +48,19 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
            (TIMERS BOYER BROWSE DDERIV DERIV DESTRU DIV2-1 DIV2-2 FFT FRPOLY10R FRPOLY10R2 FRPOLY10R3
                   FRPOLY15R FRPOLY15R2 FRPOLY15R3 FRPOLY2R FRPOLY2R2 FRPOLY2R3 FRPOLY5R FRPOLY5R2 
                   FRPOLY5R3 PUZZLE TRAVERSE TRAVERSE-INIT TRIANG)
-           (IL:DECLARE\: IL:DONTCOPY IL:DOEVAL@COMPILE (IL:LOCALVARS . T))
-           (IL:PROP (IL:FILETYPE IL:MAKEFILE-ENVIRONMENT)
-                  IL:GABRIEL-OTHER)))
+           (IL:DECLARE%: IL:DONTCOPY IL:DOEVAL@COMPILE (IL:LOCALVARS . T))
+           (XCL:FILE-ENVIRONMENTS IL:GABRIEL-OTHER)))
 
-(IL:FILESLOAD IL:GABRIEL-TIMERS)
+(IL:FILESLOAD (IL:COMPILED)
+       IL:GABRIEL-FILES)
+
+(IL:FILESLOAD (IL:FROM IL:VALUEOF IL:*BENCHMARKS-TOOLS-DIR* IL:COMPILED)
+       IL:GABRIEL-PKG IL:GABRIEL-TIMERS)
 
 (DEFSTRUCT TNODE
    (PARENTS NIL)
    (SONS NIL)
-   (SN (SNB))
+   (SN (SNB))
    (ENTRY1 NIL)
    (ENTRY2 NIL)
    (ENTRY3 NIL)
@@ -70,16 +74,15 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
 (DEFCONSTANT SIZE 511)
 
 (DEFVAR *A* 
-                '
+            '
            #37(1 2 4 3 5 6 1 3 6 2 5 4 11 12 13 7 8 4 4 7 11 8 12 13 6 10 15 9 14 13 13 14 15 9 10 6))
 
 (DEFVAR *ALPHA*)
 
-(DEFVAR *B* 
-                '#37(2 4 7 5 8 9 3 6 10 5 9 8 12 13 14 8 9 5 2 4 7 5 8 9 3 6 10 5 9 8 12 13 14 8 9 5))
+(DEFVAR *B* '#37(2 4 7 5 8 9 3 6 10 5 9 8 12 13 14 8 9 5 2 4 7 5 8 9 3 6 10 5 9 8 12 13 14 8 9 5))
 
 (DEFVAR *C* 
-                '
+            '
            #37(4 7 11 8 12 13 6 10 15 9 14 13 13 14 15 9 10 6 1 2 4 3 5 6 1 3 6 2 5 4 11 12 13 7 8 4))
 
 (DEFVAR *D* 8)
@@ -89,7 +92,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
 (DEFVAR *P)
 
 (DEFVAR *P* (MAKE-ARRAY (LIST (1+ TYPEMAX)
-                                  (1+ SIZE))))
+                              (1+ SIZE))))
 
 (DEFVAR *R*)
 
@@ -113,7 +116,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
 (DEFVAR BOARD '#16(1 1 1 1 1 0 1))
 
 (DEFVAR CLASS (MAKE-ARRAY (1+ TYPEMAX)
-                         ':INITIAL-ELEMENT 0))
+                     ':INITIAL-ELEMENT 0))
 
 (DEFCONSTANT CLASSMAX 3)
 
@@ -132,10 +135,10 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
 (DEFVAR MARKER NIL)
 
 (DEFVAR PIECECOUNT (MAKE-ARRAY (1+ CLASSMAX)
-                              ':INITIAL-ELEMENT 0))
+                          ':INITIAL-ELEMENT 0))
 
 (DEFVAR PIECEMAX (MAKE-ARRAY (1+ TYPEMAX)
-                            ':INITIAL-ELEMENT 0))
+                        ':INITIAL-ELEMENT 0))
 
 (DEFVAR PUZZLE (MAKE-ARRAY (1+ SIZE)))
 
@@ -170,32 +173,32 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
    (CONS '- (MAPCAR #'DDERIV A)))
 
 (DEFUN /DDERIV (A)
-   (LIST '- (LIST '/ (DDERIV (CAR A))
+   [LIST '- (LIST '/ (DDERIV (CAR A))
                   (CADR A))
          (LIST '/ (CAR A)
                (LIST '* (CADR A)
                      (CADR A)
-                     (DDERIV (CADR A))))))
+                     (DDERIV (CADR A])
 
 (DEFUN ADD (A Q)
-   (COND
-      ((NULL Q)
-       `(,(LET ((X `(,A)))
+   [COND
+      [(NULL Q)
+       `(,(LET [(X `(,A]
                (RPLACD X X)
-               X)))
+               X]
       ((NULL (CAR Q))
-       (LET ((X `(,A)))
+       (LET [(X `(,A]
             (RPLACD X X)
             (RPLACA Q X)))
       (T (RPLACA Q (RPLACD (CAR Q)
-                          `(,A . ,(CDR (CAR Q))))))))
+                          `(,A IL:\, (CDR (CAR Q])
 
 (DEFUN ADD-LEMMA (TERM)
    (COND
-      ((AND (NOT (ATOM TERM))
+      ([AND (NOT (ATOM TERM))
             (EQ (CAR TERM)
                 'EQUAL)
-            (NOT (ATOM (CADR TERM))))
+            (NOT (ATOM (CADR TERM]
        (PUSHNEW TERM (GET (CAR (CADR TERM))
                           'LEMMAS)
               :TEST
@@ -203,42 +206,42 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
       (T (ERROR "Add lemma did not like term"))))
 
 (DEFUN ADD-LEMMA-LST (LST)
-   (COND
+   [COND
       ((NULL LST)
        T)
-      (T (ADD-LEMMA (CAR LST))
-         (ADD-LEMMA-LST (CDR LST)))))
+      (T (ADD-LEMMA (CAR LST))
+         (ADD-LEMMA-LST (CDR LST])
 
 (DEFUN APPLY-SUBST (ALIST TERM)
-   (COND
+   [COND
       ((ATOM TERM)
        (COND
           ((SETQ TEMP-TEMP (ASSOC TERM ALIST))
            (CDR TEMP-TEMP))
           (T TERM)))
       (T (CONS (CAR TERM)
-               (APPLY-SUBST-LST ALIST (CDR TERM))))))
+               (APPLY-SUBST-LST ALIST (CDR TERM])
 
 (DEFUN APPLY-SUBST-LST (ALIST LST)
-   (COND
+   [COND
       ((NULL LST)
        NIL)
-      (T (CONS (APPLY-SUBST ALIST (CAR LST))
-               (APPLY-SUBST-LST ALIST (CDR LST))))))
+      (T (CONS (APPLY-SUBST ALIST (CAR LST))
+               (APPLY-SUBST-LST ALIST (CDR LST])
 
 (DEFUN BROWSE ()
    (SETF RAND 21)
-   (INVESTIGATE (RANDOMIZE (INIT 100 10 4
+   [INVESTIGATE [RANDOMIZE (INIT 100 10 4
                                  '((A A A B B B B A A A A A B B A A A)
                                    (A A B B B B A A (A A)
                                       (B B))
                                    (A A A B (B A)
-                                      B A B A))))
+                                      B A B A]
           '((*A ?B *B ?B A *A A *B *A)
             (*A *B *B *A (*A)
                 (*B))
             (? ? * (B A)
-               * ? ?))))
+               * ? ?])
 
 (DEFUN BROWSE-RANDOM ()
    (SETQ RAND (MOD (* RAND 17)
@@ -258,31 +261,31 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
         A)))
 
 (DEFUN CREATE-STRUCTURE (N)
-   (LET ((A `(,(MAKE-TNODE))))
+   (LET [(A `(,(MAKE-TNODE]
         (DO ((M (1- N)
                 (1- M))
              (P A))
-            ((= M 0)
-             (SETQ A `(,(RPLACD P A)))
+            [(= M 0)
+             [SETQ A `(,(RPLACD P A]
              (DO ((UNUSED A)
-                  (USED (ADD (TRAVERSE-REMOVE 0 A)
+                  (USED (ADD (TRAVERSE-REMOVE 0 A)
                              NIL))
                   (X)
                   (Y))
                  ((NULL (CAR UNUSED))
-                  (FIND-ROOT (TRAVERSE-SELECT 0 USED)
+                  (FIND-ROOT (TRAVERSE-SELECT 0 USED)
                          N))
-               (SETQ X (TRAVERSE-REMOVE (REM (TRAVERSE-RANDOM)
+               (SETQ X (TRAVERSE-REMOVE (REM (TRAVERSE-RANDOM)
                                              N)
                               UNUSED))
-               (SETQ Y (TRAVERSE-SELECT (REM (TRAVERSE-RANDOM)
+               (SETQ Y (TRAVERSE-SELECT (REM (TRAVERSE-RANDOM)
                                              N)
                               USED))
-               (ADD X USED)
-               (SETF (TNODE-SONS Y)
-                     `(,X . ,(TNODE-SONS Y)))
-               (SETF (TNODE-PARENTS X)
-                     `(,Y . ,(TNODE-PARENTS X)))))
+               (ADD X USED)
+               [SETF (TNODE-SONS Y)
+                     `(,X IL:\, (TNODE-SONS Y]
+               [SETF (TNODE-PARENTS X)
+                     `(,Y IL:\, (TNODE-PARENTS X])]
           (PUSH (MAKE-TNODE)
                 A))))
 
@@ -290,31 +293,31 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
    `(* ,X ,Y))
 
 (DEFUN DDERIV (A)
-   (COND
+   [COND
       ((ATOM A)
        (COND
           ((EQ A 'X)
            1)
           (T 0)))
-      (T (LET ((DDERIV (GET (CAR A)
-                            'DDERIV)))
+      (T (LET [(DDERIV (GET (CAR A)
+                            'DDERIV]
               (COND
-                 (DDERIV (FUNCALL DDERIV (CDR A)))
-                 (T 'ERROR))))))
+                 (DDERIV (FUNCALL DDERIV (CDR A)))
+                 (T 'ERROR])
 
 (DEFUN DDERIV-AUX (A)
-   (LIST '/ (DDERIV A)
+   (LIST '/ (DDERIV A)
          A))
 
 (DEFUN DEFINEPIECE (ICLASS II JJ KK)
-   (LET ((INDEX 0))
+   [LET ((INDEX 0))
         (DO ((I 0 (1+ I)))
             ((> I II))
           (DO ((J 0 (1+ J)))
               ((> J JJ))
             (DO ((K 0 (1+ K)))
                 ((> K KK))
-              (SETQ INDEX (+ I (* *D* (+ J (* *D* K)))))
+              [SETQ INDEX (+ I (* *D* (+ J (* *D* K]
               (SETF (AREF *P* III INDEX)
                     TRUE))))
         (SETF (AREF CLASS III)
@@ -323,7 +326,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
               INDEX)
         (COND
            ((NOT (= III TYPEMAX))
-            (SETQ III (+ III 1))))))
+            (SETQ III (+ III 1])
 
 (DEFUN DERIV (A)
    (COND
@@ -332,38 +335,38 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
           ((EQ A 'X)
            1)
           (T 0)))
-      ((EQ (CAR A)
+      [(EQ (CAR A)
            '+)
-       (CONS '+ (MAPCAR #'DERIV (CDR A))))
-      ((EQ (CAR A)
+       (CONS '+ (MAPCAR #'DERIV (CDR A]
+      [(EQ (CAR A)
            '-)
-       (CONS '- (MAPCAR #'DERIV (CDR A))))
-      ((EQ (CAR A)
+       (CONS '- (MAPCAR #'DERIV (CDR A]
+      [(EQ (CAR A)
            '*)
-       (LIST '* A (CONS '+ (MAPCAR 'DERIV-AUX (CDR A)))))
-      ((EQ (CAR A)
+       (LIST '* A (CONS '+ (MAPCAR 'DERIV-AUX (CDR A]
+      [(EQ (CAR A)
            '/)
-       (LIST '- (LIST '/ (DERIV (CADR A))
+       (LIST '- (LIST '/ (DERIV (CADR A))
                       (CADDR A))
              (LIST '/ (CADR A)
                    (LIST '* (CADDR A)
                          (CADDR A)
-                         (DERIV (CADDR A))))))
+                         (DERIV (CADDR A]
       (T 'ERROR)))
 
 (DEFUN DERIV-AUX (A)
-   (LIST '/ (DERIV A)
+   (LIST '/ (DERIV A)
          A))
 
 (DEFUN DESTRUCTIVE (N M)
-   (LET ((L (DO ((I 10 (1- I))
+   [LET [(L (DO ((I 10 (1- I))
                  (A NIL (PUSH NIL A)))
                 ((= I 0)
-                 A))))
+                 A))]
         (DO ((I N (1- I)))
             ((= I 0))
-          (COND
-             ((NULL (CAR L))
+          [COND
+             [(NULL (CAR L))
               (DO ((L L (CDR L)))
                   ((NULL L))
                 (OR (CAR L)
@@ -372,12 +375,12 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                        (DO ((J M (1- J))
                             (A NIL (PUSH NIL A)))
                            ((= J 0)
-                            A)))))
+                            A))))]
              (T (DO ((L1 L (CDR L1))
                      (L2 (CDR L)
                          (CDR L2)))
                     ((NULL L2))
-                  (RPLACD (DO ((J (FLOOR (LENGTH (CAR L2))
+                  [RPLACD (DO ((J (FLOOR (LENGTH (CAR L2))
                                          2)
                                   (1- J))
                                (A (CAR L2)
@@ -397,7 +400,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                                         ((= J 1)
                                          (PROG1 (CDR A)
                                                 (RPLACD A NIL)))
-                                      (RPLACA A I))))))))))))
+                                      (RPLACA A I))])])])
 
 (DEFUN FALSEP (X LST)
    (OR (EQUAL X '(F))
@@ -419,11 +422,11 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                    I
                    (+ I I))
              (GO L1)))
-         (COND
+         [COND
             ((NOT (EQUAL N (EXPT 2 M)))
              (PRINC "Error ... array size not a power of two.")
              (READ)
-             (RETURN (TERPRI))))
+             (RETURN (TERPRI]
          (SETQ J 1 I 1)
      L3  (COND
             ((< I J)
@@ -453,12 +456,12 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
              (GO L3)))
          (DO ((L 1 (1+ L)))
              ((> L M))
-           (SETQ LE (EXPT 2 L)
+           [SETQ LE (EXPT 2 L)
                  LE1
                  (FLOOR LE 2)
                  UR 1.0 UI 0 WR (COS (/ PI (FLOAT LE1)))
                  WI
-                 (SIN (/ PI (FLOAT LE1))))
+                 (SIN (/ PI (FLOAT LE1]
            (DO ((J 1 (1+ J)))
                ((> J LE1))
              (DO ((I J (+ I LE)))
@@ -498,21 +501,21 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
    (DO ((N N (1- N)))
        ((= N 0)
         TNODE)
-     (COND
+     [COND
         ((NULL (TNODE-PARENTS TNODE))
          (RETURN TNODE))
-        (T (SETQ TNODE (CAR (TNODE-PARENTS TNODE)))))))
+        (T (SETQ TNODE (CAR (TNODE-PARENTS TNODE]))
 
 (DEFUN FIT (I J)
-   (LET ((END (AREF PIECEMAX I)))
+   [LET ((END (AREF PIECEMAX I)))
         (DO ((K 0 (1+ K)))
             ((> K END)
              TRUE)
-          (COND
+          [COND
              ((AREF *P* I K)
               (COND
                  ((AREF PUZZLE (+ J K))
-                  (RETURN FALSE))))))))
+                  (RETURN FALSE])])
 
 (DEFUN GOGOGO (I)
    (DOTIMES (J 16)
@@ -522,18 +525,18 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
          0)
    (LET ((ANSWER NIL)
          (FINAL NIL))
-        (TRY I 1)))
+        (TRY I 1)))
 
 (DEFUN INIT (N M NPATS IPATS)
-   (LET ((IPATS (COPY-TREE IPATS)))
+   [LET ((IPATS (COPY-TREE IPATS)))
         (DO ((P IPATS (CDR P)))
             ((NULL (CDR P))
              (RPLACD P IPATS)))
         (DO ((N N (1- N))
-             (I M (COND
+             [I M (COND
                      ((= I 0)
                       M)
-                     (T (1- I))))
+                     (T (1- I]
              (NAME (GENSYM)
                    (GENSYM))
              (A NIL))
@@ -556,7 +559,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                   (1- J)))
               ((= J 0))
             (SETF (GET NAME (GENSYM))
-                  NIL)))))
+                  NIL)))])
 
 (DEFUN INVESTIGATE (UNITS PATS)
    (DO ((UNITS UNITS (CDR UNITS)))
@@ -567,7 +570,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                     'PATTERN)
                (CDR P)))
            ((NULL P))
-         (MATCH (CAR PATS)
+         (MATCH (CAR PATS)
                 (CAR P)
                 NIL)))))
 
@@ -581,10 +584,10 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
 (DEFUN ITERATIVE-DIV2-TEST (L)
    (DO ((I 300 (1- I)))
        ((= I 0))
-     (ITERATIVE-DIV2 L)
-     (ITERATIVE-DIV2 L)
-     (ITERATIVE-DIV2 L)
-     (ITERATIVE-DIV2 L)))
+     (ITERATIVE-DIV2 L)
+     (ITERATIVE-DIV2 L)
+     (ITERATIVE-DIV2 L)
+     (ITERATIVE-DIV2 L)))
 
 (DEFUN LAST-POSITION ()
    (DO ((I 1 (1+ I)))
@@ -594,7 +597,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
          (RETURN I))))
 
 (DEFUN MATCH (PAT DAT ALIST)
-   (COND
+   [COND
       ((NULL PAT)
        (NULL DAT))
       ((NULL DAT)
@@ -603,40 +606,40 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                '?)
            (EQ (CAR PAT)
                (CAR DAT)))
-       (MATCH (CDR PAT)
+       (MATCH (CDR PAT)
               (CDR DAT)
               ALIST))
       ((EQ (CAR PAT)
            '*)
-       (OR (MATCH (CDR PAT)
+       (OR (MATCH (CDR PAT)
                   DAT ALIST)
-           (MATCH (CDR PAT)
+           (MATCH (CDR PAT)
                   (CDR DAT)
                   ALIST)
-           (MATCH PAT (CDR DAT)
+           (MATCH PAT (CDR DAT)
                   ALIST)))
       (T (COND
-            ((ATOM (CAR PAT))
+            [(ATOM (CAR PAT))
              (COND
-                ((EQL (CHAR1 (CAR PAT))
+                [(EQL (CHAR1 (CAR PAT))
                       #\?)
                  (LET ((VAL (ASSOC (CAR PAT)
                                    ALIST)))
                       (COND
-                         (VAL (MATCH (CONS (CDR VAL)
+                         (VAL (MATCH (CONS (CDR VAL)
                                            (CDR PAT))
                                      DAT ALIST))
-                         (T (MATCH (CDR PAT)
+                         (T (MATCH (CDR PAT)
                                    (CDR DAT)
                                    (CONS (CONS (CAR PAT)
                                                (CAR DAT))
-                                         ALIST))))))
-                ((EQL (CHAR1 (CAR PAT))
+                                         ALIST]
+                ((EQL (CHAR1 (CAR PAT))
                       #\*)
                  (LET ((VAL (ASSOC (CAR PAT)
                                    ALIST)))
                       (COND
-                         (VAL (MATCH (APPEND (CDR VAL)
+                         (VAL (MATCH (APPEND (CDR VAL)
                                             (CDR PAT))
                                      DAT ALIST))
                          (T (DO ((L NIL (NCONC L (CONS (CAR D)
@@ -647,23 +650,23 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                                 ((NULL E)
                                  NIL)
                               (COND
-                                 ((MATCH (CDR PAT)
+                                 ((MATCH (CDR PAT)
                                          D
                                          (CONS (CONS (CAR PAT)
                                                      L)
                                                ALIST))
-                                  (RETURN T))))))))))
+                                  (RETURN T))))]
             (T (AND (NOT (ATOM (CAR DAT)))
-                    (MATCH (CAR PAT)
+                    (MATCH (CAR PAT)
                            (CAR DAT)
                            ALIST)
-                    (MATCH (CDR PAT)
+                    (MATCH (CDR PAT)
                            (CDR DAT)
-                           ALIST)))))))
+                           ALIST])
 
 (DEFUN ONE-WAY-UNIFY (TERM1 TERM2)
    (PROGN (SETQ UNIFY-SUBST NIL)
-          (ONE-WAY-UNIFY1 TERM1 TERM2)))
+          (ONE-WAY-UNIFY1 TERM1 TERM2)))
 
 (DEFUN ONE-WAY-UNIFY1 (TERM1 TERM2)
    (COND
@@ -678,7 +681,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
        NIL)
       ((EQ (CAR TERM1)
            (CAR TERM2))
-       (ONE-WAY-UNIFY1-LST (CDR TERM1)
+       (ONE-WAY-UNIFY1-LST (CDR TERM1)
               (CDR TERM2)))
       (T NIL)))
 
@@ -686,14 +689,14 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
    (COND
       ((NULL LST1)
        T)
-      ((ONE-WAY-UNIFY1 (CAR LST1)
+      ((ONE-WAY-UNIFY1 (CAR LST1)
               (CAR LST2))
-       (ONE-WAY-UNIFY1-LST (CDR LST1)
+       (ONE-WAY-UNIFY1-LST (CDR LST1)
               (CDR LST2)))
       (T NIL)))
 
 (DEFUN PCOEFADD (E C X)
-   (IF (PZEROP C)
+   (IF (PZEROP C)
        X
        (CONS E (CONS C X))))
 
@@ -701,39 +704,39 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
    `(ATOM ,E))
 
 (DEFUN PCPLUS (C P)
-   (IF (PCOEFP P)
-       (CPLUS P C)
-       (PSIMP (CAR P)
-              (PCPLUS1 C (CDR P)))))
+   (IF (PCOEFP P)
+       (CPLUS P C)
+       (PSIMP (CAR P)
+              (PCPLUS1 C (CDR P)))))
 
 (DEFUN PCPLUS1 (C X)
-   (COND
-      ((NULL X)
+   [COND
+      [(NULL X)
        (COND
-          ((PZEROP C)
+          ((PZEROP C)
            NIL)
-          (T (CONS 0 (CONS C NIL)))))
-      ((PZEROP (CAR X))
-       (PCOEFADD 0 (PPLUS C (CADR X))
+          (T (CONS 0 (CONS C NIL]
+      ((PZEROP (CAR X))
+       (PCOEFADD 0 (PPLUS C (CADR X))
               NIL))
       (T (CONS (CAR X)
                (CONS (CADR X)
-                     (PCPLUS1 C (CDDR X)))))))
+                     (PCPLUS1 C (CDDR X])
 
 (DEFUN PCTIMES (C P)
-   (COND
-      ((PCOEFP P)
-       (CTIMES C P))
-      (T (PSIMP (CAR P)
-                (PCTIMES1 C (CDR P))))))
+   [COND
+      ((PCOEFP P)
+       (CTIMES C P))
+      (T (PSIMP (CAR P)
+                (PCTIMES1 C (CDR P])
 
 (DEFUN PCTIMES1 (C X)
-   (COND
+   [COND
       ((NULL X)
        NIL)
-      (T (PCOEFADD (CAR X)
-                (PTIMES C (CADR X))
-                (PCTIMES1 C (CDDR X))))))
+      (T (PCOEFADD (CAR X)
+                (PTIMES C (CADR X))
+                (PCTIMES1 C (CDDR X])
 
 (DEFUN PDIFFER1 (X Y)
    X
@@ -741,20 +744,20 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
    (ERROR "pdiffer2 called"))
 
 (DEFUN PEXPTSQ (P N)
-   (DO ((N (FLOOR N 2)
+   (DO [(N (FLOOR N 2)
            (FLOOR N 2))
         (S (COND
               ((ODDP N)
                P)
-              (T 1))))
+              (T 1]
        ((ZEROP N)
         S)
-     (SETQ P (PTIMES P P))
+     (SETQ P (PTIMES P P))
      (AND (ODDP N)
-          (SETQ S (PTIMES S P)))))
+          (SETQ S (PTIMES S P)))))
 
 (DEFUN PLACE (I J)
-   (LET ((END (AREF PIECEMAX I)))
+   [LET ((END (AREF PIECEMAX I)))
         (DO ((K 0 (1+ K)))
             ((> K END))
           (COND
@@ -769,52 +772,52 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
              0)
           (COND
              ((NOT (AREF PUZZLE K))
-              (RETURN K))))))
+              (RETURN K))))])
 
 (DEFMACRO POINTERGP (X Y)
    `(> (GET ,X 'ORDER)
        (GET ,Y 'ORDER)))
 
 (DEFUN PPLUS (X Y)
-   (COND
-      ((PCOEFP X)
-       (PCPLUS X Y))
-      ((PCOEFP Y)
-       (PCPLUS Y X))
-      ((EQ (CAR X)
+   [COND
+      ((PCOEFP X)
+       (PCPLUS X Y))
+      ((PCOEFP Y)
+       (PCPLUS Y X))
+      [(EQ (CAR X)
            (CAR Y))
-       (PSIMP (CAR X)
-              (PPLUS1 (CDR Y)
-                     (CDR X))))
-      ((POINTERGP (CAR X)
+       (PSIMP (CAR X)
+              (PPLUS1 (CDR Y)
+                     (CDR X]
+      [(POINTERGP (CAR X)
               (CAR Y))
-       (PSIMP (CAR X)
-              (PCPLUS1 Y (CDR X))))
-      (T (PSIMP (CAR Y)
-                (PCPLUS1 X (CDR Y))))))
+       (PSIMP (CAR X)
+              (PCPLUS1 Y (CDR X]
+      (T (PSIMP (CAR Y)
+                (PCPLUS1 X (CDR Y])
 
 (DEFUN PPLUS1 (X Y)
-   (COND
+   [COND
       ((NULL X)
        Y)
       ((NULL Y)
        X)
-      ((= (CAR X)
+      [(= (CAR X)
           (CAR Y))
-       (PCOEFADD (CAR X)
-              (PPLUS (CADR X)
+       (PCOEFADD (CAR X)
+              (PPLUS (CADR X)
                      (CADR Y))
-              (PPLUS1 (CDDR X)
-                     (CDDR Y))))
-      ((> (CAR X)
+              (PPLUS1 (CDDR X)
+                     (CDDR Y]
+      [(> (CAR X)
           (CAR Y))
        (CONS (CAR X)
              (CONS (CADR X)
-                   (PPLUS1 (CDDR X)
-                          Y))))
+                   (PPLUS1 (CDDR X)
+                          Y]
       (T (CONS (CAR Y)
                (CONS (CADR Y)
-                     (PPLUS1 X (CDDR Y)))))))
+                     (PPLUS1 X (CDDR Y])
 
 (DEFUN PSIMP (VAR X)
    (COND
@@ -827,45 +830,45 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
       (T (CONS VAR X))))
 
 (DEFUN PTIMES (X Y)
-   (COND
-      ((OR (PZEROP X)
-           (PZEROP Y))
-       (PZERO))
-      ((PCOEFP X)
-       (PCTIMES X Y))
-      ((PCOEFP Y)
-       (PCTIMES Y X))
-      ((EQ (CAR X)
+   [COND
+      ((OR (PZEROP X)
+           (PZEROP Y))
+       (PZERO))
+      ((PCOEFP X)
+       (PCTIMES X Y))
+      ((PCOEFP Y)
+       (PCTIMES Y X))
+      [(EQ (CAR X)
            (CAR Y))
-       (PSIMP (CAR X)
-              (PTIMES1 (CDR X)
-                     (CDR Y))))
-      ((POINTERGP (CAR X)
+       (PSIMP (CAR X)
+              (PTIMES1 (CDR X)
+                     (CDR Y]
+      [(POINTERGP (CAR X)
               (CAR Y))
-       (PSIMP (CAR X)
-              (PCTIMES1 Y (CDR X))))
-      (T (PSIMP (CAR Y)
-                (PCTIMES1 X (CDR Y))))))
+       (PSIMP (CAR X)
+              (PCTIMES1 Y (CDR X]
+      (T (PSIMP (CAR Y)
+                (PCTIMES1 X (CDR Y])
 
 (DEFUN PTIMES1 (*X* Y)
    (PROG (U* *V*)
-         (SETQ *V* (SETQ U* (PTIMES2 Y)))
+         (SETQ *V* (SETQ U* (PTIMES2 Y)))
      A   (SETQ *X* (CDDR *X*))
          (COND
             ((NULL *X*)
              (RETURN U*)))
-         (PTIMES3 Y)
+         (PTIMES3 Y)
          (GO A)))
 
 (DEFUN PTIMES2 (Y)
-   (COND
+   [COND
       ((NULL Y)
        NIL)
-      (T (PCOEFADD (+ (CAR *X*)
+      (T (PCOEFADD (+ (CAR *X*)
                       (CAR Y))
-                (PTIMES (CADR *X*)
+                (PTIMES (CADR *X*)
                        (CADR Y))
-                (PTIMES2 (CDDR Y))))))
+                (PTIMES2 (CDDR Y])
 
 (DEFUN PTIMES3 (Y)
    (PROG (E U C)
@@ -874,23 +877,23 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
              (RETURN NIL)))
          (SETQ E (+ (CAR *X*)
                     (CAR Y)))
-         (SETQ C (PTIMES (CADR Y)
+         (SETQ C (PTIMES (CADR Y)
                         (CADR *X*)))
          (COND
-            ((PZEROP C)
+            ((PZEROP C)
              (SETQ Y (CDDR Y))
              (GO A1))
             ((OR (NULL *V*)
                  (> E (CAR *V*)))
-             (SETQ U* (SETQ *V* (PPLUS1 U* (LIST E C))))
+             [SETQ U* (SETQ *V* (PPLUS1 U* (LIST E C]
              (SETQ Y (CDDR Y))
              (GO A1))
             ((= E (CAR *V*))
-             (SETQ C (PPLUS C (CADR *V*)))
+             (SETQ C (PPLUS C (CADR *V*)))
              (COND
-                ((PZEROP C)
-                 (SETQ U* (SETQ *V* (PDIFFER1 U* (LIST (CAR *V*)
-                                                       (CADR *V*))))))
+                [(PZEROP C)
+                 (SETQ U* (SETQ *V* (PDIFFER1 U* (LIST (CAR *V*)
+                                                       (CADR *V*]
                 (T (RPLACA (CDR *V*)
                           C)))
              (SETQ Y (CDDR Y))
@@ -906,10 +909,10 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
             ((OR (NULL (CDR U))
                  (< (CADR U)
                     E))
-             (RPLACD U (CONS E (CONS C (CDR U))))
+             [RPLACD U (CONS E (CONS C (CDR U]
              (GO E)))
          (COND
-            ((PZEROP (SETQ C (PPLUS (CADDR U)
+            ((PZEROP (SETQ C (PPLUS (CADDR U)
                                     C)))
              (RPLACD U (CDDDR U))
              (GO D))
@@ -922,7 +925,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
              (RETURN NIL)))
          (SETQ E (+ (CAR *X*)
                     (CAR Y)))
-         (SETQ C (PTIMES (CADR Y)
+         (SETQ C (PTIMES (CADR Y)
                         (CADR *X*)))
      C   (COND
             ((AND (CDR U)
@@ -955,8 +958,8 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
    (DO ((A NIL))
        ((NULL L)
         A)
-     (LET ((N (MOD (BROWSE-RANDOM)
-                   (LENGTH L))))
+     [LET [(N (MOD (BROWSE-RANDOM)
+                   (LENGTH L]
           (COND
              ((= N 0)
               (PUSH (CAR L)
@@ -967,68 +970,68 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                     ((= N 1)
                      (PUSH (CADR X)
                            A)
-                     (RPLACD X (CDDR X)))))))))
+                     (RPLACD X (CDDR X))))]))
 
 (DEFUN RECURSIVE-DIV2 (L)
-   (COND
+   [COND
       ((NULL L)
        NIL)
       (T (CONS (CAR L)
-               (RECURSIVE-DIV2 (CDDR L))))))
+               (RECURSIVE-DIV2 (CDDR L])
 
 (DEFUN RECURSIVE-DIV2-TEST (L)
    (DO ((I 300 (1- I)))
        ((= I 0))
-     (RECURSIVE-DIV2 L)
-     (RECURSIVE-DIV2 L)
-     (RECURSIVE-DIV2 L)
-     (RECURSIVE-DIV2 L)))
+     (RECURSIVE-DIV2 L)
+     (RECURSIVE-DIV2 L)
+     (RECURSIVE-DIV2 L)
+     (RECURSIVE-DIV2 L)))
 
 (DEFUN REWRITE (TERM)
-   (COND
+   [COND
       ((ATOM TERM)
        TERM)
-      (T (REWRITE-WITH-LEMMAS (CONS (CAR TERM)
-                                    (REWRITE-ARGS (CDR TERM)))
+      (T (REWRITE-WITH-LEMMAS (CONS (CAR TERM)
+                                    (REWRITE-ARGS (CDR TERM)))
                 (GET (CAR TERM)
-                     'LEMMAS)))))
+                     'LEMMAS])
 
 (DEFUN REWRITE-ARGS (LST)
-   (COND
+   [COND
       ((NULL LST)
        NIL)
-      (T (CONS (REWRITE (CAR LST))
-               (REWRITE-ARGS (CDR LST))))))
+      (T (CONS (REWRITE (CAR LST))
+               (REWRITE-ARGS (CDR LST])
 
 (DEFUN REWRITE-WITH-LEMMAS (TERM LST)
-   (COND
+   [COND
       ((NULL LST)
        TERM)
-      ((ONE-WAY-UNIFY TERM (CADR (CAR LST)))
-       (REWRITE (APPLY-SUBST UNIFY-SUBST (CADDR (CAR LST)))))
-      (T (REWRITE-WITH-LEMMAS TERM (CDR LST)))))
+      [(ONE-WAY-UNIFY TERM (CADR (CAR LST)))
+       (REWRITE (APPLY-SUBST UNIFY-SUBST (CADDR (CAR LST]
+      (T (REWRITE-WITH-LEMMAS TERM (CDR LST])
 
 (DEFUN RUN-DDERIV ()
    (DO ((I 0 (1+ I)))
        ((= I 1000))
      (DECLARE (TYPE FIXNUM I))
-     (DDERIV '(+ (* 3 X X)
+     (DDERIV '(+ (* 3 X X)
                  (* A X X)
                  (* B X)
                  5))
-     (DDERIV '(+ (* 3 X X)
+     (DDERIV '(+ (* 3 X X)
                  (* A X X)
                  (* B X)
                  5))
-     (DDERIV '(+ (* 3 X X)
+     (DDERIV '(+ (* 3 X X)
                  (* A X X)
                  (* B X)
                  5))
-     (DDERIV '(+ (* 3 X X)
+     (DDERIV '(+ (* 3 X X)
                  (* A X X)
                  (* B X)
                  5))
-     (DDERIV '(+ (* 3 X X)
+     (DDERIV '(+ (* 3 X X)
                  (* A X X)
                  (* B X)
                  5))))
@@ -1037,23 +1040,23 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
    (DO ((I 0 (1+ I)))
        ((= I 1000))
      (DECLARE (TYPE FIXNUM I))
-     (DERIV '(+ (* 3 X X)
+     (DERIV '(+ (* 3 X X)
                 (* A X X)
                 (* B X)
                 5))
-     (DERIV '(+ (* 3 X X)
+     (DERIV '(+ (* 3 X X)
                 (* A X X)
                 (* B X)
                 5))
-     (DERIV '(+ (* 3 X X)
+     (DERIV '(+ (* 3 X X)
                 (* A X X)
                 (* B X)
                 5))
-     (DERIV '(+ (* 3 X X)
+     (DERIV '(+ (* 3 X X)
                 (* A X X)
                 (* B X)
                 5))
-     (DERIV '(+ (* 3 X X)
+     (DERIV '(+ (* 3 X X)
                 (* A X X)
                 (* B X)
                 5))))
@@ -1061,29 +1064,29 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
 (DEFUN RUN-ONE (NAME &OPTIONAL (STREAM *STANDARD-OUTPUT*))
    (FORMAT STREAM "~&~A: " (GET NAME 'TIMING-DOCUMENTATION))
    (MULTIPLE-VALUE-BIND (N-RUNS REAL-TIME CPU-TIME)
-          (MULTIPLE-TIMED-DURATION (GET NAME 'TIMING-FUNCTION))
-          (FORMAT STREAM "CPU: ~7,3F  Page: ~7,3F  Real: ~7,3F  (based on ~D calls)" CPU-TIME
-                 (- REAL-TIME CPU-TIME)
-                 REAL-TIME N-RUNS)))
+       (MULTIPLE-TIMED-DURATION (GET NAME 'TIMING-FUNCTION))
+     (FORMAT STREAM "CPU: ~7,3F  Page: ~7,3F  Real: ~7,3F  (based on ~D calls)" CPU-TIME
+            (- REAL-TIME CPU-TIME)
+            REAL-TIME N-RUNS)))
 
 (DEFUN RUN-SERIES (&OPTIONAL (STREAM *STANDARD-OUTPUT*))
    (DESCRIBE-IMPLEMENTATION STREAM)
    (TERPRI STREAM)
    (TERPRI STREAM)
    (DOLIST (NAME *SERIES*)
-       (RUN-ONE NAME STREAM)))
+       (RUN-ONE NAME STREAM)))
 
 (DEFUN RUN-SERIES-TO-FILE (&OPTIONAL (PATHNAME "RPG-CL.TEXT"))
    (WITH-OPEN-FILE (STREAM PATHNAME :DIRECTION :OUTPUT)
-          (RUN-SERIES STREAM)))
+          (RUN-SERIES STREAM)))
 
 (DEFUN SEED ()
    (SETQ RAND 21))
 
 (DEFUN SETUP ()
-   (ADD-LEMMA-LST '((EQUAL (COMPILE FORM)
+   [ADD-LEMMA-LST '([EQUAL (COMPILE FORM)
                            (REVERSE (CODEGEN (OPTIMIZE FORM)
-                                           (NIL))))
+                                           (NIL]
                     (EQUAL (EQP X Y)
                            (EQUAL (FIX X)
                                   (FIX Y)))
@@ -1093,16 +1096,16 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                            (NOT (LESSP Y X)))
                     (EQUAL (GREATEREQP X Y)
                            (NOT (LESSP X Y)))
-                    (EQUAL (BOOLEAN X)
+                    [EQUAL (BOOLEAN X)
                            (OR (EQUAL X (T))
-                               (EQUAL X (F))))
+                               (EQUAL X (F]
                     (EQUAL (IFF X Y)
                            (AND (IMPLIES X Y)
                                 (IMPLIES Y X)))
-                    (EQUAL (EVEN1 X)
+                    [EQUAL (EVEN1 X)
                            (IF (ZEROP X)
                                (T)
-                               (ODD (1- X))))
+                               (ODD (1- X)))]
                     (EQUAL (COUNTPS- L PRED)
                            (COUNTPS-LOOP L PRED (ZERO)))
                     (EQUAL (FACT- I)
@@ -1118,15 +1121,15 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                            (CONS (CONS VAR (F))
                                  ALIST))
                     (EQUAL (TAUTOLOGY-CHECKER X)
-                           (TAUTOLOGYP (NORMALIZE X)
+                           (TAUTOLOGYP (NORMALIZE X)
                                   (NIL)))
                     (EQUAL (FALSIFY X)
                            (FALSIFY1 (NORMALIZE X)
                                   (NIL)))
-                    (EQUAL (PRIME X)
+                    [EQUAL (PRIME X)
                            (AND (NOT (ZEROP X))
-                                (NOT (EQUAL X (ADD1 (ZERO))))
-                                (PRIME1 X (1- X))))
+                                [NOT (EQUAL X (ADD1 (ZERO]
+                                (PRIME1 X (1- X]
                     (EQUAL (AND P Q)
                            (IF P
                                (IF Q
@@ -1166,9 +1169,9 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                                (IF C
                                    D
                                    E)))
-                    (EQUAL (ZEROP X)
+                    [EQUAL (ZEROP X)
                            (OR (EQUAL X (ZERO))
-                               (NOT (NUMBERP X))))
+                               (NOT (NUMBERP X]
                     (EQUAL (PLUS (PLUS X Y)
                                  Z)
                            (PLUS X (PLUS Y Z)))
@@ -1185,10 +1188,10 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                     (EQUAL (EQUAL (ZERO)
                                   (DIFFERENCE X Y))
                            (NOT (LESSP Y X)))
-                    (EQUAL (EQUAL X (DIFFERENCE X Y))
+                    [EQUAL (EQUAL X (DIFFERENCE X Y))
                            (AND (NUMBERP X)
                                 (OR (EQUAL X (ZERO))
-                                    (ZEROP Y))))
+                                    (ZEROP Y]
                     (EQUAL (MEANING (PLUS-TREE (APPEND X Y))
                                   A)
                            (PLUS (MEANING (PLUS-TREE X)
@@ -1258,10 +1261,10 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                                   BASE)
                            (PLUS (POWER-EVAL L BASE)
                                  I))
-                    (EQUAL (POWER-EVAL (BIG-PLUS X Y I BASE)
+                    [EQUAL (POWER-EVAL (BIG-PLUS X Y I BASE)
                                   BASE)
                            (PLUS I (PLUS (POWER-EVAL X BASE)
-                                         (POWER-EVAL Y BASE))))
+                                         (POWER-EVAL Y BASE]
                     (EQUAL (REMAINDER Y 1)
                            (ZERO))
                     (EQUAL (LESSP (REMAINDER X Y)
@@ -1269,16 +1272,16 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                            (NOT (ZEROP Y)))
                     (EQUAL (REMAINDER X X)
                            (ZERO))
-                    (EQUAL (LESSP (QUOTIENT I J)
+                    [EQUAL (LESSP (QUOTIENT I J)
                                   I)
                            (AND (NOT (ZEROP I))
                                 (OR (ZEROP J)
-                                    (NOT (EQUAL J 1)))))
-                    (EQUAL (LESSP (REMAINDER X Y)
+                                    (NOT (EQUAL J 1]
+                    [EQUAL (LESSP (REMAINDER X Y)
                                   X)
                            (AND (NOT (ZEROP Y))
                                 (NOT (ZEROP X))
-                                (NOT (LESSP X Y))))
+                                (NOT (LESSP X Y]
                     (EQUAL (POWER-EVAL (POWER-REP I BASE)
                                   BASE)
                            (FIX I))
@@ -1290,10 +1293,10 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                            (PLUS I J))
                     (EQUAL (GCD X Y)
                            (GCD Y X))
-                    (EQUAL (NTH (APPEND A B)
+                    [EQUAL (NTH (APPEND A B)
                                 I)
                            (APPEND (NTH A I)
-                                  (NTH B (DIFFERENCE I (LENGTH A)))))
+                                  (NTH B (DIFFERENCE I (LENGTH A]
                     (EQUAL (DIFFERENCE (PLUS X Y)
                                   X)
                            (FIX Y))
@@ -1339,38 +1342,38 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                     (EQUAL (SAMEFRINGE X Y)
                            (EQUAL (FLATTEN X)
                                   (FLATTEN Y)))
-                    (EQUAL (EQUAL (GREATEST-FACTOR X Y)
+                    [EQUAL (EQUAL (GREATEST-FACTOR X Y)
                                   (ZERO))
                            (AND (OR (ZEROP Y)
                                     (EQUAL Y 1))
-                                (EQUAL X (ZERO))))
+                                (EQUAL X (ZERO]
                     (EQUAL (EQUAL (GREATEST-FACTOR X Y)
                                   1)
                            (EQUAL X 1))
-                    (EQUAL (NUMBERP (GREATEST-FACTOR X Y))
+                    [EQUAL (NUMBERP (GREATEST-FACTOR X Y))
                            (NOT (AND (OR (ZEROP Y)
                                          (EQUAL Y 1))
-                                     (NOT (NUMBERP X)))))
+                                     (NOT (NUMBERP X]
                     (EQUAL (TIMES-LIST (APPEND X Y))
                            (TIMES (TIMES-LIST X)
                                   (TIMES-LIST Y)))
                     (EQUAL (PRIME-LIST (APPEND X Y))
                            (AND (PRIME-LIST X)
                                 (PRIME-LIST Y)))
-                    (EQUAL (EQUAL Z (TIMES W Z))
+                    [EQUAL (EQUAL Z (TIMES W Z))
                            (AND (NUMBERP Z)
                                 (OR (EQUAL Z (ZERO))
-                                    (EQUAL W 1))))
+                                    (EQUAL W 1]
                     (EQUAL (GREATEREQPR X Y)
                            (NOT (LESSP X Y)))
-                    (EQUAL (EQUAL X (TIMES X Y))
+                    [EQUAL (EQUAL X (TIMES X Y))
                            (OR (EQUAL X (ZERO))
                                (AND (NUMBERP X)
-                                    (EQUAL Y 1))))
+                                    (EQUAL Y 1]
                     (EQUAL (REMAINDER (TIMES Y X)
                                   Y)
                            (ZERO))
-                    (EQUAL (EQUAL (TIMES A B)
+                    [EQUAL (EQUAL (TIMES A B)
                                   1)
                            (AND (NOT (EQUAL A (ZERO)))
                                 (NOT (EQUAL B (ZERO)))
@@ -1379,7 +1382,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                                 (EQUAL (1- A)
                                        (ZERO))
                                 (EQUAL (1- B)
-                                       (ZERO))))
+                                       (ZERO]
                     (EQUAL (LESSP (LENGTH (DELETE X L))
                                   (LENGTH L))
                            (MEMBER X L))
@@ -1387,7 +1390,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                            (DELETE X (SORT2 L)))
                     (EQUAL (DSORT X)
                            (SORT2 X))
-                    (EQUAL (LENGTH (CONS X1 (CONS X2 (CONS X3 (CONS X4 (CONS X5 (CONS X6 X7)))))))
+                    (EQUAL [LENGTH (CONS X1 (CONS X2 (CONS X3 (CONS X4 (CONS X5 (CONS X6 X7]
                            (PLUS 6 (LENGTH X7)))
                     (EQUAL (DIFFERENCE (ADD1 (ADD1 X))
                                   2)
@@ -1403,14 +1406,14 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                            (IF (NUMBERP Y)
                                (ADD1 (PLUS X Y))
                                (ADD1 X)))
-                    (EQUAL (EQUAL (DIFFERENCE X Y)
+                    [EQUAL (EQUAL (DIFFERENCE X Y)
                                   (DIFFERENCE Z Y))
                            (IF (LESSP X Y)
                                (NOT (LESSP Y Z))
                                (IF (LESSP Z Y)
                                    (NOT (LESSP Y X))
                                    (EQUAL (FIX X)
-                                          (FIX Z)))))
+                                          (FIX Z))))]
                     (EQUAL (MEANING (PLUS-TREE (DELETE X Y))
                                   A)
                            (IF (MEMBER X Y)
@@ -1448,11 +1451,11 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                            (IF (LISTP X)
                                (CAR (FLATTEN X))
                                (ZERO)))
-                    (EQUAL (FLATTEN (CDR (GOPHER X)))
+                    [EQUAL (FLATTEN (CDR (GOPHER X)))
                            (IF (LISTP X)
                                (CDR (FLATTEN X))
                                (CONS (ZERO)
-                                     (NIL))))
+                                     (NIL)))]
                     (EQUAL (QUOTIENT (TIMES Y X)
                                   Y)
                            (IF (ZEROP Y)
@@ -1461,14 +1464,14 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                     (EQUAL (GET J (SET I VAL MEM))
                            (IF (EQP J I)
                                VAL
-                               (GET J MEM))))))
+                               (GET J MEM))])
 
 (DEFUN SETUP-DDERIV ()
    (MAPC #'(LAMBDA (OP FUN)
                   (SETF (GET OP 'DDERIV)
                         (SYMBOL-FUNCTION FUN)))
          '(+ - * /)
-         '(+DDERIV -DDERIV *DDERIV /DDERIV)))
+         '(+DDERIV -DDERIV *DDERIV /DDERIV)))
 
 (DEFUN SETUP-FRPOLY ()
    (SETF (GET 'X 'ORDER)
@@ -1477,11 +1480,11 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
          2)
    (SETF (GET 'Z 'ORDER)
          3)
-   (SETQ *R* (PPLUS '(X 1 1 0 1)
-                    (PPLUS '(Y 1 1)
-                           '(Z 1 1))))
-   (SETQ *R2* (PTIMES *R* 100000))
-   (SETQ *R3* (PTIMES *R* 1.0)))
+   [SETQ *R* (PPLUS '(X 1 1 0 1)
+                    (PPLUS '(Y 1 1)
+                           '(Z 1 1]
+   (SETQ *R2* (PTIMES *R* 100000))
+   (SETQ *R3* (PTIMES *R* 1.0)))
 
 (DEFUN SNB ()
    (SETQ SN (1+ SN)))
@@ -1497,7 +1500,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
          ((> J 5))
        (DO ((K 1 (1+ K)))
            ((> K 5))
-         (SETF (AREF PUZZLE (+ I (* *D* (+ J (* *D* K)))))
+         (SETF [AREF PUZZLE (+ I (* *D* (+ J (* *D* K]
                FALSE))))
    (DO ((I 0 (1+ I)))
        ((> I TYPEMAX))
@@ -1506,19 +1509,19 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
        (SETF (AREF *P* I M)
              FALSE)))
    (SETQ III 0)
-   (DEFINEPIECE 0 3 1 0)
-   (DEFINEPIECE 0 1 0 3)
-   (DEFINEPIECE 0 0 3 1)
-   (DEFINEPIECE 0 1 3 0)
-   (DEFINEPIECE 0 3 0 1)
-   (DEFINEPIECE 0 0 1 3)
-   (DEFINEPIECE 1 2 0 0)
-   (DEFINEPIECE 1 0 2 0)
-   (DEFINEPIECE 1 0 0 2)
-   (DEFINEPIECE 2 1 1 0)
-   (DEFINEPIECE 2 1 0 1)
-   (DEFINEPIECE 2 0 1 1)
-   (DEFINEPIECE 3 1 1 1)
+   (DEFINEPIECE 0 3 1 0)
+   (DEFINEPIECE 0 1 0 3)
+   (DEFINEPIECE 0 0 3 1)
+   (DEFINEPIECE 0 1 3 0)
+   (DEFINEPIECE 0 3 0 1)
+   (DEFINEPIECE 0 0 1 3)
+   (DEFINEPIECE 1 2 0 0)
+   (DEFINEPIECE 1 0 2 0)
+   (DEFINEPIECE 1 0 0 2)
+   (DEFINEPIECE 2 1 1 0)
+   (DEFINEPIECE 2 1 0 1)
+   (DEFINEPIECE 2 0 1 1)
+   (DEFINEPIECE 3 1 1 1)
    (SETF (AREF PIECECOUNT 0)
          13)
    (SETF (AREF PIECECOUNT 1)
@@ -1527,84 +1530,84 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
          1)
    (SETF (AREF PIECECOUNT 3)
          1)
-   (LET ((M (+ 1 (* *D* (+ 1 *D*))))
+   [LET ([M (+ 1 (* *D* (+ 1 *D*]
          (N 0)
          (KOUNT 0))
         (COND
-           ((FIT 0 M)
-            (SETQ N (PLACE 0 M)))
-           (T (FORMAT T "~%Error.")))
+           ((FIT 0 M)
+            (SETQ N (PLACE 0 M)))
+           (T (FORMAT T "~%%Error.")))
         (COND
-           ((TRIAL N)
-            (FORMAT T "~%Success in ~4D trials." KOUNT))
-           (T (FORMAT T "~%Failure.")))))
+           ((TRIAL N)
+            (FORMAT T "~%%Success in ~4D trials." KOUNT))
+           (T (FORMAT T "~%%Failure."])
 
 (DEFUN TAUTOLOGYP (X TRUE-LST FALSE-LST)
    (COND
-      ((TRUEP X TRUE-LST)
+      ((TRUEP X TRUE-LST)
        T)
-      ((FALSEP X FALSE-LST)
+      ((FALSEP X FALSE-LST)
        NIL)
       ((ATOM X)
        NIL)
-      ((EQ (CAR X)
+      [(EQ (CAR X)
            'IF)
        (COND
-          ((TRUEP (CADR X)
+          ((TRUEP (CADR X)
                   TRUE-LST)
-           (TAUTOLOGYP (CADDR X)
+           (TAUTOLOGYP (CADDR X)
                   TRUE-LST FALSE-LST))
-          ((FALSEP (CADR X)
+          ((FALSEP (CADR X)
                   FALSE-LST)
-           (TAUTOLOGYP (CADDDR X)
+           (TAUTOLOGYP (CADDDR X)
                   TRUE-LST FALSE-LST))
-          (T (AND (TAUTOLOGYP (CADDR X)
+          (T (AND (TAUTOLOGYP (CADDR X)
                          (CONS (CADR X)
                                TRUE-LST)
                          FALSE-LST)
-                  (TAUTOLOGYP (CADDDR X)
+                  (TAUTOLOGYP (CADDDR X)
                          TRUE-LST
                          (CONS (CADR X)
-                               FALSE-LST))))))
+                               FALSE-LST]
       (T NIL)))
 
 (DEFUN TAUTP (X)
-   (TAUTOLOGYP (REWRITE X)
+   (TAUTOLOGYP (REWRITE X)
           NIL NIL))
 
 (DEFUN TEST ()
    (PROG (ANS TERM)
-         (SETQ TERM (APPLY-SUBST '((X F (PLUS (PLUS A B)
-                                              (PLUS C (ZERO))))
+         [SETQ TERM (APPLY-SUBST '[[X F (PLUS (PLUS A B)
+                                              (PLUS C (ZERO]
                                    (Y F (TIMES (TIMES A B)
                                                (PLUS C D)))
-                                   (Z F (REVERSE (APPEND (APPEND A B)
-                                                        (NIL))))
+                                   [Z F (REVERSE (APPEND (APPEND A B)
+                                                        (NIL]
                                    (U EQUAL (PLUS A B)
                                       (DIFFERENCE X Y))
                                    (W LESSP (REMAINDER A B)
-                                      (MEMBER A (LENGTH B))))
-                           '(IMPLIES (AND (IMPLIES X Y)
+                                      (MEMBER A (LENGTH B]
+                           '(IMPLIES [AND (IMPLIES X Y)
                                           (AND (IMPLIES Y Z)
                                                (AND (IMPLIES Z U)
-                                                    (IMPLIES U W))))
-                                   (IMPLIES X W))))
-         (SETQ ANS (TAUTP TERM))))
+                                                    (IMPLIES U W]
+                                   (IMPLIES X W]
+         (SETQ ANS (TAUTP TERM))))
 
 (DEFUN TRANS-OF-IMPLIES (N)
-   (LIST 'IMPLIES (TRANS-OF-IMPLIES1 N)
+   (LIST 'IMPLIES (TRANS-OF-IMPLIES1 N)
          (LIST 'IMPLIES 0 N)))
 
 (DEFUN TRANS-OF-IMPLIES1 (N)
-   (COND
+   [COND
       ((EQUAL N 1)
        (LIST 'IMPLIES 0 1))
       (T (LIST 'AND (LIST 'IMPLIES (1- N)
                           N)
-               (TRANS-OF-IMPLIES1 (1- N))))))
+               (TRANS-OF-IMPLIES1 (1- N])
 
 (DEFUN TRAVERS (TNODE MARK)
-   (COND
+   [COND
       ((EQ (TNODE-MARK TNODE)
            MARK)
        NIL)
@@ -1627,12 +1630,12 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                     (CDR SONS)))
              ((NULL SONS)
               NIL)
-           (TRAVERS (CAR SONS)
-                  MARK)))))
+           (TRAVERS (CAR SONS)
+                  MARK))])
 
 (DEFUN TRAVERSE (ROOT)
    (LET ((COUNT 0))
-        (TRAVERS ROOT (SETQ MARKER (NOT MARKER)))
+        (TRAVERS ROOT (SETQ MARKER (NOT MARKER)))
         COUNT))
 
 (DEFUN TRAVERSE-RANDOM ()
@@ -1640,18 +1643,18 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                    251)))
 
 (DEFUN TRAVERSE-REMOVE (N Q)
-   (COND
+   [COND
       ((EQ (CDR (CAR Q))
            (CAR Q))
        (PROG2 NIL (CAAR Q)
               (RPLACA Q NIL)))
-      ((= N 0)
+      [(= N 0)
        (PROG2 NIL (CAAR Q)
               (DO ((P (CAR Q)
                       (CDR P)))
-                  ((EQ (CDR P)
+                  [(EQ (CDR P)
                        (CAR Q))
-                   (RPLACA Q (RPLACD P (CDR (CAR Q))))))))
+                   (RPLACA Q (RPLACD P (CDR (CAR Q])]
       (T (DO ((N N (1- N))
               (Q (CAR Q)
                  (CDR Q))
@@ -1659,7 +1662,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                  (CDR P)))
              ((= N 0)
               (PROG2 NIL (CAR Q)
-                     (RPLACD Q P)))))))
+                     (RPLACD Q P))))])
 
 (DEFUN TRAVERSE-SELECT (N Q)
    (DO ((N N (1- N))
@@ -1669,23 +1672,23 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
         (CAR Q))))
 
 (DEFUN TRIAL (J)
-   (LET ((K 0))
+   [LET ((K 0))
         (DO ((I 0 (1+ I)))
             ((> I TYPEMAX)
              (SETQ KOUNT (1+ KOUNT))
              FALSE)
-          (COND
+          [COND
              ((NOT (= (AREF PIECECOUNT (AREF CLASS I))
                       0))
               (COND
-                 ((FIT I J)
-                  (SETQ K (PLACE I J))
+                 ((FIT I J)
+                  (SETQ K (PLACE I J))
                   (COND
-                     ((OR (TRIAL K)
+                     ((OR (TRIAL K)
                           (= K 0))
                       (SETQ KOUNT (+ KOUNT 1))
                       (RETURN TRUE))
-                     (T (PUZZLE-REMOVE I J))))))))))
+                     (T (PUZZLE-REMOVE I J])])
 
 (DEFUN TRIANG-TEST ()
    (DOTIMES (J 16)
@@ -1695,7 +1698,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
          0)
    (LET ((ANSWER NIL)
          (FINAL NIL))
-        (TRY 22 1)
+        (TRY 22 1)
         (= (LENGTH ANSWER)
            775)))
 
@@ -1706,15 +1709,15 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
 (DEFUN TRY (I DEPTH)
    (COND
       ((= DEPTH 14)
-       (LET ((LP (LAST-POSITION)))
+       (LET ((LP (LAST-POSITION)))
             (UNLESS (MEMBER LP FINAL)
                    (PUSH LP FINAL)))
        (PUSH (CDR (COERCE SEQUENCE 'LIST))
              ANSWER)
        T)
-      ((AND (= 1 (AREF BOARD (AREF *A* I)))
+      ([AND (= 1 (AREF BOARD (AREF *A* I)))
             (= 1 (AREF BOARD (AREF *B* I)))
-            (= 0 (AREF BOARD (AREF *C* I))))
+            (= 0 (AREF BOARD (AREF *C* I]
        (SETF (AREF BOARD (AREF *A* I))
              0)
        (SETF (AREF BOARD (AREF *B* I))
@@ -1726,7 +1729,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
        (DO ((J 0 (1+ J))
             (DEPTH (1+ DEPTH)))
            ((OR (= J 36)
-                (TRY J DEPTH))
+                (TRY J DEPTH))
             NIL))
        (SETF (AREF BOARD (AREF *A* I))
              1)
@@ -1738,7 +1741,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
 
 
 
-(IL:* IL:|;;| "Modified version of browse which doesn't cons so much")
+(IL:* IL:;; "Modified version of browse which doesn't cons so much")
 
 
 (DEFMACRO CHAR1* (X)
@@ -1746,17 +1749,17 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
 
 (DEFUN BROWSE* ()
    (SETF RAND 21)
-   (INVESTIGATE* (RANDOMIZE (INIT 100 10 4
+   [INVESTIGATE* [RANDOMIZE (INIT 100 10 4
                                   '((A A A B B B B A A A A A B B A A A)
                                     (A A B B B B A A (A A)
                                        (B B))
                                     (A A A B (B A)
-                                       B A B A))))
+                                       B A B A]
           '((*A ?B *B ?B A *A A *B *A)
             (*A *B *B *A (*A)
                 (*B))
             (? ? * (B A)
-               * ? ?))))
+               * ? ?])
 
 (DEFUN INVESTIGATE* (UNITS PATS)
    (DO ((UNITS UNITS (CDR UNITS)))
@@ -1767,12 +1770,12 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                     'PATTERN)
                (CDR P)))
            ((NULL P))
-         (MATCH* (CAR PATS)
+         (MATCH* (CAR PATS)
                 (CAR P)
                 NIL)))))
 
 (DEFUN MATCH* (PAT DAT ALIST)
-   (COND
+   [COND
       ((NULL PAT)
        (NULL DAT))
       ((NULL DAT)
@@ -1781,40 +1784,40 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                '?)
            (EQ (CAR PAT)
                (CAR DAT)))
-       (MATCH* (CDR PAT)
+       (MATCH* (CDR PAT)
               (CDR DAT)
               ALIST))
       ((EQ (CAR PAT)
            '*)
-       (OR (MATCH* (CDR PAT)
+       (OR (MATCH* (CDR PAT)
                   DAT ALIST)
-           (MATCH* (CDR PAT)
+           (MATCH* (CDR PAT)
                   (CDR DAT)
                   ALIST)
-           (MATCH* PAT (CDR DAT)
+           (MATCH* PAT (CDR DAT)
                   ALIST)))
       (T (COND
-            ((ATOM (CAR PAT))
+            [(ATOM (CAR PAT))
              (COND
-                ((EQL (CHAR1* (CAR PAT))
+                [(EQL (CHAR1* (CAR PAT))
                       #\?)
                  (LET ((VAL (ASSOC (CAR PAT)
                                    ALIST)))
                       (COND
-                         (VAL (MATCH* (CONS (CDR VAL)
+                         (VAL (MATCH* (CONS (CDR VAL)
                                             (CDR PAT))
                                      DAT ALIST))
-                         (T (MATCH* (CDR PAT)
+                         (T (MATCH* (CDR PAT)
                                    (CDR DAT)
                                    (CONS (CONS (CAR PAT)
                                                (CAR DAT))
-                                         ALIST))))))
-                ((EQL (CHAR1* (CAR PAT))
+                                         ALIST]
+                ((EQL (CHAR1* (CAR PAT))
                       #\*)
                  (LET ((VAL (ASSOC (CAR PAT)
                                    ALIST)))
                       (COND
-                         (VAL (MATCH* (APPEND (CDR VAL)
+                         (VAL (MATCH* (APPEND (CDR VAL)
                                              (CDR PAT))
                                      DAT ALIST))
                          (T (DO ((L NIL (NCONC L (CONS (CAR D)
@@ -1825,80 +1828,80 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                                 ((NULL E)
                                  NIL)
                               (COND
-                                 ((MATCH* (CDR PAT)
+                                 ((MATCH* (CDR PAT)
                                          D
                                          (CONS (CONS (CAR PAT)
                                                      L)
                                                ALIST))
-                                  (RETURN T))))))))))
+                                  (RETURN T))))]
             (T (AND (NOT (ATOM (CAR DAT)))
-                    (MATCH* (CAR PAT)
+                    (MATCH* (CAR PAT)
                            (CAR DAT)
                            ALIST)
-                    (MATCH* (CDR PAT)
+                    (MATCH* (CDR PAT)
                            (CDR DAT)
-                           ALIST)))))))
+                           ALIST])
 
 (DEFINE-TIMER BROWSE* "Browse"
-   (BROWSE*))
+   (BROWSE*))
 
 
 
-(IL:* IL:|;;| "Modified version of traverse-init to break circularities")
+(IL:* IL:;; "Modified version of traverse-init to break circularities")
 
 
 (DEFUN CREATE-STRUCTURE* (N)
-   (LET ((A `(,(MAKE-TNODE))))
+   (LET [(A `(,(MAKE-TNODE]
         (DO ((M (1- N)
                 (1- M))
              (P A))
-            ((= M 0)
-             (SETQ A `(,(RPLACD P A)))
+            [(= M 0)
+             [SETQ A `(,(RPLACD P A]
              (DO ((UNUSED A)
-                  (USED (ADD (TRAVERSE-REMOVE* 0 A)
+                  (USED (ADD (TRAVERSE-REMOVE* 0 A)
                              NIL))
                   (X)
                   (Y))
                  ((NULL (CAR UNUSED))
-                  (PROG1 (FIND-ROOT (TRAVERSE-SELECT 0 USED)
+                  (PROG1 (FIND-ROOT (TRAVERSE-SELECT 0 USED)
                                 N)
 
-                      (IL:* IL:|;;| "Break the circularities")
+                      (IL:* IL:;; "Break the circularities")
 
                       (RPLACD (CAR USED)
                              NIL)))
-               (SETQ X (TRAVERSE-REMOVE* (REM (TRAVERSE-RANDOM)
+               (SETQ X (TRAVERSE-REMOVE* (REM (TRAVERSE-RANDOM)
                                               N)
                               UNUSED))
-               (SETQ Y (TRAVERSE-SELECT (REM (TRAVERSE-RANDOM)
+               (SETQ Y (TRAVERSE-SELECT (REM (TRAVERSE-RANDOM)
                                              N)
                               USED))
-               (ADD X USED)
-               (SETF (TNODE-SONS Y)
-                     `(,X . ,(TNODE-SONS Y)))
-               (SETF (TNODE-PARENTS X)
-                     `(,Y . ,(TNODE-PARENTS X)))))
+               (ADD X USED)
+               [SETF (TNODE-SONS Y)
+                     `(,X IL:\, (TNODE-SONS Y]
+               [SETF (TNODE-PARENTS X)
+                     `(,Y IL:\, (TNODE-PARENTS X])]
           (PUSH (MAKE-TNODE)
                 A))))
 
 (DEFUN TRAVERSE-REMOVE* (N Q)
-   (COND
+   [COND
       ((EQ (CDR (CAR Q))
            (CAR Q))
        (PROG2 NIL (CAAR Q)
 
-              (IL:* IL:|;;| "Break the circularity ")
+              (IL:* IL:;; "Break the circularity ")
 
               (RPLACD (CAR Q)
                      NIL)
               (RPLACA Q NIL)))
-      ((= N 0)
+      [(= N 0)
        (PROG2 NIL (CAAR Q)
               (DO ((P (CAR Q)
                       (CDR P)))
-                  ((EQ (CDR P)
+                  [(EQ (CDR P)
                        (CAR Q))
-                   (RPLACA Q (RPLACD P (CDR (CAR Q))))))))
+                   (RPLACA Q (RPLACD P (CDR (CAR Q])]
       (T (DO ((N N (1- N))
               (Q (CAR Q)
                  (CDR Q))
@@ -1906,12 +1909,12 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                  (CDR P)))
              ((= N 0)
               (PROG2 NIL (CAR Q)
-                     (RPLACD Q P)))))))
+                     (RPLACD Q P))))])
 
 (DEFUN RELEASE-TREE (ROOT)
    (LET ((*TREE-SNS* NIL))
         (DECLARE (SPECIAL *TREE-SNS*))
-        (RELEASE-TREE-AUX ROOT)))
+        (RELEASE-TREE-AUX ROOT)))
 
 (DEFUN RELEASE-TREE-AUX (NODE)
    (LET ((SONS (TNODE-SONS NODE)))
@@ -1923,7 +1926,7 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
         (DOLIST (N SONS)
             (IF (NOT (MEMBER (TNODE-SN N)
                             *TREE-SNS* :TEST #'EQ))
-                (RELEASE-TREE-AUX N)))
+                (RELEASE-TREE-AUX N)))
         (SETF (TNODE-SONS NODE)
               NIL)))
 
@@ -1932,132 +1935,166 @@ IL:{ERIS}<LISPCORE>GABRIEL>BENCHMARKS>GABRIEL-OTHER.\;5)
                              (SETQ RAND 21)
                              (SETQ COUNT 0)
                              (SETQ MARKER NIL)
-                             (SETQ ROOT (CREATE-STRUCTURE* 100))
+                             (SETQ ROOT (CREATE-STRUCTURE* 100))
                              NIL))
-          (:AFTER (RELEASE-TREE ROOT))) "Traverse, Traverse"
+          (:AFTER (RELEASE-TREE ROOT))) "Traverse, Traverse"
    (DO ((I 50 (1- I)))
        ((= I 0))
-     (TRAVERSE ROOT)
-     (TRAVERSE ROOT)
-     (TRAVERSE ROOT)
-     (TRAVERSE ROOT)
-     (TRAVERSE ROOT)))
+     (TRAVERSE ROOT)
+     (TRAVERSE ROOT)
+     (TRAVERSE ROOT)
+     (TRAVERSE ROOT)
+     (TRAVERSE ROOT)))
 
-(DEFINE-TIMER (TRAVERSE-INIT* (:AFTER-EVERY (RELEASE-TREE ROOT))) "Traverse, Initialize"
+(DEFINE-TIMER (TRAVERSE-INIT* (:AFTER-EVERY (RELEASE-TREE ROOT))) "Traverse, Initialize"
    (PROGN (SETQ SN 0)
           (SETQ RAND 21)
           (SETQ COUNT 0)
           (SETQ MARKER NIL)
-          (SETQ ROOT (CREATE-STRUCTURE* 100))
+          (SETQ ROOT (CREATE-STRUCTURE* 100))
           NIL))
 
-(DEFVAR DIV2-L (CREATE-N 200))
+(DEFVAR DIV2-L (CREATE-N 200))
 
-(DEFPARAMETER *CONSY-BENCHMARKS* '(DERIV DDERIV DIV2-1 DIV2-2 DESTRU BOYER BROWSE BROWSE* 
-                                             TRAVERSE-INIT* TRAVERSE*))
+(DEFPARAMETER *CONSY-BENCHMARKS* '(DERIV DDERIV DIV2-1 DIV2-2 DESTRU BOYER BROWSE BROWSE* 
+                                         TRAVERSE-INIT* TRAVERSE*))
 
 (DEFPARAMETER *AREFY-BENCHMARKS* '(PUZZLE TRIANG FFT))
 
-(DEFPARAMETER *POLY-BENCHMARKS*
-   '(FRPOLY10R FRPOLY10R2 FRPOLY10R3 FRPOLY15R FRPOLY15R2 FRPOLY15R3 FRPOLY2R FRPOLY2R2 FRPOLY2R3 
-           FRPOLY5R FRPOLY5R2 FRPOLY5R3))
+(DEFPARAMETER *POLY-BENCHMARKS* '(FRPOLY10R FRPOLY10R2 FRPOLY10R3 FRPOLY15R FRPOLY15R2 FRPOLY15R3 
+                                        FRPOLY2R FRPOLY2R2 FRPOLY2R3 FRPOLY5R FRPOLY5R2 FRPOLY5R3))
 
-(DEFINE-TIMER (BOYER (:SETUP (SETUP))) "Boyer"
-   (TEST))
+(DEFINE-TIMER (BOYER (:SETUP (SETUP))) "Boyer"
+   (TEST))
 
 (DEFINE-TIMER BROWSE "Browse"
-   (BROWSE))
+   (BROWSE))
 
-(DEFINE-TIMER (DDERIV (:SETUP (SETUP-DDERIV))) "DDeriv"
-   (RUN-DDERIV))
+(DEFINE-TIMER (DDERIV (:SETUP (SETUP-DDERIV))) "DDeriv"
+   (RUN-DDERIV))
 
 (DEFINE-TIMER DERIV "Deriv"
-   (RUN-DERIV))
+   (RUN-DERIV))
 
 (DEFINE-TIMER DESTRU "Destruct"
-   (DESTRUCTIVE 600 50))
+   (DESTRUCTIVE 600 50))
 
 (DEFINE-TIMER DIV2-1 "Div2, Iterative"
-   (ITERATIVE-DIV2-TEST DIV2-L))
+   (ITERATIVE-DIV2-TEST DIV2-L))
 
 (DEFINE-TIMER DIV2-2 "Div2, Recursive"
-   (RECURSIVE-DIV2-TEST DIV2-L))
+   (RECURSIVE-DIV2-TEST DIV2-L))
 
 (DEFINE-TIMER FFT "FFT"
    (DO ((NTIMES 0 (1+ NTIMES)))
        ((= NTIMES 10))
-     (FFT RE IM)))
+     (FFT RE IM)))
 
-(DEFINE-TIMER (FRPOLY10R (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 10, r = x + y + z + 1"
-   (PEXPTSQ *R* 10))
+(DEFINE-TIMER (FRPOLY10R (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 10, r = x + y + z + 1"
+   (PEXPTSQ *R* 10))
 
-(DEFINE-TIMER (FRPOLY10R2 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 10, r2 = 1000r"
-   (PEXPTSQ *R2* 10))
+(DEFINE-TIMER (FRPOLY10R2 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 10, r2 = 1000r"
+   (PEXPTSQ *R2* 10))
 
-(DEFINE-TIMER (FRPOLY10R3 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 10, r3 = r in flonums"
-   (PEXPTSQ *R3* 10))
+(DEFINE-TIMER (FRPOLY10R3 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 10, r3 = r in flonums"
+   (PEXPTSQ *R3* 10))
 
-(DEFINE-TIMER (FRPOLY15R (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 15, r = x + y + z + 1"
-   (PEXPTSQ *R* 15))
+(DEFINE-TIMER (FRPOLY15R (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 15, r = x + y + z + 1"
+   (PEXPTSQ *R* 15))
 
-(DEFINE-TIMER (FRPOLY15R2 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 15, r2 = 1000r"
-   (PEXPTSQ *R2* 15))
+(DEFINE-TIMER (FRPOLY15R2 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 15, r2 = 1000r"
+   (PEXPTSQ *R2* 15))
 
-(DEFINE-TIMER (FRPOLY15R3 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 15, r3 = r in flonums"
-   (PEXPTSQ *R3* 15))
+(DEFINE-TIMER (FRPOLY15R3 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 15, r3 = r in flonums"
+   (PEXPTSQ *R3* 15))
 
-(DEFINE-TIMER (FRPOLY2R (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 2, r = x + y + z + 1"
-   (PEXPTSQ *R* 2))
+(DEFINE-TIMER (FRPOLY2R (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 2, r = x + y + z + 1"
+   (PEXPTSQ *R* 2))
 
-(DEFINE-TIMER (FRPOLY2R2 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 2, r2 = 1000r"
-   (PEXPTSQ *R2* 2))
+(DEFINE-TIMER (FRPOLY2R2 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 2, r2 = 1000r"
+   (PEXPTSQ *R2* 2))
 
-(DEFINE-TIMER (FRPOLY2R3 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 2, r3 = r in flonums"
-   (PEXPTSQ *R3* 2))
+(DEFINE-TIMER (FRPOLY2R3 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 2, r3 = r in flonums"
+   (PEXPTSQ *R3* 2))
 
-(DEFINE-TIMER (FRPOLY5R (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 5, r = x + y + z + 1"
-   (PEXPTSQ *R* 5))
+(DEFINE-TIMER (FRPOLY5R (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 5, r = x + y + z + 1"
+   (PEXPTSQ *R* 5))
 
-(DEFINE-TIMER (FRPOLY5R2 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 5, r2 = 1000r"
-   (PEXPTSQ *R2* 5))
+(DEFINE-TIMER (FRPOLY5R2 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 5, r2 = 1000r"
+   (PEXPTSQ *R2* 5))
 
-(DEFINE-TIMER (FRPOLY5R3 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 5, r3 = r in flonums"
-   (PEXPTSQ *R3* 5))
+(DEFINE-TIMER (FRPOLY5R3 (:SETUP (SETUP-FRPOLY))) "FRPoly, Power = 5, r3 = r in flonums"
+   (PEXPTSQ *R3* 5))
 
 (DEFINE-TIMER PUZZLE "Puzzle"
-   (START))
+   (START))
 
 (DEFINE-TIMER TRAVERSE "Traverse, Traverse"
    (DO ((I 50 (1- I)))
        ((= I 0))
-     (TRAVERSE ROOT)
-     (TRAVERSE ROOT)
-     (TRAVERSE ROOT)
-     (TRAVERSE ROOT)
-     (TRAVERSE ROOT)))
+     (TRAVERSE ROOT)
+     (TRAVERSE ROOT)
+     (TRAVERSE ROOT)
+     (TRAVERSE ROOT)
+     (TRAVERSE ROOT)))
 
 (DEFINE-TIMER TRAVERSE-INIT "Traverse, Initialize"
    (PROGN (SETQ SN 0)
           (SETQ RAND 21)
           (SETQ COUNT 0)
           (SETQ MARKER NIL)
-          (SETQ ROOT (CREATE-STRUCTURE 100))
+          (SETQ ROOT (CREATE-STRUCTURE 100))
           NIL))
 
 (DEFINE-TIMER TRIANG "Triang"
-   (GOGOGO 22))
-(IL:DECLARE\: IL:DONTCOPY IL:DOEVAL@COMPILE 
-(IL:DECLARE\: IL:DOEVAL@COMPILE IL:DONTCOPY
+   (GOGOGO 22))
+(IL:DECLARE%: IL:DONTCOPY IL:DOEVAL@COMPILE 
+(IL:DECLARE%: IL:DOEVAL@COMPILE IL:DONTCOPY
 
 (IL:LOCALVARS . T)
 )
 )
 
-(IL:PUTPROPS IL:GABRIEL-OTHER IL:FILETYPE COMPILE-FILE)
-
-(IL:PUTPROPS IL:GABRIEL-OTHER IL:MAKEFILE-ENVIRONMENT (:READTABLE "XCL" :PACKAGE (XCL:DEFPACKAGE
-                                                                                      "GABRIEL")))
-(IL:PUTPROPS IL:GABRIEL-OTHER IL:COPYRIGHT ("Xerox Corporation" 1987 1988))
-(IL:DECLARE\: IL:DONTCOPY
-  (IL:FILEMAP (NIL)))
+(XCL:DEFINE-FILE-ENVIRONMENT IL:GABRIEL-OTHER :PACKAGE "GABRIEL"
+   :READTABLE "INTERLISP"
+   :COMPILER :COMPILE-FILE)
+(IL:DECLARE%: IL:DONTCOPY
+  (IL:FILEMAP (NIL (5389 5480 (*DDERIV 5389 . 5480)) (5482 5538 (+DDERIV 5482 . 5538)) (5540 5596 (
+-DDERIV 5540 . 5596)) (5598 5822 (/DDERIV 5598 . 5822)) (5824 6122 (ADD 5824 . 6122)) (6124 6449 (
+ADD-LEMMA 6124 . 6449)) (6451 6592 (ADD-LEMMA-LST 6451 . 6592)) (6594 6846 (APPLY-SUBST 6594 . 6846)) 
+(6848 7027 (APPLY-SUBST-LST 6848 . 7027)) (7029 7531 (BROWSE 7029 . 7531)) (7533 7617 (BROWSE-RANDOM 
+7533 . 7617)) (7619 7683 (CHAR1 7619 . 7683)) (7685 7725 (CPLUS 7685 . 7725)) (7727 7830 (CREATE-N 
+7727 . 7830)) (7832 8884 (CREATE-STRUCTURE 7832 . 8884)) (8886 8927 (CTIMES 8886 . 8927)) (8929 9222 (
+DDERIV 8929 . 9222)) (9224 9289 (DDERIV-AUX 9224 . 9289)) (9291 9825 (DEFINEPIECE 9291 . 9825)) (9827 
+10456 (DERIV 9827 . 10456)) (10458 10521 (DERIV-AUX 10458 . 10521)) (10523 12244 (DESTRUCTIVE 10523 . 
+12244)) (12246 12331 (FALSEP 12246 . 12331)) (12333 14942 (FFT 12333 . 14942)) (14944 15153 (FIND-ROOT
+ 14944 . 15153)) (15155 15419 (FIT 15155 . 15419)) (15421 15610 (GOGOGO 15421 . 15610)) (15612 16575 (
+INIT 15612 . 16575)) (16577 16915 (INVESTIGATE 16577 . 16915)) (16917 17054 (ITERATIVE-DIV2 16917 . 
+17054)) (17056 17245 (ITERATIVE-DIV2-TEST 17056 . 17245)) (17247 17377 (LAST-POSITION 17247 . 17377)) 
+(17379 19898 (MATCH 17379 . 19898)) (19900 20016 (ONE-WAY-UNIFY 19900 . 20016)) (20018 20486 (
+ONE-WAY-UNIFY1 20018 . 20486)) (20488 20716 (ONE-WAY-UNIFY1-LST 20488 . 20716)) (20718 20805 (PCOEFADD
+ 20718 . 20805)) (20807 20846 (PCOEFP 20807 . 20846)) (20848 20983 (PCPLUS 20848 . 20983)) (20985 
+21316 (PCPLUS1 20985 . 21316)) (21318 21467 (PCTIMES 21318 . 21467)) (21469 21644 (PCTIMES1 21469 . 
+21644)) (21646 21711 (PDIFFER1 21646 . 21711)) (21713 21981 (PEXPTSQ 21713 . 21981)) (21983 22473 (
+PLACE 21983 . 22473)) (22475 22552 (POINTERGP 22475 . 22552)) (22554 22991 (PPLUS 22554 . 22991)) (
+22993 23526 (PPLUS1 22993 . 23526)) (23528 23678 (PSIMP 23528 . 23678)) (23680 24196 (PTIMES 23680 . 
+24196)) (24198 24428 (PTIMES1 24198 . 24428)) (24430 24667 (PTIMES2 24430 . 24667)) (24669 26562 (
+PTIMES3 24669 . 26562)) (26564 26916 (PUZZLE-REMOVE 26564 . 26916)) (26918 26946 (PZERO 26918 . 26946)
+) (26948 27016 (PZEROP 26948 . 27016)) (27018 27488 (RANDOMIZE 27018 . 27488)) (27490 27624 (
+RECURSIVE-DIV2 27490 . 27624)) (27626 27815 (RECURSIVE-DIV2-TEST 27626 . 27815)) (27817 28064 (REWRITE
+ 27817 . 28064)) (28066 28217 (REWRITE-ARGS 28066 . 28217)) (28219 28465 (REWRITE-WITH-LEMMAS 28219 . 
+28465)) (28467 29090 (RUN-DDERIV 28467 . 29090)) (29092 29694 (RUN-DERIV 29092 . 29694)) (29696 30088 
+(RUN-ONE 29696 . 30088)) (30090 30286 (RUN-SERIES 30090 . 30286)) (30288 30446 (RUN-SERIES-TO-FILE 
+30288 . 30446)) (30448 30485 (SEED 30448 . 30485)) (30487 47654 (SETUP 30487 . 47654)) (47656 47873 (
+SETUP-DDERIV 47656 . 47873)) (47875 48201 (SETUP-FRPOLY 47875 . 48201)) (48203 48242 (SNB 48203 . 
+48242)) (48244 49582 (START 48244 . 49582)) (49584 50408 (TAUTOLOGYP 49584 . 50408)) (50410 50485 (
+TAUTP 50410 . 50485)) (50487 51465 (TEST 50487 . 51465)) (51467 51573 (TRANS-OF-IMPLIES 51467 . 51573)
+) (51575 51780 (TRANS-OF-IMPLIES1 51575 . 51780)) (51782 52622 (TRAVERS 51782 . 52622)) (52624 52740 (
+TRAVERSE 52624 . 52740)) (52742 52828 (TRAVERSE-RANDOM 52742 . 52828)) (52830 53425 (TRAVERSE-REMOVE 
+52830 . 53425)) (53427 53555 (TRAVERSE-SELECT 53427 . 53555)) (53557 54130 (TRIAL 53557 . 54130)) (
+54132 54369 (TRIANG-TEST 54132 . 54369)) (54371 54455 (TRUEP 54371 . 54455)) (54457 55358 (TRY 54457
+ . 55358)) (55437 55500 (CHAR1* 55437 . 55500)) (55502 56011 (BROWSE* 55502 . 56011)) (56013 56353 (
+INVESTIGATE* 56013 . 56353)) (56355 58889 (MATCH* 56355 . 58889)) (59021 60234 (CREATE-STRUCTURE* 
+59021 . 60234)) (60236 60946 (TRAVERSE-REMOVE* 60236 . 60946)) (60948 61086 (RELEASE-TREE 60948 . 
+61086)) (61088 61529 (RELEASE-TREE-AUX 61088 . 61529)))))
 IL:STOP

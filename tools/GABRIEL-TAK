@@ -1,1348 +1,1408 @@
-(DEFINE-FILE-INFO READTABLE "XCL" PACKAGE (DEFPACKAGE "GABRIEL"))
-(il:filecreated "13-Apr-88 13:15:44" il:{eris}<lispcore>gabriel>medley>gabriel-tak.\;1 52748  
-
-      il:|previous| il:|date:| "26-May-87 09:18:24" il:{eris}<lispcore>gabriel>gabriel-tak.\;7)
-
-
-; Copyright (c) 1987, 1988 by Xerox Corporation.  All rights reserved.
-
-(il:prettycomprint il:gabriel-takcoms)
-
-(il:rpaqq il:gabriel-takcoms 
-          ((il:files il:gabriel-timers)
-           (il:functions listn)
-           (il:variables |12L| |18L| |6L|)
-           (il:variables *x* *y* *z*)
-           (il:functions ctak ctak-aux mas shorterp stak stak-aux tak tak0 tak1 tak10 tak11 tak12 
-                  tak13 tak14 tak15 tak16 tak17 tak18 tak19 tak2 tak20 tak21 tak22 tak23 tak24 tak25 
-                  tak26 tak27 tak28 tak29 tak3 tak30 tak31 tak32 tak33 tak34 tak35 tak36 tak37 tak38 
-                  tak39 tak4 tak40 tak41 tak42 tak43 tak44 tak45 tak46 tak47 tak48 tak49 tak5 tak50 
-                  tak51 tak52 tak53 tak54 tak55 tak56 tak57 tak58 tak59 tak6 tak60 tak61 tak62 tak63 
-                  tak64 tak65 tak66 tak67 tak68 tak69 tak7 tak70 tak71 tak72 tak73 tak74 tak75 tak76 
-                  tak77 tak78 tak79 tak8 tak80 tak81 tak82 tak83 tak84 tak85 tak86 tak87 tak88 tak89 
-                  tak9 tak90 tak91 tak92 tak93 tak94 tak95 tak96 tak97 tak98 tak99)
-           (timers ctak stak tak takl takr)
-           (il:variables *tak-timers*)
-           (il:declare\: il:dontcopy il:doeval@compile (il:localvars . t))
-           (il:prop (il:filetype il:makefile-environment)
-                  il:gabriel-tak)))
-(il:filesload il:gabriel-timers)
-
-(defun listn (n) (if (not (zerop n))
-                         (list* n (listn (1- n)))))
-
-
-(defvar |12L| (listn 12) )
-
-
-(defvar |18L| (listn 18) )
-
-
-(defvar |6L| (listn 6) )
-
-
-(defvar *x* )
-
-
-(defvar *y* )
-
-
-(defvar *z* )
-
-
-(defun ctak (x y z) (declare (type fixnum x y z))
-                        (catch 'ctak (ctak-aux x y z)))
-
-
-(defun ctak-aux (x y z) (declare (type fixnum x y z))
-                            (cond
-                               ((not (< y x))
-                                (throw 'ctak z))
-                               (t (ctak-aux (catch 'ctak (ctak-aux (1- x)
-                                                                y z))
-                                         (catch 'ctak (ctak-aux (1- y)
-                                                             z x))
-                                         (catch 'ctak (ctak-aux (1- z)
-                                                             x y))))))
-
-
-(defun mas (x y z) (declare (type list x y z))
-                       (if (not (shorterp y x))
-                           z
-                           (mas (mas (cdr x)
-                                     y z)
-                                (mas (cdr y)
-                                     z x)
-                                (mas (cdr z)
-                                     x y))))
-
-
-(defun shorterp (x y) (declare (type list x y))
-                          (and y (or (null x)
-                                     (shorterp (cdr x)
-                                            (cdr y)))))
-
-
-(defun stak (*x* *y* *z*) (stak-aux))
-
-
-(defun stak-aux nil (if (not (< *y* *x*))
-                            *z*
-                            (let ((*x* (let ((*x* (1- *x*))
-                                             (*y* *y*)
-                                             (*z* *z*))
-                                            (stak-aux)))
-                                  (*y* (let ((*x* (1- *y*))
-                                             (*y* *z*)
-                                             (*z* *x*))
-                                            (stak-aux)))
-                                  (*z* (let ((*x* (1- *z*))
-                                             (*y* *x*)
-                                             (*z* *y*))
-                                            (stak-aux))))
-                                 (stak-aux))))
-
-
-(defun tak (x y z) (declare (type fixnum x y z))
-                       (if (not (< y x))
-                           z
-                           (tak (tak (1- x)
-                                     y z)
-                                (tak (1- y)
-                                     z x)
-                                (tak (1- z)
-                                     x y))))
-
-
-(defun tak0 (x y z) (declare (type fixnum x y z))
-                        (cond
-                           ((not (< y x))
-                            z)
-                           (t (tak1 (tak37 (1- x)
-                                           y z)
-                                    (tak11 (1- y)
-                                           z x)
-                                    (tak17 (1- z)
-                                           x y)))))
-
-
-(defun tak1 (x y z) (declare (type fixnum x y z))
-                        (cond
-                           ((not (< y x))
-                            z)
-                           (t (tak2 (tak74 (1- x)
-                                           y z)
-                                    (tak22 (1- y)
-                                           z x)
-                                    (tak34 (1- z)
-                                           x y)))))
-
-
-(defun tak10 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak11 (tak7 (1- x)
-                                            y z)
-                                      (tak21 (1- y)
-                                             z x)
-                                      (tak87 (1- z)
-                                             x y)))))
-
-
-(defun tak11 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak12 (tak44 (1- x)
-                                             y z)
-                                      (tak32 (1- y)
-                                             z x)
-                                      (tak4 (1- z)
-                                            x y)))))
-
-
-(defun tak12 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak13 (tak81 (1- x)
-                                             y z)
-                                      (tak43 (1- y)
-                                             z x)
-                                      (tak21 (1- z)
-                                             x y)))))
-
-
-(defun tak13 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak14 (tak18 (1- x)
-                                             y z)
-                                      (tak54 (1- y)
-                                             z x)
-                                      (tak38 (1- z)
-                                             x y)))))
-
-
-(defun tak14 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak15 (tak55 (1- x)
-                                             y z)
-                                      (tak65 (1- y)
-                                             z x)
-                                      (tak55 (1- z)
-                                             x y)))))
-
-
-(defun tak15 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak16 (tak92 (1- x)
-                                             y z)
-                                      (tak76 (1- y)
-                                             z x)
-                                      (tak72 (1- z)
-                                             x y)))))
-
-
-(defun tak16 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak17 (tak29 (1- x)
-                                             y z)
-                                      (tak87 (1- y)
-                                             z x)
-                                      (tak89 (1- z)
-                                             x y)))))
-
-
-(defun tak17 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak18 (tak66 (1- x)
-                                             y z)
-                                      (tak98 (1- y)
-                                             z x)
-                                      (tak6 (1- z)
-                                            x y)))))
-
-
-(defun tak18 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak19 (tak3 (1- x)
-                                            y z)
-                                      (tak9 (1- y)
-                                            z x)
-                                      (tak23 (1- z)
-                                             x y)))))
-
-
-(defun tak19 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak20 (tak40 (1- x)
-                                             y z)
-                                      (tak20 (1- y)
-                                             z x)
-                                      (tak40 (1- z)
-                                             x y)))))
-
-
-(defun tak2 (x y z) (declare (type fixnum x y z))
-                        (cond
-                           ((not (< y x))
-                            z)
-                           (t (tak3 (tak11 (1- x)
-                                           y z)
-                                    (tak33 (1- y)
-                                           z x)
-                                    (tak51 (1- z)
-                                           x y)))))
-
-
-(defun tak20 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak21 (tak77 (1- x)
-                                             y z)
-                                      (tak31 (1- y)
-                                             z x)
-                                      (tak57 (1- z)
-                                             x y)))))
-
-
-(defun tak21 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak22 (tak14 (1- x)
-                                             y z)
-                                      (tak42 (1- y)
-                                             z x)
-                                      (tak74 (1- z)
-                                             x y)))))
-
-
-(defun tak22 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak23 (tak51 (1- x)
-                                             y z)
-                                      (tak53 (1- y)
-                                             z x)
-                                      (tak91 (1- z)
-                                             x y)))))
-
-
-(defun tak23 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak24 (tak88 (1- x)
-                                             y z)
-                                      (tak64 (1- y)
-                                             z x)
-                                      (tak8 (1- z)
-                                            x y)))))
-
-
-(defun tak24 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak25 (tak25 (1- x)
-                                             y z)
-                                      (tak75 (1- y)
-                                             z x)
-                                      (tak25 (1- z)
-                                             x y)))))
-
-
-(defun tak25 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak26 (tak62 (1- x)
-                                             y z)
-                                      (tak86 (1- y)
-                                             z x)
-                                      (tak42 (1- z)
-                                             x y)))))
-
-
-(defun tak26 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak27 (tak99 (1- x)
-                                             y z)
-                                      (tak97 (1- y)
-                                             z x)
-                                      (tak59 (1- z)
-                                             x y)))))
-
-
-(defun tak27 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak28 (tak36 (1- x)
-                                             y z)
-                                      (tak8 (1- y)
-                                            z x)
-                                      (tak76 (1- z)
-                                             x y)))))
-
-
-(defun tak28 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak29 (tak73 (1- x)
-                                             y z)
-                                      (tak19 (1- y)
-                                             z x)
-                                      (tak93 (1- z)
-                                             x y)))))
-
-
-(defun tak29 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak30 (tak10 (1- x)
-                                             y z)
-                                      (tak30 (1- y)
-                                             z x)
-                                      (tak10 (1- z)
-                                             x y)))))
-
-
-(defun tak3 (x y z) (declare (type fixnum x y z))
-                        (cond
-                           ((not (< y x))
-                            z)
-                           (t (tak4 (tak48 (1- x)
-                                           y z)
-                                    (tak44 (1- y)
-                                           z x)
-                                    (tak68 (1- z)
-                                           x y)))))
-
-
-(defun tak30 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak31 (tak47 (1- x)
-                                             y z)
-                                      (tak41 (1- y)
-                                             z x)
-                                      (tak27 (1- z)
-                                             x y)))))
-
-
-(defun tak31 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak32 (tak84 (1- x)
-                                             y z)
-                                      (tak52 (1- y)
-                                             z x)
-                                      (tak44 (1- z)
-                                             x y)))))
-
-
-(defun tak32 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak33 (tak21 (1- x)
-                                             y z)
-                                      (tak63 (1- y)
-                                             z x)
-                                      (tak61 (1- z)
-                                             x y)))))
-
-
-(defun tak33 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak34 (tak58 (1- x)
-                                             y z)
-                                      (tak74 (1- y)
-                                             z x)
-                                      (tak78 (1- z)
-                                             x y)))))
-
-
-(defun tak34 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak35 (tak95 (1- x)
-                                             y z)
-                                      (tak85 (1- y)
-                                             z x)
-                                      (tak95 (1- z)
-                                             x y)))))
-
-
-(defun tak35 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak36 (tak32 (1- x)
-                                             y z)
-                                      (tak96 (1- y)
-                                             z x)
-                                      (tak12 (1- z)
-                                             x y)))))
-
-
-(defun tak36 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak37 (tak69 (1- x)
-                                             y z)
-                                      (tak7 (1- y)
-                                            z x)
-                                      (tak29 (1- z)
-                                             x y)))))
-
-
-(defun tak37 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak38 (tak6 (1- x)
-                                            y z)
-                                      (tak18 (1- y)
-                                             z x)
-                                      (tak46 (1- z)
-                                             x y)))))
-
-
-(defun tak38 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak39 (tak43 (1- x)
-                                             y z)
-                                      (tak29 (1- y)
-                                             z x)
-                                      (tak63 (1- z)
-                                             x y)))))
-
-
-(defun tak39 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak40 (tak80 (1- x)
-                                             y z)
-                                      (tak40 (1- y)
-                                             z x)
-                                      (tak80 (1- z)
-                                             x y)))))
-
-
-(defun tak4 (x y z) (declare (type fixnum x y z))
-                        (cond
-                           ((not (< y x))
-                            z)
-                           (t (tak5 (tak85 (1- x)
-                                           y z)
-                                    (tak55 (1- y)
-                                           z x)
-                                    (tak85 (1- z)
-                                           x y)))))
-
-
-(defun tak40 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak41 (tak17 (1- x)
-                                             y z)
-                                      (tak51 (1- y)
-                                             z x)
-                                      (tak97 (1- z)
-                                             x y)))))
-
-
-(defun tak41 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak42 (tak54 (1- x)
-                                             y z)
-                                      (tak62 (1- y)
-                                             z x)
-                                      (tak14 (1- z)
-                                             x y)))))
-
-
-(defun tak42 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak43 (tak91 (1- x)
-                                             y z)
-                                      (tak73 (1- y)
-                                             z x)
-                                      (tak31 (1- z)
-                                             x y)))))
-
-
-(defun tak43 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak44 (tak28 (1- x)
-                                             y z)
-                                      (tak84 (1- y)
-                                             z x)
-                                      (tak48 (1- z)
-                                             x y)))))
-
-
-(defun tak44 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak45 (tak65 (1- x)
-                                             y z)
-                                      (tak95 (1- y)
-                                             z x)
-                                      (tak65 (1- z)
-                                             x y)))))
-
-
-(defun tak45 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak46 (tak2 (1- x)
-                                            y z)
-                                      (tak6 (1- y)
-                                            z x)
-                                      (tak82 (1- z)
-                                             x y)))))
-
-
-(defun tak46 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak47 (tak39 (1- x)
-                                             y z)
-                                      (tak17 (1- y)
-                                             z x)
-                                      (tak99 (1- z)
-                                             x y)))))
-
-
-(defun tak47 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak48 (tak76 (1- x)
-                                             y z)
-                                      (tak28 (1- y)
-                                             z x)
-                                      (tak16 (1- z)
-                                             x y)))))
-
-
-(defun tak48 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak49 (tak13 (1- x)
-                                             y z)
-                                      (tak39 (1- y)
-                                             z x)
-                                      (tak33 (1- z)
-                                             x y)))))
-
-
-(defun tak49 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak50 (tak50 (1- x)
-                                             y z)
-                                      (tak50 (1- y)
-                                             z x)
-                                      (tak50 (1- z)
-                                             x y)))))
-
-
-(defun tak5 (x y z) (declare (type fixnum x y z))
-                        (cond
-                           ((not (< y x))
-                            z)
-                           (t (tak6 (tak22 (1- x)
-                                           y z)
-                                    (tak66 (1- y)
-                                           z x)
-                                    (tak2 (1- z)
-                                          x y)))))
-
-
-(defun tak50 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak51 (tak87 (1- x)
-                                             y z)
-                                      (tak61 (1- y)
-                                             z x)
-                                      (tak67 (1- z)
-                                             x y)))))
-
-
-(defun tak51 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak52 (tak24 (1- x)
-                                             y z)
-                                      (tak72 (1- y)
-                                             z x)
-                                      (tak84 (1- z)
-                                             x y)))))
-
-
-(defun tak52 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak53 (tak61 (1- x)
-                                             y z)
-                                      (tak83 (1- y)
-                                             z x)
-                                      (tak1 (1- z)
-                                            x y)))))
-
-
-(defun tak53 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak54 (tak98 (1- x)
-                                             y z)
-                                      (tak94 (1- y)
-                                             z x)
-                                      (tak18 (1- z)
-                                             x y)))))
-
-
-(defun tak54 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak55 (tak35 (1- x)
-                                             y z)
-                                      (tak5 (1- y)
-                                            z x)
-                                      (tak35 (1- z)
-                                             x y)))))
-
-
-(defun tak55 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak56 (tak72 (1- x)
-                                             y z)
-                                      (tak16 (1- y)
-                                             z x)
-                                      (tak52 (1- z)
-                                             x y)))))
-
-
-(defun tak56 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak57 (tak9 (1- x)
-                                            y z)
-                                      (tak27 (1- y)
-                                             z x)
-                                      (tak69 (1- z)
-                                             x y)))))
-
-
-(defun tak57 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak58 (tak46 (1- x)
-                                             y z)
-                                      (tak38 (1- y)
-                                             z x)
-                                      (tak86 (1- z)
-                                             x y)))))
-
-
-(defun tak58 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak59 (tak83 (1- x)
-                                             y z)
-                                      (tak49 (1- y)
-                                             z x)
-                                      (tak3 (1- z)
-                                            x y)))))
-
-
-(defun tak59 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak60 (tak20 (1- x)
-                                             y z)
-                                      (tak60 (1- y)
-                                             z x)
-                                      (tak20 (1- z)
-                                             x y)))))
-
-
-(defun tak6 (x y z) (declare (type fixnum x y z))
-                        (cond
-                           ((not (< y x))
-                            z)
-                           (t (tak7 (tak59 (1- x)
-                                           y z)
-                                    (tak77 (1- y)
-                                           z x)
-                                    (tak19 (1- z)
-                                           x y)))))
-
-
-(defun tak60 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak61 (tak57 (1- x)
-                                             y z)
-                                      (tak71 (1- y)
-                                             z x)
-                                      (tak37 (1- z)
-                                             x y)))))
-
-
-(defun tak61 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak62 (tak94 (1- x)
-                                             y z)
-                                      (tak82 (1- y)
-                                             z x)
-                                      (tak54 (1- z)
-                                             x y)))))
-
-
-(defun tak62 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak63 (tak31 (1- x)
-                                             y z)
-                                      (tak93 (1- y)
-                                             z x)
-                                      (tak71 (1- z)
-                                             x y)))))
-
-
-(defun tak63 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak64 (tak68 (1- x)
-                                             y z)
-                                      (tak4 (1- y)
-                                            z x)
-                                      (tak88 (1- z)
-                                             x y)))))
-
-
-(defun tak64 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak65 (tak5 (1- x)
-                                            y z)
-                                      (tak15 (1- y)
-                                             z x)
-                                      (tak5 (1- z)
-                                            x y)))))
-
-
-(defun tak65 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak66 (tak42 (1- x)
-                                             y z)
-                                      (tak26 (1- y)
-                                             z x)
-                                      (tak22 (1- z)
-                                             x y)))))
-
-
-(defun tak66 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak67 (tak79 (1- x)
-                                             y z)
-                                      (tak37 (1- y)
-                                             z x)
-                                      (tak39 (1- z)
-                                             x y)))))
-
-
-(defun tak67 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak68 (tak16 (1- x)
-                                             y z)
-                                      (tak48 (1- y)
-                                             z x)
-                                      (tak56 (1- z)
-                                             x y)))))
-
-
-(defun tak68 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak69 (tak53 (1- x)
-                                             y z)
-                                      (tak59 (1- y)
-                                             z x)
-                                      (tak73 (1- z)
-                                             x y)))))
-
-
-(defun tak69 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak70 (tak90 (1- x)
-                                             y z)
-                                      (tak70 (1- y)
-                                             z x)
-                                      (tak90 (1- z)
-                                             x y)))))
-
-
-(defun tak7 (x y z) (declare (type fixnum x y z))
-                        (cond
-                           ((not (< y x))
-                            z)
-                           (t (tak8 (tak96 (1- x)
-                                           y z)
-                                    (tak88 (1- y)
-                                           z x)
-                                    (tak36 (1- z)
-                                           x y)))))
-
-
-(defun tak70 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak71 (tak27 (1- x)
-                                             y z)
-                                      (tak81 (1- y)
-                                             z x)
-                                      (tak7 (1- z)
-                                            x y)))))
-
-
-(defun tak71 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak72 (tak64 (1- x)
-                                             y z)
-                                      (tak92 (1- y)
-                                             z x)
-                                      (tak24 (1- z)
-                                             x y)))))
-
-
-(defun tak72 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak73 (tak1 (1- x)
-                                            y z)
-                                      (tak3 (1- y)
-                                            z x)
-                                      (tak41 (1- z)
-                                             x y)))))
-
-
-(defun tak73 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak74 (tak38 (1- x)
-                                             y z)
-                                      (tak14 (1- y)
-                                             z x)
-                                      (tak58 (1- z)
-                                             x y)))))
-
-
-(defun tak74 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak75 (tak75 (1- x)
-                                             y z)
-                                      (tak25 (1- y)
-                                             z x)
-                                      (tak75 (1- z)
-                                             x y)))))
-
-
-(defun tak75 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak76 (tak12 (1- x)
-                                             y z)
-                                      (tak36 (1- y)
-                                             z x)
-                                      (tak92 (1- z)
-                                             x y)))))
-
-
-(defun tak76 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak77 (tak49 (1- x)
-                                             y z)
-                                      (tak47 (1- y)
-                                             z x)
-                                      (tak9 (1- z)
-                                            x y)))))
-
-
-(defun tak77 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak78 (tak86 (1- x)
-                                             y z)
-                                      (tak58 (1- y)
-                                             z x)
-                                      (tak26 (1- z)
-                                             x y)))))
-
-
-(defun tak78 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak79 (tak23 (1- x)
-                                             y z)
-                                      (tak69 (1- y)
-                                             z x)
-                                      (tak43 (1- z)
-                                             x y)))))
-
-
-(defun tak79 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak80 (tak60 (1- x)
-                                             y z)
-                                      (tak80 (1- y)
-                                             z x)
-                                      (tak60 (1- z)
-                                             x y)))))
-
-
-(defun tak8 (x y z) (declare (type fixnum x y z))
-                        (cond
-                           ((not (< y x))
-                            z)
-                           (t (tak9 (tak33 (1- x)
-                                           y z)
-                                    (tak99 (1- y)
-                                           z x)
-                                    (tak53 (1- z)
-                                           x y)))))
-
-
-(defun tak80 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak81 (tak97 (1- x)
-                                             y z)
-                                      (tak91 (1- y)
-                                             z x)
-                                      (tak77 (1- z)
-                                             x y)))))
-
-
-(defun tak81 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak82 (tak34 (1- x)
-                                             y z)
-                                      (tak2 (1- y)
-                                            z x)
-                                      (tak94 (1- z)
-                                             x y)))))
-
-
-(defun tak82 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak83 (tak71 (1- x)
-                                             y z)
-                                      (tak13 (1- y)
-                                             z x)
-                                      (tak11 (1- z)
-                                             x y)))))
-
-
-(defun tak83 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak84 (tak8 (1- x)
-                                            y z)
-                                      (tak24 (1- y)
-                                             z x)
-                                      (tak28 (1- z)
-                                             x y)))))
-
-
-(defun tak84 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak85 (tak45 (1- x)
-                                             y z)
-                                      (tak35 (1- y)
-                                             z x)
-                                      (tak45 (1- z)
-                                             x y)))))
-
-
-(defun tak85 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak86 (tak82 (1- x)
-                                             y z)
-                                      (tak46 (1- y)
-                                             z x)
-                                      (tak62 (1- z)
-                                             x y)))))
-
-
-(defun tak86 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak87 (tak19 (1- x)
-                                             y z)
-                                      (tak57 (1- y)
-                                             z x)
-                                      (tak79 (1- z)
-                                             x y)))))
-
-
-(defun tak87 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak88 (tak56 (1- x)
-                                             y z)
-                                      (tak68 (1- y)
-                                             z x)
-                                      (tak96 (1- z)
-                                             x y)))))
-
-
-(defun tak88 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak89 (tak93 (1- x)
-                                             y z)
-                                      (tak79 (1- y)
-                                             z x)
-                                      (tak13 (1- z)
-                                             x y)))))
-
-
-(defun tak89 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak90 (tak30 (1- x)
-                                             y z)
-                                      (tak90 (1- y)
-                                             z x)
-                                      (tak30 (1- z)
-                                             x y)))))
-
-
-(defun tak9 (x y z) (declare (type fixnum x y z))
-                        (cond
-                           ((not (< y x))
-                            z)
-                           (t (tak10 (tak70 (1- x)
-                                            y z)
-                                     (tak10 (1- y)
-                                            z x)
-                                     (tak70 (1- z)
-                                            x y)))))
-
-
-(defun tak90 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak91 (tak67 (1- x)
-                                             y z)
-                                      (tak1 (1- y)
-                                            z x)
-                                      (tak47 (1- z)
-                                             x y)))))
-
-
-(defun tak91 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak92 (tak4 (1- x)
-                                            y z)
-                                      (tak12 (1- y)
-                                             z x)
-                                      (tak64 (1- z)
-                                             x y)))))
-
-
-(defun tak92 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak93 (tak41 (1- x)
-                                             y z)
-                                      (tak23 (1- y)
-                                             z x)
-                                      (tak81 (1- z)
-                                             x y)))))
-
-
-(defun tak93 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak94 (tak78 (1- x)
-                                             y z)
-                                      (tak34 (1- y)
-                                             z x)
-                                      (tak98 (1- z)
-                                             x y)))))
-
-
-(defun tak94 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak95 (tak15 (1- x)
-                                             y z)
-                                      (tak45 (1- y)
-                                             z x)
-                                      (tak15 (1- z)
-                                             x y)))))
-
-
-(defun tak95 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak96 (tak52 (1- x)
-                                             y z)
-                                      (tak56 (1- y)
-                                             z x)
-                                      (tak32 (1- z)
-                                             x y)))))
-
-
-(defun tak96 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak97 (tak89 (1- x)
-                                             y z)
-                                      (tak67 (1- y)
-                                             z x)
-                                      (tak49 (1- z)
-                                             x y)))))
-
-
-(defun tak97 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak98 (tak26 (1- x)
-                                             y z)
-                                      (tak78 (1- y)
-                                             z x)
-                                      (tak66 (1- z)
-                                             x y)))))
-
-
-(defun tak98 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak99 (tak63 (1- x)
-                                             y z)
-                                      (tak89 (1- y)
-                                             z x)
-                                      (tak83 (1- z)
-                                             x y)))))
-
-
-(defun tak99 (x y z) (declare (type fixnum x y z))
-                         (cond
-                            ((not (< y x))
-                             z)
-                            (t (tak0 (tak0 (1- x)
-                                           y z)
-                                     (tak0 (1- y)
-                                           z x)
-                                     (tak0 (1- z)
-                                           x y)))))
-
-
-(define-timer ctak "CTak" (ctak 18 12 6))
-
-
-(define-timer stak "STak" (stak 18 12 6))
-
-
-(define-timer tak "Tak" (tak 18 12 6))
-
-
-(define-timer takl "TakL" (mas |18L| |12L| |6L|))
-
-
-(define-timer takr "TakR" (tak0 18 12 6))
-
-
-(defparameter *tak-timers* '(ctak stak tak takl takr) )
-
-(il:declare\: il:dontcopy il:doeval@compile 
-(il:declare\: il:doeval@compile il:dontcopy
-
-(il:localvars . t)
+(DEFINE-FILE-INFO :PACKAGE "INTERLISP" :READTABLE "INTERLISP" :BASE 10)
+
+(FILECREATED "19-May-2026 14:47:02" {GABRIEL}<Tools>GABRIEL-TAK.;2 59742  
+
+      :PREVIOUS-DATE "29-Apr-2026 14:34:54" {GABRIEL}<Tools>GABRIEL-TAK.;1)
+
+
+(PRETTYCOMPRINT GABRIEL-TAKCOMS)
+
+(RPAQQ GABRIEL-TAKCOMS
+       ((FILES GABRIEL-FILES)
+        (FILES (FROM VALUEOF *BENCHMARKS-TOOLS-DIR* COMPILED)
+               GABRIEL-TIMERS)
+        (FUNCTIONS GABRIEL::LISTN)
+        (VARIABLES GABRIEL::|12L| GABRIEL::|18L| GABRIEL::|6L|)
+        (VARIABLES GABRIEL::*X* GABRIEL::*Y* GABRIEL::*Z*)
+        (FUNCTIONS GABRIEL::CTAK GABRIEL::CTAK-AUX GABRIEL::MAS GABRIEL::SHORTERP GABRIEL::STAK 
+               GABRIEL::STAK-AUX GABRIEL::TAK GABRIEL::TAK0 GABRIEL::TAK1 GABRIEL::TAK10 
+               GABRIEL::TAK11 GABRIEL::TAK12 GABRIEL::TAK13 GABRIEL::TAK14 GABRIEL::TAK15 
+               GABRIEL::TAK16 GABRIEL::TAK17 GABRIEL::TAK18 GABRIEL::TAK19 GABRIEL::TAK2 
+               GABRIEL::TAK20 GABRIEL::TAK21 GABRIEL::TAK22 GABRIEL::TAK23 GABRIEL::TAK24 
+               GABRIEL::TAK25 GABRIEL::TAK26 GABRIEL::TAK27 GABRIEL::TAK28 GABRIEL::TAK29 
+               GABRIEL::TAK3 GABRIEL::TAK30 GABRIEL::TAK31 GABRIEL::TAK32 GABRIEL::TAK33 
+               GABRIEL::TAK34 GABRIEL::TAK35 GABRIEL::TAK36 GABRIEL::TAK37 GABRIEL::TAK38 
+               GABRIEL::TAK39 GABRIEL::TAK4 GABRIEL::TAK40 GABRIEL::TAK41 GABRIEL::TAK42 
+               GABRIEL::TAK43 GABRIEL::TAK44 GABRIEL::TAK45 GABRIEL::TAK46 GABRIEL::TAK47 
+               GABRIEL::TAK48 GABRIEL::TAK49 GABRIEL::TAK5 GABRIEL::TAK50 GABRIEL::TAK51 
+               GABRIEL::TAK52 GABRIEL::TAK53 GABRIEL::TAK54 GABRIEL::TAK55 GABRIEL::TAK56 
+               GABRIEL::TAK57 GABRIEL::TAK58 GABRIEL::TAK59 GABRIEL::TAK6 GABRIEL::TAK60 
+               GABRIEL::TAK61 GABRIEL::TAK62 GABRIEL::TAK63 GABRIEL::TAK64 GABRIEL::TAK65 
+               GABRIEL::TAK66 GABRIEL::TAK67 GABRIEL::TAK68 GABRIEL::TAK69 GABRIEL::TAK7 
+               GABRIEL::TAK70 GABRIEL::TAK71 GABRIEL::TAK72 GABRIEL::TAK73 GABRIEL::TAK74 
+               GABRIEL::TAK75 GABRIEL::TAK76 GABRIEL::TAK77 GABRIEL::TAK78 GABRIEL::TAK79 
+               GABRIEL::TAK8 GABRIEL::TAK80 GABRIEL::TAK81 GABRIEL::TAK82 GABRIEL::TAK83 
+               GABRIEL::TAK84 GABRIEL::TAK85 GABRIEL::TAK86 GABRIEL::TAK87 GABRIEL::TAK88 
+               GABRIEL::TAK89 GABRIEL::TAK9 GABRIEL::TAK90 GABRIEL::TAK91 GABRIEL::TAK92 
+               GABRIEL::TAK93 GABRIEL::TAK94 GABRIEL::TAK95 GABRIEL::TAK96 GABRIEL::TAK97 
+               GABRIEL::TAK98 GABRIEL::TAK99)
+        (GABRIEL::TIMERS GABRIEL::CTAK GABRIEL::STAK GABRIEL::TAK GABRIEL::TAKL GABRIEL::TAKR)
+        (VARIABLES GABRIEL::*TAK-TIMERS*)
+        (XCL:FILE-ENVIRONMENTS GABRIEL-TAK)
+        (DECLARE%: DONTCOPY DOEVAL@COMPILE (LOCALVARS . T))))
+
+(FILESLOAD GABRIEL-FILES)
+
+(FILESLOAD (FROM VALUEOF *BENCHMARKS-TOOLS-DIR* COMPILED)
+       GABRIEL-TIMERS)
+
+(CL:DEFUN GABRIEL::LISTN (GABRIEL::N)
+   (CL:IF (NOT (CL:ZEROP GABRIEL::N))
+       (LIST* GABRIEL::N (GABRIEL::LISTN (CL:1- GABRIEL::N)))))
+
+(CL:DEFVAR GABRIEL::|12L| (GABRIEL::LISTN 12))
+
+(CL:DEFVAR GABRIEL::|18L| (GABRIEL::LISTN 18))
+
+(CL:DEFVAR GABRIEL::|6L| (GABRIEL::LISTN 6))
+
+(CL:DEFVAR GABRIEL::*X*)
+
+(CL:DEFVAR GABRIEL::*Y*)
+
+(CL:DEFVAR GABRIEL::*Z*)
+
+(CL:DEFUN GABRIEL::CTAK (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   (CL:CATCH 'GABRIEL::CTAK (GABRIEL::CTAK-AUX GABRIEL::X GABRIEL::Y GABRIEL::Z)))
+
+(CL:DEFUN GABRIEL::CTAK-AUX (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       (CL:THROW 'GABRIEL::CTAK GABRIEL::Z))
+      (T (GABRIEL::CTAK-AUX (CL:CATCH 'GABRIEL::CTAK
+                                (GABRIEL::CTAK-AUX (CL:1- GABRIEL::X)
+                                       GABRIEL::Y GABRIEL::Z))
+                (CL:CATCH 'GABRIEL::CTAK
+                    (GABRIEL::CTAK-AUX (CL:1- GABRIEL::Y)
+                           GABRIEL::Z GABRIEL::X))
+                (CL:CATCH 'GABRIEL::CTAK
+                    (GABRIEL::CTAK-AUX (CL:1- GABRIEL::Z)
+                           GABRIEL::X GABRIEL::Y))])
+
+(CL:DEFUN GABRIEL::MAS (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE LIST GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   (CL:IF (NOT (GABRIEL::SHORTERP GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z
+       (GABRIEL::MAS (GABRIEL::MAS (CDR GABRIEL::X)
+                            GABRIEL::Y GABRIEL::Z)
+              (GABRIEL::MAS (CDR GABRIEL::Y)
+                     GABRIEL::Z GABRIEL::X)
+              (GABRIEL::MAS (CDR GABRIEL::Z)
+                     GABRIEL::X GABRIEL::Y))))
+
+(CL:DEFUN GABRIEL::SHORTERP (GABRIEL::X GABRIEL::Y)
+   (DECLARE (TYPE LIST GABRIEL::X GABRIEL::Y))
+   [AND GABRIEL::Y (OR (NULL GABRIEL::X)
+                       (GABRIEL::SHORTERP (CDR GABRIEL::X)
+                              (CDR GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::STAK (GABRIEL::*X* GABRIEL::*Y* GABRIEL::*Z*)
+   (GABRIEL::STAK-AUX))
+
+(CL:DEFUN GABRIEL::STAK-AUX ()
+   (CL:IF (NOT (< GABRIEL::*Y* GABRIEL::*X*))
+       GABRIEL::*Z*
+       (LET [(GABRIEL::*X* (LET ((GABRIEL::*X* (CL:1- GABRIEL::*X*))
+                                 (GABRIEL::*Y* GABRIEL::*Y*)
+                                 (GABRIEL::*Z* GABRIEL::*Z*))
+                                (GABRIEL::STAK-AUX)))
+             (GABRIEL::*Y* (LET ((GABRIEL::*X* (CL:1- GABRIEL::*Y*))
+                                 (GABRIEL::*Y* GABRIEL::*Z*)
+                                 (GABRIEL::*Z* GABRIEL::*X*))
+                                (GABRIEL::STAK-AUX)))
+             (GABRIEL::*Z* (LET ((GABRIEL::*X* (CL:1- GABRIEL::*Z*))
+                                 (GABRIEL::*Y* GABRIEL::*X*)
+                                 (GABRIEL::*Z* GABRIEL::*Y*))
+                                (GABRIEL::STAK-AUX]
+            (GABRIEL::STAK-AUX))))
+
+(CL:DEFUN GABRIEL::TAK (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   (CL:IF (NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z
+       (GABRIEL::TAK (GABRIEL::TAK (CL:1- GABRIEL::X)
+                            GABRIEL::Y GABRIEL::Z)
+              (GABRIEL::TAK (CL:1- GABRIEL::Y)
+                     GABRIEL::Z GABRIEL::X)
+              (GABRIEL::TAK (CL:1- GABRIEL::Z)
+                     GABRIEL::X GABRIEL::Y))))
+
+(CL:DEFUN GABRIEL::TAK0 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK1 (GABRIEL::TAK37 (CL:1- GABRIEL::X)
+                               GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK11 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK17 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK1 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK2 (GABRIEL::TAK74 (CL:1- GABRIEL::X)
+                               GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK22 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK34 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK10 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK11 (GABRIEL::TAK7 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK21 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK87 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK11 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK12 (GABRIEL::TAK44 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK32 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK4 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK12 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK13 (GABRIEL::TAK81 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK43 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK21 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK13 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK14 (GABRIEL::TAK18 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK54 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK38 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK14 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK15 (GABRIEL::TAK55 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK65 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK55 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK15 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK16 (GABRIEL::TAK92 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK76 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK72 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK16 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK17 (GABRIEL::TAK29 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK87 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK89 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK17 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK18 (GABRIEL::TAK66 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK98 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK6 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK18 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK19 (GABRIEL::TAK3 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK9 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK23 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK19 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK20 (GABRIEL::TAK40 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK20 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK40 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK2 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK3 (GABRIEL::TAK11 (CL:1- GABRIEL::X)
+                               GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK33 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK51 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK20 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK21 (GABRIEL::TAK77 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK31 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK57 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK21 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK22 (GABRIEL::TAK14 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK42 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK74 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK22 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK23 (GABRIEL::TAK51 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK53 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK91 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK23 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK24 (GABRIEL::TAK88 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK64 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK8 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK24 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK25 (GABRIEL::TAK25 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK75 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK25 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK25 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK26 (GABRIEL::TAK62 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK86 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK42 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK26 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK27 (GABRIEL::TAK99 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK97 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK59 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK27 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK28 (GABRIEL::TAK36 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK8 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK76 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK28 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK29 (GABRIEL::TAK73 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK19 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK93 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK29 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK30 (GABRIEL::TAK10 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK30 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK10 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK3 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK4 (GABRIEL::TAK48 (CL:1- GABRIEL::X)
+                               GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK44 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK68 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK30 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK31 (GABRIEL::TAK47 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK41 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK27 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK31 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK32 (GABRIEL::TAK84 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK52 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK44 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK32 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK33 (GABRIEL::TAK21 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK63 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK61 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK33 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK34 (GABRIEL::TAK58 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK74 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK78 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK34 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK35 (GABRIEL::TAK95 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK85 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK95 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK35 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK36 (GABRIEL::TAK32 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK96 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK12 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK36 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK37 (GABRIEL::TAK69 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK7 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK29 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK37 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK38 (GABRIEL::TAK6 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK18 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK46 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK38 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK39 (GABRIEL::TAK43 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK29 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK63 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK39 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK40 (GABRIEL::TAK80 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK40 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK80 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK4 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK5 (GABRIEL::TAK85 (CL:1- GABRIEL::X)
+                               GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK55 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK85 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK40 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK41 (GABRIEL::TAK17 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK51 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK97 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK41 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK42 (GABRIEL::TAK54 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK62 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK14 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK42 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK43 (GABRIEL::TAK91 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK73 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK31 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK43 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK44 (GABRIEL::TAK28 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK84 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK48 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK44 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK45 (GABRIEL::TAK65 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK95 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK65 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK45 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK46 (GABRIEL::TAK2 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK6 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK82 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK46 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK47 (GABRIEL::TAK39 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK17 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK99 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK47 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK48 (GABRIEL::TAK76 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK28 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK16 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK48 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK49 (GABRIEL::TAK13 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK39 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK33 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK49 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK50 (GABRIEL::TAK50 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK50 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK50 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK5 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK6 (GABRIEL::TAK22 (CL:1- GABRIEL::X)
+                               GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK66 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK2 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK50 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK51 (GABRIEL::TAK87 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK61 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK67 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK51 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK52 (GABRIEL::TAK24 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK72 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK84 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK52 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK53 (GABRIEL::TAK61 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK83 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK1 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK53 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK54 (GABRIEL::TAK98 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK94 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK18 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK54 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK55 (GABRIEL::TAK35 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK5 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK35 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK55 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK56 (GABRIEL::TAK72 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK16 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK52 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK56 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK57 (GABRIEL::TAK9 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK27 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK69 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK57 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK58 (GABRIEL::TAK46 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK38 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK86 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK58 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK59 (GABRIEL::TAK83 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK49 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK3 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK59 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK60 (GABRIEL::TAK20 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK60 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK20 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK6 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK7 (GABRIEL::TAK59 (CL:1- GABRIEL::X)
+                               GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK77 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK19 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK60 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK61 (GABRIEL::TAK57 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK71 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK37 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK61 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK62 (GABRIEL::TAK94 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK82 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK54 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK62 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK63 (GABRIEL::TAK31 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK93 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK71 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK63 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK64 (GABRIEL::TAK68 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK4 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK88 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK64 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK65 (GABRIEL::TAK5 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK15 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK5 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK65 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK66 (GABRIEL::TAK42 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK26 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK22 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK66 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK67 (GABRIEL::TAK79 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK37 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK39 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK67 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK68 (GABRIEL::TAK16 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK48 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK56 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK68 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK69 (GABRIEL::TAK53 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK59 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK73 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK69 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK70 (GABRIEL::TAK90 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK70 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK90 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK7 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK8 (GABRIEL::TAK96 (CL:1- GABRIEL::X)
+                               GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK88 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK36 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK70 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK71 (GABRIEL::TAK27 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK81 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK7 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK71 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK72 (GABRIEL::TAK64 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK92 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK24 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK72 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK73 (GABRIEL::TAK1 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK3 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK41 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK73 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK74 (GABRIEL::TAK38 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK14 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK58 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK74 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK75 (GABRIEL::TAK75 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK25 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK75 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK75 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK76 (GABRIEL::TAK12 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK36 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK92 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK76 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK77 (GABRIEL::TAK49 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK47 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK9 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK77 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK78 (GABRIEL::TAK86 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK58 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK26 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK78 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK79 (GABRIEL::TAK23 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK69 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK43 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK79 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK80 (GABRIEL::TAK60 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK80 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK60 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK8 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK9 (GABRIEL::TAK33 (CL:1- GABRIEL::X)
+                               GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK99 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK53 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK80 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK81 (GABRIEL::TAK97 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK91 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK77 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK81 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK82 (GABRIEL::TAK34 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK2 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK94 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK82 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK83 (GABRIEL::TAK71 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK13 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK11 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK83 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK84 (GABRIEL::TAK8 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK24 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK28 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK84 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK85 (GABRIEL::TAK45 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK35 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK45 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK85 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK86 (GABRIEL::TAK82 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK46 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK62 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK86 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK87 (GABRIEL::TAK19 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK57 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK79 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK87 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK88 (GABRIEL::TAK56 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK68 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK96 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK88 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK89 (GABRIEL::TAK93 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK79 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK13 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK89 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK90 (GABRIEL::TAK30 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK90 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK30 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK9 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK10 (GABRIEL::TAK70 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK10 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK70 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK90 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK91 (GABRIEL::TAK67 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK1 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK47 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK91 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK92 (GABRIEL::TAK4 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK12 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK64 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK92 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK93 (GABRIEL::TAK41 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK23 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK81 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK93 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK94 (GABRIEL::TAK78 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK34 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK98 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK94 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK95 (GABRIEL::TAK15 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK45 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK15 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK95 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK96 (GABRIEL::TAK52 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK56 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK32 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK96 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK97 (GABRIEL::TAK89 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK67 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK49 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK97 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK98 (GABRIEL::TAK26 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK78 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK66 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK98 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK99 (GABRIEL::TAK63 (CL:1- GABRIEL::X)
+                                GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK89 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK83 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(CL:DEFUN GABRIEL::TAK99 (GABRIEL::X GABRIEL::Y GABRIEL::Z)
+   (DECLARE (TYPE CL:FIXNUM GABRIEL::X GABRIEL::Y GABRIEL::Z))
+   [COND
+      ((NOT (< GABRIEL::Y GABRIEL::X))
+       GABRIEL::Z)
+      (T (GABRIEL::TAK0 (GABRIEL::TAK0 (CL:1- GABRIEL::X)
+                               GABRIEL::Y GABRIEL::Z)
+                (GABRIEL::TAK0 (CL:1- GABRIEL::Y)
+                       GABRIEL::Z GABRIEL::X)
+                (GABRIEL::TAK0 (CL:1- GABRIEL::Z)
+                       GABRIEL::X GABRIEL::Y])
+
+(GABRIEL::DEFINE-TIMER GABRIEL::CTAK "CTak"
+   (GABRIEL::CTAK 18 12 6))
+
+(GABRIEL::DEFINE-TIMER GABRIEL::STAK "STak"
+   (GABRIEL::STAK 18 12 6))
+
+(GABRIEL::DEFINE-TIMER GABRIEL::TAK "Tak"
+   (GABRIEL::TAK 18 12 6))
+
+(GABRIEL::DEFINE-TIMER GABRIEL::TAKL "TakL"
+   (GABRIEL::MAS GABRIEL::|18L| GABRIEL::|12L| GABRIEL::|6L|))
+
+(GABRIEL::DEFINE-TIMER GABRIEL::TAKR "TakR"
+   (GABRIEL::TAK0 18 12 6))
+
+(CL:DEFPARAMETER GABRIEL::*TAK-TIMERS* '(GABRIEL::CTAK GABRIEL::STAK GABRIEL::TAK GABRIEL::TAKL 
+                                               GABRIEL::TAKR))
+
+(XCL:DEFINE-FILE-ENVIRONMENT GABRIEL-TAK :PACKAGE "IL"
+   :READTABLE "INTERLISP"
+   :COMPILER :COMPILE-FILE)
+(DECLARE%: DONTCOPY DOEVAL@COMPILE 
+(DECLARE%: DOEVAL@COMPILE DONTCOPY
+
+(LOCALVARS . T)
 )
 )
-
-(il:putprops il:gabriel-tak il:filetype compile-file)
-
-(il:putprops il:gabriel-tak il:makefile-environment (:readtable "XCL" :package (xcl:defpackage
-                                                                                    "GABRIEL")))
-(il:putprops il:gabriel-tak il:copyright ("Xerox Corporation" 1987 1988))
-(il:declare\: il:dontcopy
-  (il:filemap (nil)))
-il:stop
+(DECLARE%: DONTCOPY
+  (FILEMAP (NIL (2886 3033 (GABRIEL::LISTN 2886 . 3033)) (3291 3507 (GABRIEL::CTAK 3291 . 3507)) (3509 
+4239 (GABRIEL::CTAK-AUX 3509 . 4239)) (4241 4744 (GABRIEL::MAS 4241 . 4744)) (4746 5004 (GABRIEL::SHORTERP
+ 4746 . 5004)) (5006 5102 (GABRIEL::STAK 5006 . 5102)) (5104 5991 (GABRIEL::STAK-AUX 5104 . 5991)) (
+5993 6487 (GABRIEL::TAK 5993 . 6487)) (6489 7009 (GABRIEL::TAK0 6489 . 7009)) (7011 7531 (GABRIEL::TAK1
+ 7011 . 7531)) (7533 8055 (GABRIEL::TAK10 7533 . 8055)) (8057 8579 (GABRIEL::TAK11 8057 . 8579)) (8581
+ 9104 (GABRIEL::TAK12 8581 . 9104)) (9106 9629 (GABRIEL::TAK13 9106 . 9629)) (9631 10154 (GABRIEL::TAK14
+ 9631 . 10154)) (10156 10679 (GABRIEL::TAK15 10156 . 10679)) (10681 11204 (GABRIEL::TAK16 10681 . 
+11204)) (11206 11728 (GABRIEL::TAK17 11206 . 11728)) (11730 12251 (GABRIEL::TAK18 11730 . 12251)) (
+12253 12776 (GABRIEL::TAK19 12253 . 12776)) (12778 13298 (GABRIEL::TAK2 12778 . 13298)) (13300 13823 (
+GABRIEL::TAK20 13300 . 13823)) (13825 14348 (GABRIEL::TAK21 13825 . 14348)) (14350 14873 (GABRIEL::TAK22
+ 14350 . 14873)) (14875 15397 (GABRIEL::TAK23 14875 . 15397)) (15399 15922 (GABRIEL::TAK24 15399 . 
+15922)) (15924 16447 (GABRIEL::TAK25 15924 . 16447)) (16449 16972 (GABRIEL::TAK26 16449 . 16972)) (
+16974 17496 (GABRIEL::TAK27 16974 . 17496)) (17498 18021 (GABRIEL::TAK28 17498 . 18021)) (18023 18546 
+(GABRIEL::TAK29 18023 . 18546)) (18548 19068 (GABRIEL::TAK3 18548 . 19068)) (19070 19593 (GABRIEL::TAK30
+ 19070 . 19593)) (19595 20118 (GABRIEL::TAK31 19595 . 20118)) (20120 20643 (GABRIEL::TAK32 20120 . 
+20643)) (20645 21168 (GABRIEL::TAK33 20645 . 21168)) (21170 21693 (GABRIEL::TAK34 21170 . 21693)) (
+21695 22218 (GABRIEL::TAK35 21695 . 22218)) (22220 22742 (GABRIEL::TAK36 22220 . 22742)) (22744 23266 
+(GABRIEL::TAK37 22744 . 23266)) (23268 23791 (GABRIEL::TAK38 23268 . 23791)) (23793 24316 (GABRIEL::TAK39
+ 23793 . 24316)) (24318 24838 (GABRIEL::TAK4 24318 . 24838)) (24840 25363 (GABRIEL::TAK40 24840 . 
+25363)) (25365 25888 (GABRIEL::TAK41 25365 . 25888)) (25890 26413 (GABRIEL::TAK42 25890 . 26413)) (
+26415 26938 (GABRIEL::TAK43 26415 . 26938)) (26940 27463 (GABRIEL::TAK44 26940 . 27463)) (27465 27986 
+(GABRIEL::TAK45 27465 . 27986)) (27988 28511 (GABRIEL::TAK46 27988 . 28511)) (28513 29036 (GABRIEL::TAK47
+ 28513 . 29036)) (29038 29561 (GABRIEL::TAK48 29038 . 29561)) (29563 30086 (GABRIEL::TAK49 29563 . 
+30086)) (30088 30607 (GABRIEL::TAK5 30088 . 30607)) (30609 31132 (GABRIEL::TAK50 30609 . 31132)) (
+31134 31657 (GABRIEL::TAK51 31134 . 31657)) (31659 32181 (GABRIEL::TAK52 31659 . 32181)) (32183 32706 
+(GABRIEL::TAK53 32183 . 32706)) (32708 33230 (GABRIEL::TAK54 32708 . 33230)) (33232 33755 (GABRIEL::TAK55
+ 33232 . 33755)) (33757 34279 (GABRIEL::TAK56 33757 . 34279)) (34281 34804 (GABRIEL::TAK57 34281 . 
+34804)) (34806 35328 (GABRIEL::TAK58 34806 . 35328)) (35330 35853 (GABRIEL::TAK59 35330 . 35853)) (
+35855 36375 (GABRIEL::TAK6 35855 . 36375)) (36377 36900 (GABRIEL::TAK60 36377 . 36900)) (36902 37425 (
+GABRIEL::TAK61 36902 . 37425)) (37427 37950 (GABRIEL::TAK62 37427 . 37950)) (37952 38474 (GABRIEL::TAK63
+ 37952 . 38474)) (38476 38997 (GABRIEL::TAK64 38476 . 38997)) (38999 39522 (GABRIEL::TAK65 38999 . 
+39522)) (39524 40047 (GABRIEL::TAK66 39524 . 40047)) (40049 40572 (GABRIEL::TAK67 40049 . 40572)) (
+40574 41097 (GABRIEL::TAK68 40574 . 41097)) (41099 41622 (GABRIEL::TAK69 41099 . 41622)) (41624 42144 
+(GABRIEL::TAK7 41624 . 42144)) (42146 42668 (GABRIEL::TAK70 42146 . 42668)) (42670 43193 (GABRIEL::TAK71
+ 42670 . 43193)) (43195 43716 (GABRIEL::TAK72 43195 . 43716)) (43718 44241 (GABRIEL::TAK73 43718 . 
+44241)) (44243 44766 (GABRIEL::TAK74 44243 . 44766)) (44768 45291 (GABRIEL::TAK75 44768 . 45291)) (
+45293 45815 (GABRIEL::TAK76 45293 . 45815)) (45817 46340 (GABRIEL::TAK77 45817 . 46340)) (46342 46865 
+(GABRIEL::TAK78 46342 . 46865)) (46867 47390 (GABRIEL::TAK79 46867 . 47390)) (47392 47912 (GABRIEL::TAK8
+ 47392 . 47912)) (47914 48437 (GABRIEL::TAK80 47914 . 48437)) (48439 48961 (GABRIEL::TAK81 48439 . 
+48961)) (48963 49486 (GABRIEL::TAK82 48963 . 49486)) (49488 50010 (GABRIEL::TAK83 49488 . 50010)) (
+50012 50535 (GABRIEL::TAK84 50012 . 50535)) (50537 51060 (GABRIEL::TAK85 50537 . 51060)) (51062 51585 
+(GABRIEL::TAK86 51062 . 51585)) (51587 52110 (GABRIEL::TAK87 51587 . 52110)) (52112 52635 (GABRIEL::TAK88
+ 52112 . 52635)) (52637 53160 (GABRIEL::TAK89 52637 . 53160)) (53162 53684 (GABRIEL::TAK9 53162 . 
+53684)) (53686 54208 (GABRIEL::TAK90 53686 . 54208)) (54210 54732 (GABRIEL::TAK91 54210 . 54732)) (
+54734 55257 (GABRIEL::TAK92 54734 . 55257)) (55259 55782 (GABRIEL::TAK93 55259 . 55782)) (55784 56307 
+(GABRIEL::TAK94 55784 . 56307)) (56309 56832 (GABRIEL::TAK95 56309 . 56832)) (56834 57357 (GABRIEL::TAK96
+ 56834 . 57357)) (57359 57882 (GABRIEL::TAK97 57359 . 57882)) (57884 58407 (GABRIEL::TAK98 57884 . 
+58407)) (58409 58927 (GABRIEL::TAK99 58409 . 58927)))))
+STOP

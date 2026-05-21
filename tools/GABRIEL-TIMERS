@@ -1,393 +1,438 @@
-(DEFINE-FILE-INFO READTABLE "XCL" PACKAGE (DEFPACKAGE "GABRIEL"))
-(IL:FILECREATED "12-Aug-88 10:32:50" IL:{ERIS}<LISPCORE>GABRIEL>TOOLS>GABRIEL-TIMERS.\;7 17901  
+(DEFINE-FILE-INFO :PACKAGE "INTERLISP" :READTABLE "INTERLISP" :BASE 10)
 
-      IL:|changes| IL:|to:|  (IL:FUNCTIONS RUN-BENCHMARKS)
+(FILECREATED "21-May-2026 15:25:02" {GABRIEL}<Tools>GABRIEL-TIMERS.;2 22145  
 
-      IL:|previous| IL:|date:| "28-Jul-88 03:21:26" IL:{ERIS}<LISPCORE>GABRIEL>TOOLS>GABRIEL-TIMERS.\;6
-)
+      :CHANGES-TO (FUNCTIONS GABRIEL::RUN-BENCHMARKS)
+                  (FILES GABRIEL-FILES)
+                  (VARS GABRIEL-TIMERSCOMS)
+
+      :PREVIOUS-DATE " 5-May-2026 16:30:22" {GABRIEL}<Tools>GABRIEL-TIMERS.;5)
 
 
-; Copyright (c) 1987, 1988 by Xerox Corporation.  All rights reserved.
+(PRETTYCOMPRINT GABRIEL-TIMERSCOMS)
 
-(IL:PRETTYCOMPRINT IL:GABRIEL-TIMERSCOMS)
+(RPAQQ GABRIEL-TIMERSCOMS
+       (
+        (* ;; "Main file for running [Gabriel] Benchmark suites in Xerox Lisp:")
 
-(IL:RPAQQ IL:GABRIEL-TIMERSCOMS
-          (
-           (IL:* IL:|;;| "Main file for running [Gabriel] Benchmark suites in Xerox Lisp:")
+        (FILES (COMPILED)
+               GABRIEL-FILES)
+        (FILES (FROM VALUEOF *BENCHMARKS-TOOLS-DIR* COMPILED)
+               GABRIEL-PKG)
+        (COMS 
+              (* ;; "Definitions for the TIMERS type, and the definer for them:")
 
-           (IL:COMS 
+              (DEFINE-TYPES GABRIEL::TIMERS)
+              (FUNCTIONS GABRIEL::DEFINE-TIMER))
+        (COMS 
+              (* ;; "CONTROL VARIABLES")
 
-                  (IL:* IL:|;;| "Definitions for the TIMERS type, and the definer for them:")
+              
+              (* ;; " *ALL-TIMERS* - List of all the benchmark definitions you've loaded.")
 
-                  (IL:DEFINE-TYPES TIMERS)
-                  (IL:FUNCTIONS DEFINE-TIMER))
-           (IL:COMS 
+              
+              (* ;; " *MINIMUM-TESTS* - Min # of times to run each test, defaults to 2.")
 
-                  (IL:* IL:|;;| "CONTROL VARIABLES")
+              (VARIABLES GABRIEL::*ALL-TIMERS* GABRIEL::*MINIMUM-TESTS* GABRIEL::*MOST-TIMERS*))
+        (COMS 
+              (* ;; "Functions for running benchmarks.  RUN-BENCHMARKS is the main entry; DESCRIBE-IMPLEMENTATION is a sub-function.")
 
-                  
-                  (IL:* IL:|;;| 
-                " *ALL-TIMERS* - List of all the benchmark definitions you've loaded.")
+              (FUNCTIONS GABRIEL::RUN-BENCHMARKS GABRIEL::DESCRIBE-IMPLEMENTATION))
+        (COMS 
+              (* ;; "Functions for running benchmarks and saving the results in a database of benchmarks.  RUN-BENCHMARKS-TO-DATABASE is the main entry; DESCRIBE-IMPLEMENTATION is a sub-function.")
 
-                  
-                  (IL:* IL:|;;| 
-                " *MINIMUM-TESTS* - Min # of times to run each test, defaults to 2.")
-
-                  (IL:VARIABLES *ALL-TIMERS* *MINIMUM-TESTS* *MOST-TIMERS*))
-           (IL:COMS 
-
-                  (IL:* IL:|;;| "Functions for running benchmarks.  RUN-BENCHMARKS is the main entry; DESCRIBE-IMPLEMENTATION is a sub-function.")
-
-                  (IL:FUNCTIONS RUN-BENCHMARKS DESCRIBE-IMPLEMENTATION))
-           (IL:COMS 
-
-                  (IL:* IL:|;;| "Functions for running benchmarks and saving the results in a database of benchmarks.  RUN-BENCHMARKS-TO-DATABASE is the main entry; DESCRIBE-IMPLEMENTATION is a sub-function.")
-
-                  (IL:FUNCTIONS RUN-BENCHMARKS-TO-DATABASE TIME-CALL ALL-TIME-INDICATORS))
-           (IL:DECLARE\: IL:DONTCOPY IL:DOEVAL@COMPILE (IL:LOCALVARS . T))
-           (IL:PROP (IL:FILETYPE IL:MAKEFILE-ENVIRONMENT)
-                  IL:GABRIEL-TIMERS)))
+              (FUNCTIONS GABRIEL::RUN-BENCHMARKS-TO-DATABASE GABRIEL::TIME-CALL 
+                     GABRIEL::ALL-TIME-INDICATORS))
+        (DECLARE%: DONTCOPY DOEVAL@COMPILE (LOCALVARS . T))
+        (XCL:FILE-ENVIRONMENTS GABRIEL-TIMERS)))
 
 
 
-(IL:* IL:|;;| "Main file for running [Gabriel] Benchmark suites in Xerox Lisp:")
+(* ;; "Main file for running [Gabriel] Benchmark suites in Xerox Lisp:")
+
+
+(FILESLOAD (COMPILED)
+       GABRIEL-FILES)
+
+(FILESLOAD (FROM VALUEOF *BENCHMARKS-TOOLS-DIR* COMPILED)
+       GABRIEL-PKG)
+
+
+
+(* ;; "Definitions for the TIMERS type, and the definer for them:")
+
+
+(DEF-DEFINE-TYPE GABRIEL::TIMERS "Gabriel Benchmarks")
+
+(DEFDEFINER (GABRIEL::DEFINE-TIMER [:NAME (CL:LAMBDA (GABRIEL::WHOLE)
+                                                 (CL:IF (CL:CONSP (CL:SECOND GABRIEL::WHOLE))
+                                                     (CAR (CL:SECOND GABRIEL::WHOLE))
+                                                     (CL:SECOND GABRIEL::WHOLE))]) GABRIEL::TIMERS (
+                                                                            GABRIEL::NAME-AND-OPTIONS
+                                                                                                    
+                                                                                     CL:DOCUMENTATION
+                                                                                                    
+                                                                                                &BODY
+                                                                                                    
+                                                                                        GABRIEL::BODY
+                                                                                                    )
+   [LET [(GABRIEL::NAME (CL:IF (CL:CONSP GABRIEL::NAME-AND-OPTIONS)
+                            (CAR GABRIEL::NAME-AND-OPTIONS)
+                            GABRIEL::NAME-AND-OPTIONS))
+         (GABRIEL::SETUPFORM (CADR (CL:ASSOC ':SETUP GABRIEL::NAME-AND-OPTIONS)))
+         (GABRIEL::AFTER-EVERY-FORM (CADR (CL:ASSOC ':AFTER-EVERY GABRIEL::NAME-AND-OPTIONS)))
+         (GABRIEL::AFTERFORM (CADR (CL:ASSOC ':AFTER GABRIEL::NAME-AND-OPTIONS]
+        (LET ((GABRIEL::TIMER (CL:GENTEMP)))
+             `(PROGN (CL:PUSHNEW ',GABRIEL::NAME GABRIEL::*ALL-TIMERS*)
+                     (CL:DEFUN ,GABRIEL::TIMER ()
+                        ,@GABRIEL::BODY)
+                     (CL:SETF (GET ',GABRIEL::NAME 'GABRIEL::TIMING-FUNCTION)
+                            ',GABRIEL::TIMER)
+                     ,@(CL:IF GABRIEL::SETUPFORM
+                           [LET ((GABRIEL::SETUP (CL:GENTEMP)))
+                                `((CL:DEFUN ,GABRIEL::SETUP ()
+                                     ,GABRIEL::SETUPFORM)
+                                  (CL:SETF (GET ',GABRIEL::NAME 'GABRIEL::SETUP-FUNCTION)
+                                         ',GABRIEL::SETUP])
+                     ,@(CL:IF GABRIEL::AFTER-EVERY-FORM
+                           [LET ((GABRIEL::AFTER-EVERY (CL:GENTEMP)))
+                                `((CL:DEFUN ,GABRIEL::AFTER-EVERY ()
+                                     ,GABRIEL::AFTER-EVERY-FORM)
+                                  (CL:SETF (GET ',GABRIEL::NAME 'GABRIEL::AFTER-EVERY-FUNCTION)
+                                         ',GABRIEL::AFTER-EVERY])
+                     ,@(CL:IF GABRIEL::AFTERFORM
+                           [LET ((GABRIEL::AFTER (CL:GENTEMP)))
+                                `((CL:DEFUN ,GABRIEL::AFTER ()
+                                     ,GABRIEL::AFTERFORM)
+                                  (CL:SETF (GET ',GABRIEL::NAME 'GABRIEL::AFTER-FUNCTION)
+                                         ',GABRIEL::AFTER])
+                     (CL:SETF (GET ',GABRIEL::NAME 'GABRIEL::TIMING-DOCUMENTATION)
+                            ,CL:DOCUMENTATION])
+
+
+
+(* ;; "CONTROL VARIABLES")
 
 
 
 
-(IL:* IL:|;;| "Definitions for the TIMERS type, and the definer for them:")
-
-
-(XCL:DEF-DEFINE-TYPE TIMERS "Gabriel Benchmarks")
-
-(XCL:DEFDEFINER (DEFINE-TIMER (:NAME (LAMBDA (WHOLE)
-                                                (IF (CONSP (SECOND WHOLE))
-                                                    (CAR (SECOND WHOLE))
-                                                    (SECOND WHOLE))))) TIMERS (NAME-AND-OPTIONS
-                                                                               DOCUMENTATION &BODY 
-                                                                               BODY)
-   (LET ((NAME (IF (CONSP NAME-AND-OPTIONS)
-                   (CAR NAME-AND-OPTIONS)
-                   NAME-AND-OPTIONS))
-         (SETUPFORM (CADR (ASSOC ':SETUP NAME-AND-OPTIONS)))
-         (AFTER-EVERY-FORM (CADR (ASSOC ':AFTER-EVERY NAME-AND-OPTIONS)))
-         (AFTERFORM (CADR (ASSOC ':AFTER NAME-AND-OPTIONS))))
-        (LET ((TIMER (GENTEMP)))
-             `(PROGN (PUSHNEW ',NAME *ALL-TIMERS*)
-                     (DEFUN ,TIMER ()
-                        ,@BODY)
-                     (SETF (GET ',NAME 'TIMING-FUNCTION)
-                           ',TIMER)
-                     ,@(IF SETUPFORM
-                           (LET ((SETUP (GENTEMP)))
-                                `((DEFUN ,SETUP ()
-                                     ,SETUPFORM)
-                                  (SETF (GET ',NAME 'SETUP-FUNCTION)
-                                        ',SETUP))))
-                     ,@(IF AFTER-EVERY-FORM
-                           (LET ((AFTER-EVERY (GENTEMP)))
-                                `((DEFUN ,AFTER-EVERY ()
-                                     ,AFTER-EVERY-FORM)
-                                  (SETF (GET ',NAME 'AFTER-EVERY-FUNCTION)
-                                        ',AFTER-EVERY))))
-                     ,@(IF AFTERFORM
-                           (LET ((AFTER (GENTEMP)))
-                                `((DEFUN ,AFTER ()
-                                     ,AFTERFORM)
-                                  (SETF (GET ',NAME 'AFTER-FUNCTION)
-                                        ',AFTER))))
-                     (SETF (GET ',NAME 'TIMING-DOCUMENTATION)
-                           ,DOCUMENTATION)))))
-
-
-
-(IL:* IL:|;;| "CONTROL VARIABLES")
+(* ;; " *ALL-TIMERS* - List of all the benchmark definitions you've loaded.")
 
 
 
 
-(IL:* IL:|;;| " *ALL-TIMERS* - List of all the benchmark definitions you've loaded.")
+(* ;; " *MINIMUM-TESTS* - Min # of times to run each test, defaults to 2.")
 
 
+(CL:DEFVAR GABRIEL::*ALL-TIMERS* NIL)
 
-
-(IL:* IL:|;;| " *MINIMUM-TESTS* - Min # of times to run each test, defaults to 2.")
-
-
-(DEFVAR *ALL-TIMERS* NIL)
-
-(DEFPARAMETER *MINIMUM-TESTS* 2
+(CL:DEFPARAMETER GABRIEL::*MINIMUM-TESTS* 2
    "Run each test at least this many times")
 
-(DEFVAR *MOST-TIMERS*
-   '(TAKR TAKL TAK STAK CTAK TRIANG TRAVERSE-INIT TRAVERSE TPRINT PUZZLE FPRINT FREAD FFT DIV2-2 
-          DIV2-1 DESTRU DERIV DDERIV BROWSE BOYER TRAVERSE-INIT* TRAVERSE* BROWSE*))
+(CL:DEFVAR GABRIEL::*MOST-TIMERS*
+   '(GABRIEL::TAKR GABRIEL::TAKL GABRIEL::TAK GABRIEL::STAK GABRIEL::CTAK GABRIEL::TRIANG 
+           GABRIEL::TRAVERSE-INIT GABRIEL::TRAVERSE GABRIEL::TPRINT GABRIEL::PUZZLE GABRIEL::FPRINT 
+           GABRIEL::FREAD GABRIEL::FFT GABRIEL::DIV2-2 GABRIEL::DIV2-1 GABRIEL::DESTRU GABRIEL::DERIV
+           GABRIEL::DDERIV GABRIEL::BROWSE GABRIEL::BOYER GABRIEL::TRAVERSE-INIT* GABRIEL::TRAVERSE*
+           GABRIEL::BROWSE*))
 
 
 
-(IL:* IL:|;;| 
+(* ;; 
 "Functions for running benchmarks.  RUN-BENCHMARKS is the main entry; DESCRIBE-IMPLEMENTATION is a sub-function."
 )
 
 
-(DEFUN RUN-BENCHMARKS (&OPTIONAL (BENCHMARKS *ALL-TIMERS*)
-                                 (DRIBBLE-FILE '{DSK}GABRIEL.BENCHMARKS)
-                                 (NUMBER-OF-ITERATIONS *MINIMUM-TESTS*)
-                                 (APPEND-DRIBBLE-FILE NIL))
+(CL:DEFUN GABRIEL::RUN-BENCHMARKS (&OPTIONAL (GABRIEL::BENCHMARKS GABRIEL::*ALL-TIMERS*)
+                                         (GABRIEL::DRIBBLE-FILE (MAKE-DRIBBLE-FILE-NAME))
+                                         (GABRIEL::NUMBER-OF-ITERATIONS GABRIEL::*MINIMUM-TESTS*)
+                                         (GABRIEL::APPEND-DRIBBLE-FILE NIL))
 
-   (IL:* IL:|;;| "Run the benchmarks named in BENCHMARKS (defaulting to all known timers)")
+   (* ;; "Run the benchmarks named in BENCHMARKS (defaulting to all known timers)")
 
-   (IL:* IL:|;;| "Dribble the timings to DRIBBLE-FILE")
+   (* ;; "Dribble the timings to DRIBBLE-FILE")
 
-   (IL:* IL:|;;| "Run each test NUMBER-OF-ITERATIONS times.")
+   (* ;; "Run each test NUMBER-OF-ITERATIONS times.")
 
-   (LET ((OLD-PACKAGE (PACKAGE-NAME *PACKAGE*))
-         (*MINIMUM-TESTS* NUMBER-OF-ITERATIONS))
-        (UNWIND-PROTECT
-            (PROGN 
-                   (IL:* IL:|;;| 
-             "Set up so we're in the GABRIEL package, and the type-out won't pause on screen-full:")
+   (DECLARE (GLOBALVARS \READTABLEHASH))
+   (LET ((GABRIEL::OLD-PACKAGE (CL:PACKAGE-NAME *PACKAGE*))
+         (GABRIEL::*MINIMUM-TESTS* GABRIEL::NUMBER-OF-ITERATIONS)
+         (*READTABLE* (GETHASH "INTERLISP" \READTABLEHASH)))
+        (CL:UNWIND-PROTECT
+            [PROGN 
+                   (* ;; 
+               "Set up so we're in the GABRIEL package, and the type-out won't pause on screen-full:")
 
-                   (IN-PACKAGE "GABRIEL")
-                   (IL:WINDOWPROP (IL:WFROMDS *STANDARD-OUTPUT*)
-                          'IL:PAGEFULLFN
-                          'IL:NILL)
+                   (CL:IN-PACKAGE "GABRIEL")
+                   (WINDOWPROP (WFROMDS *STANDARD-OUTPUT*)
+                          'PAGEFULLFN
+                          'NILL)
 
-                   (IL:* IL:|;;| 
-                 "Set up the dribble file, and describe the machine we're running on:")
+                   (* ;; "Set up the dribble file, and describe the machine we're running on:")
 
-                   (DRIBBLE DRIBBLE-FILE APPEND-DRIBBLE-FILE)
-                   (DESCRIBE-IMPLEMENTATION)
-                   (LET (TIMING-FUNCTION SETUP-FUNCTION AFTER-EVERY-FUNCTION AFTER-FUNCTION 
-                               DOCUMENTATION)
-                        (DOLIST (BENCHMARK BENCHMARKS)
-                            (FORMAT *STANDARD-OUTPUT* "~%~%***** ~A Benchmark ***~%" BENCHMARK)
-                            (SETQ TIMING-FUNCTION (GET BENCHMARK 'TIMING-FUNCTION))
-                            (SETQ SETUP-FUNCTION (GET BENCHMARK 'SETUP-FUNCTION))
-                            (SETQ AFTER-EVERY-FUNCTION (GET BENCHMARK 'AFTER-EVERY-FUNCTION))
-                            (SETQ AFTER-FUNCTION (GET BENCHMARK 'AFTER-FUNCTION))
-                            (SETQ DOCUMENTATION (GET BENCHMARK 'TIMING-DOCUMENTATION))
-                            (IF DOCUMENTATION (FORMAT *STANDARD-OUTPUT* "~%~A~%~%" DOCUMENTATION))
+                   (DRIBBLE GABRIEL::DRIBBLE-FILE GABRIEL::APPEND-DRIBBLE-FILE)
+                   (GABRIEL::DESCRIBE-IMPLEMENTATION)
+                   (LET (GABRIEL::TIMING-FUNCTION GABRIEL::SETUP-FUNCTION 
+                               GABRIEL::AFTER-EVERY-FUNCTION GABRIEL::AFTER-FUNCTION CL:DOCUMENTATION
+                               )
+                        (CL:DOLIST (GABRIEL::BENCHMARK GABRIEL::BENCHMARKS)
+                            (CL:FORMAT *STANDARD-OUTPUT* "~%%~%%***** ~A Benchmark ***~%%" 
+                                   GABRIEL::BENCHMARK)
+                            (CL:SETQ GABRIEL::TIMING-FUNCTION (GET GABRIEL::BENCHMARK 
+                                                                   'GABRIEL::TIMING-FUNCTION))
+                            (CL:SETQ GABRIEL::SETUP-FUNCTION (GET GABRIEL::BENCHMARK 
+                                                                  'GABRIEL::SETUP-FUNCTION))
+                            (CL:SETQ GABRIEL::AFTER-EVERY-FUNCTION (GET GABRIEL::BENCHMARK
+                                                                        
+                                                                        '
+                                                                        GABRIEL::AFTER-EVERY-FUNCTION
+                                                                        ))
+                            (CL:SETQ GABRIEL::AFTER-FUNCTION (GET GABRIEL::BENCHMARK 
+                                                                  'GABRIEL::AFTER-FUNCTION))
+                            (CL:SETQ CL:DOCUMENTATION (GET GABRIEL::BENCHMARK 
+                                                           'GABRIEL::TIMING-DOCUMENTATION))
+                            (CL:IF CL:DOCUMENTATION (CL:FORMAT *STANDARD-OUTPUT* "~%%~A~%%~%%" 
+                                                           CL:DOCUMENTATION))
 
-                            (IL:* IL:|;;| "Set up for the test:")
+                            (* ;; "Set up for the test:")
 
-                            (IF SETUP-FUNCTION
-                                (PROGN (FORMAT *STANDARD-OUTPUT* "~%Evaluating setup for ~a~%" 
-                                              BENCHMARK)
-                                       (FUNCALL SETUP-FUNCTION)))
+                            (CL:IF GABRIEL::SETUP-FUNCTION
+                                (PROGN (CL:FORMAT *STANDARD-OUTPUT* "~%%Evaluating setup for ~a~%%" 
+                                              GABRIEL::BENCHMARK)
+                                       (CL:FUNCALL GABRIEL::SETUP-FUNCTION)))
 
-                            (IL:* IL:|;;| "Run the test the right number of times:")
+                            (* ;; "Run the test the right number of times:")
 
-                            (DOTIMES (I *MINIMUM-TESTS*)
-                                (FORMAT *STANDARD-OUTPUT* "~%Iteration ~s of ~a~%" I BENCHMARK)
+                            (CL:DOTIMES (GABRIEL::I GABRIEL::*MINIMUM-TESTS*)
+                                (CL:FORMAT *STANDARD-OUTPUT* "~%%Iteration ~s of ~a~%%" GABRIEL::I 
+                                       GABRIEL::BENCHMARK)
 
-                                (IL:* IL:|;;| "Run the timing:")
+                                (* ;; "Run the timing:")
 
-                                (CL::TIME-CALL #'(LAMBDA NIL (FUNCALL TIMING-FUNCTION))
-                                       :TIMED-FORM BENCHMARK :OUTPUT *STANDARD-OUTPUT*)
+                                (CL::TIME-CALL #'(CL:LAMBDA NIL (CL:FUNCALL GABRIEL::TIMING-FUNCTION)
+                                                        )
+                                       :TIMED-FORM GABRIEL::BENCHMARK :OUTPUT *STANDARD-OUTPUT*)
 
-                                (IL:* IL:|;;| "Run the cleanup-after-each-iteration function:")
+                                (* ;; "Run the cleanup-after-each-iteration function:")
 
-                                (IF AFTER-EVERY-FUNCTION
-                                    (PROGN (FORMAT *STANDARD-OUTPUT* 
-                                                  "~%Evaluating after every function for ~a~%" 
-                                                  BENCHMARK)
-                                           (FUNCALL AFTER-EVERY-FUNCTION)))
-                                (DOTIMES (J 10)
-                                    (IL:RECLAIM)))
+                                (CL:IF GABRIEL::AFTER-EVERY-FUNCTION
+                                    (PROGN (CL:FORMAT *STANDARD-OUTPUT* 
+                                                  "~%%Evaluating after every function for ~a~%%" 
+                                                  GABRIEL::BENCHMARK)
+                                           (CL:FUNCALL GABRIEL::AFTER-EVERY-FUNCTION)))
+                                (CL:DOTIMES (GABRIEL::J 10)
+                                    (RECLAIM)))
 
-                            (IL:* IL:|;;| "Now clean up after the test:")
+                            (* ;; "Now clean up after the test:")
 
-                            (IF AFTER-FUNCTION
-                                (PROGN (FORMAT *STANDARD-OUTPUT* 
-                                              "~%Evaluating after function for ~a~%" BENCHMARK)
-                                       (FUNCALL AFTER-FUNCTION))))))
+                            (CL:IF GABRIEL::AFTER-FUNCTION
+                                (PROGN (CL:FORMAT *STANDARD-OUTPUT* 
+                                              "~%%Evaluating after function for ~a~%%" 
+                                              GABRIEL::BENCHMARK)
+                                       (CL:FUNCALL GABRIEL::AFTER-FUNCTION))))]
 
-            (IL:* IL:|;;| "Now clean up:  Set the package back as it was, close the dribble file, and restore the page-full function on the main window:")
+            (* ;; "Now clean up:  Set the package back as it was, close the dribble file, and restore the page-full function on the main window:")
 
             (DRIBBLE)
-            (IN-PACKAGE OLD-PACKAGE)
-            (IL:WINDOWPROP (IL:WFROMDS *STANDARD-OUTPUT*)
-                   'IL:PAGEFULLFN
+            (CL:IN-PACKAGE GABRIEL::OLD-PACKAGE)
+            (WINDOWPROP (WFROMDS *STANDARD-OUTPUT*)
+                   'PAGEFULLFN
                    'NIL))
-        (FORMAT *STANDARD-OUTPUT* "~%~%Output on ~s~%" DRIBBLE-FILE)))
+        (CL:FORMAT *STANDARD-OUTPUT* "~%%~%%Output on ~s~%%" GABRIEL::DRIBBLE-FILE)))
 
-(DEFUN DESCRIBE-IMPLEMENTATION (&OPTIONAL (STREAM *STANDARD-OUTPUT*))
-   (FORMAT STREAM "~&Lisp Type:~20T~A" (LISP-IMPLEMENTATION-TYPE))
-   (FORMAT STREAM "~&Lisp Version:~20T~A" (LISP-IMPLEMENTATION-VERSION))
-   (FORMAT STREAM "~&Software Type:~20T~A" (SOFTWARE-TYPE))
-   (FORMAT STREAM "~&Software Version:~20T~A" (SOFTWARE-VERSION))
-   (FORMAT STREAM "~&Machine Type:~20T~A" (MACHINE-TYPE))
-   (FORMAT STREAM "~&Machine Version:~20T~A" (MACHINE-VERSION))
-   (FORMAT STREAM "~&Machine Instance:~20T~A" (MACHINE-INSTANCE))
-   (FORMAT STREAM "~&Site:~20T~A" (LONG-SITE-NAME))
-   (FORMAT STREAM "~&Features:~20T~S" *FEATURES*))
+(CL:DEFUN GABRIEL::DESCRIBE-IMPLEMENTATION (&OPTIONAL (STREAM *STANDARD-OUTPUT*))
+   (CL:FORMAT STREAM "~&Lisp Type:~20T~A" (CL:LISP-IMPLEMENTATION-TYPE))
+   (CL:FORMAT STREAM "~&Lisp Version:~20T~A" (CL:LISP-IMPLEMENTATION-VERSION))
+   (CL:FORMAT STREAM "~&Software Type:~20T~A" (CL:SOFTWARE-TYPE))
+   (CL:FORMAT STREAM "~&Software Version:~20T~A" (CL:SOFTWARE-VERSION))
+   (CL:FORMAT STREAM "~&Machine Type:~20T~A" (CL:MACHINE-TYPE))
+   (CL:FORMAT STREAM "~&Machine Version:~20T~A" (CL:MACHINE-VERSION))
+   (CL:FORMAT STREAM "~&Machine Instance:~20T~A" (CL:MACHINE-INSTANCE))
+   (CL:FORMAT STREAM "~&Site:~20T~A" (CL:LONG-SITE-NAME))
+   (CL:FORMAT STREAM "~&Features:~20T~S" *FEATURES*))
 
 
 
-(IL:* IL:|;;| 
+(* ;; 
 "Functions for running benchmarks and saving the results in a database of benchmarks.  RUN-BENCHMARKS-TO-DATABASE is the main entry; DESCRIBE-IMPLEMENTATION is a sub-function."
 )
 
 
-(DEFUN RUN-BENCHMARKS-TO-DATABASE (&OPTIONAL (BENCHMARKS *ALL-TIMERS*)
-                                             (DRIBBLE-FILE '{DSK}GABRIEL.BENCHMARKS)
-                                             (NUMBER-OF-ITERATIONS *MINIMUM-TESTS*)
-                                             (TOTAL-TIMES-FILE '{DSK} GABRIEL.TOTALTIMES))
+(CL:DEFUN GABRIEL::RUN-BENCHMARKS-TO-DATABASE (&OPTIONAL (GABRIEL::BENCHMARKS GABRIEL::*ALL-TIMERS*)
+                                                     (GABRIEL::DRIBBLE-FILE (MAKE-DRIBBLE-FILE-NAME))
+                                                     (GABRIEL::NUMBER-OF-ITERATIONS 
+                                                            GABRIEL::*MINIMUM-TESTS*)
+                                                     (GABRIEL::TOTAL-TIMES-FILE (
+                                                                               MAKE-RESULTS-FILE-NAME
+                                                                                 "GABRIEL.TOTALTIMES"
+                                                                                 )))
 
-   (IL:* IL:|;;| "Run the benchmarks named in BENCHMARKS (defaulting to all known timers)")
+   (* ;; "Run the benchmarks named in BENCHMARKS (defaulting to all known timers)")
 
-   (IL:* IL:|;;| "Dribble the timings to DRIBBLE-FILE")
+   (* ;; "Dribble the timings to DRIBBLE-FILE")
 
-   (IL:* IL:|;;| "Run each test NUMBER-OF-ITERATIONS times.")
+   (* ;; "Run each test NUMBER-OF-ITERATIONS times.")
 
    (LET
-    ((OLD-PACKAGE (PACKAGE-NAME *PACKAGE*))
-     (*MINIMUM-TESTS* NUMBER-OF-ITERATIONS)
-     TOTALTIMES TIMES AVG-TIMES)
-    (UNWIND-PROTECT
-        (PROGN
+    ((GABRIEL::OLD-PACKAGE (CL:PACKAGE-NAME *PACKAGE*))
+     (GABRIEL::*MINIMUM-TESTS* GABRIEL::NUMBER-OF-ITERATIONS)
+     GABRIEL::TOTALTIMES GABRIEL::TIMES GABRIEL::AVG-TIMES)
+    (CL:UNWIND-PROTECT
+        [PROGN
 
-         (IL:* IL:|;;| 
-       "Set up so we're in the GABRIEL package, and the type-out won't pause on screen-full:")
+         (* ;; "Set up so we're in the GABRIEL package, and the type-out won't pause on screen-full:")
 
-         (IN-PACKAGE "GABRIEL")
-         (IL:WINDOWPROP (IL:WFROMDS *STANDARD-OUTPUT*)
-                'IL:PAGEFULLFN
-                'IL:NILL)
+         (CL:IN-PACKAGE "GABRIEL")
+         (WINDOWPROP (WFROMDS *STANDARD-OUTPUT*)
+                'PAGEFULLFN
+                'NILL)
 
-         (IL:* IL:|;;| "Set up the dribble file, and describe the machine we're running on:")
+         (* ;; "Set up the dribble file, and describe the machine we're running on:")
 
-         (DRIBBLE DRIBBLE-FILE)
-         (DESCRIBE-IMPLEMENTATION)
-         (LET (TIMING-FUNCTION SETUP-FUNCTION AFTER-EVERY-FUNCTION AFTER-FUNCTION DOCUMENTATION)
-              (WITH-OPEN-FILE
-               (RESULT-STREAM TOTAL-TIMES-FILE :DIRECTION :OUTPUT :IF-EXISTS :NEW-VERSION)
-               (DOLIST (BENCHMARK BENCHMARKS)
-                   (FORMAT *STANDARD-OUTPUT* "~%~%***** ~A Benchmark ***~%" BENCHMARK)
-                   (SETQ TIMING-FUNCTION (GET BENCHMARK 'TIMING-FUNCTION))
-                   (SETQ SETUP-FUNCTION (GET BENCHMARK 'SETUP-FUNCTION))
-                   (SETQ AFTER-EVERY-FUNCTION (GET BENCHMARK 'AFTER-EVERY-FUNCTION))
-                   (SETQ AFTER-FUNCTION (GET BENCHMARK 'AFTER-FUNCTION))
-                   (SETQ DOCUMENTATION (GET BENCHMARK 'TIMING-DOCUMENTATION))
-                   (IF DOCUMENTATION (FORMAT *STANDARD-OUTPUT* "~%~A~%~%" DOCUMENTATION))
+         (DRIBBLE GABRIEL::DRIBBLE-FILE)
+         (GABRIEL::DESCRIBE-IMPLEMENTATION)
+         (LET (GABRIEL::TIMING-FUNCTION GABRIEL::SETUP-FUNCTION GABRIEL::AFTER-EVERY-FUNCTION 
+                     GABRIEL::AFTER-FUNCTION CL:DOCUMENTATION)
+              (CL:WITH-OPEN-FILE
+               (GABRIEL::RESULT-STREAM GABRIEL::TOTAL-TIMES-FILE :DIRECTION :OUTPUT :IF-EXISTS 
+                      :NEW-VERSION)
+               (CL:DOLIST (GABRIEL::BENCHMARK GABRIEL::BENCHMARKS)
+                   (CL:FORMAT *STANDARD-OUTPUT* "~%%~%%***** ~A Benchmark ***~%%" GABRIEL::BENCHMARK)
+                   (CL:SETQ GABRIEL::TIMING-FUNCTION (GET GABRIEL::BENCHMARK 
+                                                          'GABRIEL::TIMING-FUNCTION))
+                   (CL:SETQ GABRIEL::SETUP-FUNCTION (GET GABRIEL::BENCHMARK 'GABRIEL::SETUP-FUNCTION)
+                          )
+                   (CL:SETQ GABRIEL::AFTER-EVERY-FUNCTION (GET GABRIEL::BENCHMARK 
+                                                               'GABRIEL::AFTER-EVERY-FUNCTION))
+                   (CL:SETQ GABRIEL::AFTER-FUNCTION (GET GABRIEL::BENCHMARK 'GABRIEL::AFTER-FUNCTION)
+                          )
+                   (CL:SETQ CL:DOCUMENTATION (GET GABRIEL::BENCHMARK 'GABRIEL::TIMING-DOCUMENTATION))
+                   (CL:IF CL:DOCUMENTATION (CL:FORMAT *STANDARD-OUTPUT* "~%%~A~%%~%%" 
+                                                  CL:DOCUMENTATION))
 
-                   (IL:* IL:|;;| "Set up for the test:")
+                   (* ;; "Set up for the test:")
 
-                   (IF SETUP-FUNCTION
-                       (PROGN (FORMAT *STANDARD-OUTPUT* "~%Evaluating setup for ~a~%" BENCHMARK)
-                              (FUNCALL SETUP-FUNCTION)))
+                   (CL:IF GABRIEL::SETUP-FUNCTION
+                       (PROGN (CL:FORMAT *STANDARD-OUTPUT* "~%%Evaluating setup for ~a~%%" 
+                                     GABRIEL::BENCHMARK)
+                              (CL:FUNCALL GABRIEL::SETUP-FUNCTION)))
 
-                   (IL:* IL:|;;| "Run the test the right number of times:")
+                   (* ;; "Run the test the right number of times:")
 
-                   (DOTIMES (I *MINIMUM-TESTS*)
-                       (FORMAT *STANDARD-OUTPUT* "~%Iteration ~s of ~a~%" I BENCHMARK)
+                   (CL:DOTIMES (GABRIEL::I GABRIEL::*MINIMUM-TESTS*)
+                       (CL:FORMAT *STANDARD-OUTPUT* "~%%Iteration ~s of ~a~%%" GABRIEL::I 
+                              GABRIEL::BENCHMARK)
 
-                       (IL:* IL:|;;| "Run the timing:")
+                       (* ;; "Run the timing:")
 
-                       (SETQ TIMES (CONS (TIME-CALL #'(LAMBDA NIL (FUNCALL TIMING-FUNCTION))
-                                                :TIMED-FORM BENCHMARK :OUTPUT *STANDARD-OUTPUT*)
-                                         TIMES))
+                       (CL:SETQ GABRIEL::TIMES (CONS (GABRIEL::TIME-CALL #'(CL:LAMBDA NIL
+                                                                                  (CL:FUNCALL 
+                                                                             GABRIEL::TIMING-FUNCTION
+                                                                                         ))
+                                                            :TIMED-FORM GABRIEL::BENCHMARK :OUTPUT 
+                                                            *STANDARD-OUTPUT*)
+                                                     GABRIEL::TIMES))
 
-                       (IL:* IL:|;;| "Run the cleanup-after-each-iteration function:")
+                       (* ;; "Run the cleanup-after-each-iteration function:")
 
-                       (IF AFTER-EVERY-FUNCTION
-                           (PROGN (FORMAT *STANDARD-OUTPUT* 
-                                         "~%Evaluating after every function for ~a~%" BENCHMARK)
-                                  (FUNCALL AFTER-EVERY-FUNCTION)))
-                       (DOTIMES (J 10)
-                           (IL:RECLAIM)))
+                       (CL:IF GABRIEL::AFTER-EVERY-FUNCTION
+                           (PROGN (CL:FORMAT *STANDARD-OUTPUT* 
+                                         "~%%Evaluating after every function for ~a~%%" 
+                                         GABRIEL::BENCHMARK)
+                                  (CL:FUNCALL GABRIEL::AFTER-EVERY-FUNCTION)))
+                       (CL:DOTIMES (GABRIEL::J 10)
+                           (RECLAIM)))
 
-                   (IL:* IL:|;;| "Now clean up after the test:")
+                   (* ;; "Now clean up after the test:")
 
-                   (IF AFTER-FUNCTION
-                       (PROGN (FORMAT *STANDARD-OUTPUT* "~%Evaluating after function for ~a~%" 
-                                     BENCHMARK)
-                              (FUNCALL AFTER-FUNCTION)))
+                   (CL:IF GABRIEL::AFTER-FUNCTION
+                       (PROGN (CL:FORMAT *STANDARD-OUTPUT* "~%%Evaluating after function for ~a~%%" 
+                                     GABRIEL::BENCHMARK)
+                              (CL:FUNCALL GABRIEL::AFTER-FUNCTION)))
 
-                   (IL:* IL:|;;| "Now compute the average times for this group of runs:")
+                   (* ;; "Now compute the average times for this group of runs:")
 
-                   (DOLIST (INDICATOR (ALL-TIME-INDICATORS TIMES))
+                   (CL:DOLIST (GABRIEL::INDICATOR (GABRIEL::ALL-TIME-INDICATORS GABRIEL::TIMES))
 
-                       (IL:* IL:|;;| "TOTAL THE TIMES")
+                       (* ;; "TOTAL THE TIMES")
 
-                       (IL:* IL:|;;| "COMPUTE THE AVERAGE")
+                       (* ;; "COMPUTE THE AVERAGE")
 
-                       (IL:* IL:|;;| "ADD TO TOTALTIMES FOR THIS TIMING.")
+                       (* ;; "ADD TO TOTALTIMES FOR THIS TIMING.")
 
-                       (SETQ AVG-TIMES (APPEND (LIST INDICATOR
-                                                     (/ (IL:FOR TIME-LIST IL:IN TIMES
-                                                           IL:SUM (OR (IL:LISTGET TIME-LIST 
-                                                                                 INDICATOR)
-                                                                          0))
-                                                        *MINIMUM-TESTS*))
-                                              AVG-TIMES)))
-                   (PRINT (LIST BENCHMARK (IL:DATE)
-                                AVG-TIMES
-                                (REVERSE TIMES))
-                          RESULT-STREAM)))))
+                       (CL:SETQ GABRIEL::AVG-TIMES
+                              (CL:APPEND (LIST GABRIEL::INDICATOR
+                                               (/ (FOR GABRIEL::TIME-LIST IN GABRIEL::TIMES
+                                                     SUM (OR (LISTGET GABRIEL::TIME-LIST 
+                                                                    GABRIEL::INDICATOR)
+                                                             0))
+                                                  GABRIEL::*MINIMUM-TESTS*))
+                                     GABRIEL::AVG-TIMES)))
+                   (CL:PRINT (LIST GABRIEL::BENCHMARK (DATE)
+                                   GABRIEL::AVG-TIMES
+                                   (CL:REVERSE GABRIEL::TIMES))
+                          GABRIEL::RESULT-STREAM))]
 
-        (IL:* IL:|;;| "Now clean up:  Set the package back as it was, close the dribble file, and restore the page-full function on the main window:")
+        (* ;; "Now clean up:  Set the package back as it was, close the dribble file, and restore the page-full function on the main window:")
 
         (DRIBBLE)
-        (IN-PACKAGE OLD-PACKAGE)
-        (IL:WINDOWPROP (IL:WFROMDS *STANDARD-OUTPUT*)
-               'IL:PAGEFULLFN
+        (CL:IN-PACKAGE GABRIEL::OLD-PACKAGE)
+        (WINDOWPROP (WFROMDS *STANDARD-OUTPUT*)
+               'PAGEFULLFN
                'NIL))
-    (FORMAT *STANDARD-OUTPUT* "~%~%Output on ~s~%" DRIBBLE-FILE)))
+    (CL:FORMAT *STANDARD-OUTPUT* "~%%~%%Output on ~s~%%" GABRIEL::DRIBBLE-FILE)))
 
-(DEFUN TIME-CALL (CL::TIMED-FUNCTION &KEY (CL::OUTPUT *TRACE-OUTPUT*)
-                            (CL::TIMED-FORM NIL CL::TIMED-FORM-P)
-                            (CL::DATA-TYPES (IL:DATATYPES))
-                            (CL::REPEAT 1))
-   (LET ((VALUES NIL)
+(CL:DEFUN GABRIEL::TIME-CALL (CL::TIMED-FUNCTION &KEY (CL::OUTPUT *TRACE-OUTPUT*)
+                                    (CL::TIMED-FORM NIL CL::TIMED-FORM-P)
+                                    (CL::DATA-TYPES (DATATYPES))
+                                    (CL::REPEAT 1))
+   [LET ((CL:VALUES NIL)
          (CL::TIME-BEFORE (CL::MAKE-STATS-OBJECT))
          (CL::TIME-AFTER (CL::MAKE-STATS-OBJECT))
          (CL::TIME-DO-NOTHING (CL::MAKE-STATS-OBJECT)))
 
-        (IL:* IL:|;;| "Calibrate")
+        (* ;; "Calibrate")
 
-        (CL::%GET-TIMING-INFO #'(LAMBDA NIL NIL)
+        (CL::%%GET-TIMING-INFO #'(CL:LAMBDA NIL NIL)
                CL::TIME-BEFORE CL::TIME-DO-NOTHING)
-        (SETQ VALUES (MULTIPLE-VALUE-LIST (CL::%GET-TIMING-INFO CL::TIMED-FUNCTION CL::TIME-BEFORE 
-                                                 CL::TIME-AFTER CL::REPEAT)))
-        (CL::%STATS-OBJECT-DIFFERENCE CL::TIME-DO-NOTHING CL::TIME-AFTER)
-        (IF CL::TIMED-FORM-P (CL::TIME-FORMAT CL::OUTPUT "Timing for ~[~;~:;~:* ~D x~]:~20T ~S~&" 
-                                    CL::REPEAT CL::TIMED-FORM))
-        (CL::%PRINT-TIMING-ITEM CL::OUTPUT "Elapsed time" (CL::STATS-OBJECT-ELAPSED-TIME 
-                                                                 CL::TIME-AFTER)
+        (CL:SETQ CL:VALUES (CL:MULTIPLE-VALUE-LIST (CL::%%GET-TIMING-INFO CL::TIMED-FUNCTION 
+                                                          CL::TIME-BEFORE CL::TIME-AFTER CL::REPEAT))
+               )
+        (CL::%%STATS-OBJECT-DIFFERENCE CL::TIME-DO-NOTHING CL::TIME-AFTER)
+        (CL:IF CL::TIMED-FORM-P (CL::TIME-FORMAT CL::OUTPUT "Timing for ~[~;~:;~:* ~D x~]:~20T ~S~&"
+                                       CL::REPEAT CL::TIMED-FORM))
+        (CL::%%PRINT-TIMING-ITEM CL::OUTPUT "Elapsed time" (CL::STATS-OBJECT-ELAPSED-TIME 
+                                                                  CL::TIME-AFTER)
                T T)
-        (CL::%PRINT-TIMING-INFO CL::OUTPUT CL::TIME-AFTER CL::DATA-TYPES)
+        (CL::%%PRINT-TIMING-INFO CL::OUTPUT CL::TIME-AFTER CL::DATA-TYPES)
         (LIST ':TOTAL (CL::STATS-OBJECT-ELAPSED-TIME CL::TIME-AFTER)
               :GC
-              (IL:|fetch| (IL:MISCSTATS IL:GCTIME) IL:|of| (CL::STATS-OBJECT-TIME-BLOCK
-                                                                    CL::TIME-AFTER))
+              (fetch (MISCSTATS GCTIME) of (CL::STATS-OBJECT-TIME-BLOCK CL::TIME-AFTER))
               :SWAP
-              (IL:|fetch| (IL:MISCSTATS IL:SWAPWAITTIME) IL:|of| (CL::STATS-OBJECT-TIME-BLOCK
-                                                                          CL::TIME-AFTER))
+              (fetch (MISCSTATS SWAPWAITTIME) of (CL::STATS-OBJECT-TIME-BLOCK CL::TIME-AFTER))
               :I/O
-              (IL:|fetch| (IL:MISCSTATS IL:DISKIOTIME) IL:|of| (CL::STATS-OBJECT-TIME-BLOCK
-                                                                        CL::TIME-AFTER)))))
+              (fetch (MISCSTATS DISKIOTIME) of (CL::STATS-OBJECT-TIME-BLOCK CL::TIME-AFTER])
 
-(DEFUN ALL-TIME-INDICATORS (TIME-LIST)
-   (LET (ALL-INDICATORS)
-        (DOLIST (TIMES TIME-LIST)
-            (SETQ ALL-INDICATORS (UNION ALL-INDICATORS (IL:FOR IND IL:IN TIMES IL:BY
-                                                                                       CDDR
-                                                          IL:COLLECT IND))))
-        ALL-INDICATORS))
-(IL:DECLARE\: IL:DONTCOPY IL:DOEVAL@COMPILE 
-(IL:DECLARE\: IL:DOEVAL@COMPILE IL:DONTCOPY
+(CL:DEFUN GABRIEL::ALL-TIME-INDICATORS (GABRIEL::TIME-LIST)
+   (LET (GABRIEL::ALL-INDICATORS)
+        (CL:DOLIST (GABRIEL::TIMES GABRIEL::TIME-LIST)
+            (CL:SETQ GABRIEL::ALL-INDICATORS (CL:UNION GABRIEL::ALL-INDICATORS
+                                                    (FOR GABRIEL::IND IN GABRIEL::TIMES
+                                                       BY (CDDR GABRIEL::IND) COLLECT GABRIEL::IND))))
+        GABRIEL::ALL-INDICATORS))
+(DECLARE%: DONTCOPY DOEVAL@COMPILE 
+(DECLARE%: DOEVAL@COMPILE DONTCOPY
 
-(IL:LOCALVARS . T)
+(LOCALVARS . T)
 )
 )
 
-(IL:PUTPROPS IL:GABRIEL-TIMERS IL:FILETYPE COMPILE-FILE)
-
-(IL:PUTPROPS IL:GABRIEL-TIMERS IL:MAKEFILE-ENVIRONMENT (:READTABLE "XCL" :PACKAGE
-                                                                      (XCL:DEFPACKAGE "GABRIEL")))
-(IL:PUTPROPS IL:GABRIEL-TIMERS IL:COPYRIGHT ("Xerox Corporation" 1987 1988))
-(IL:DECLARE\: IL:DONTCOPY
-  (IL:FILEMAP (NIL)))
-IL:STOP
+(XCL:DEFINE-FILE-ENVIRONMENT GABRIEL-TIMERS :PACKAGE "IL"
+   :READTABLE "INTERLISP"
+   :COMPILER :COMPILE-FILE)
+(DECLARE%: DONTCOPY
+  (FILEMAP (NIL (6507 12092 (GABRIEL::RUN-BENCHMARKS 6507 . 12092)) (12094 12787 (
+GABRIEL::DESCRIBE-IMPLEMENTATION 12094 . 12787)) (12983 19690 (GABRIEL::RUN-BENCHMARKS-TO-DATABASE 
+12983 . 19690)) (19692 21439 (GABRIEL::TIME-CALL 19692 . 21439)) (21441 21913 (GABRIEL::ALL-TIME-INDICATORS
+ 21441 . 21913)))))
+STOP

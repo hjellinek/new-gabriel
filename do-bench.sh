@@ -2,20 +2,14 @@
 #
 # do-bench.sh
 #
-# Run one Gabriel benchmark suite in Medley with one command.
+# Run one Gabriel benchmark suite in Medley.
 #
 # Usage:
-#   ./do-bench.sh bench-1
-#   ./do-bench.sh bench-2
-#   ./do-bench.sh bench-3
-#   ./do-bench.sh bench-4
-#   ./do-bench.sh bench-5
+#   ./do-bench.sh bench-name bench-file bench-fn
 #
-# Optional environment overrides:
-#   PROJECTDIR=/path/to/New-Bench-Kabir
-#   MEDLEYDIR=/path/to/medley
-#   MEDLEY_LAUNCHER=/path/to/medley.command
-#   DISPLAY=localhost:0
+# e.g.,
+#   ./do-bench.sh "Tak" GABRIEL-TAK GABRIEL::TAK
+#
 
 set -eu
 
@@ -24,174 +18,81 @@ die() {
     exit 1
 }
 
-SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
-PROJECTDIR="${PROJECTDIR:-${SCRIPT_DIR}}"
+[ "$#" -eq 3 ] || die "Usage: $0 bench-name bench-file bench-fn"
 
-if [ -z "${MEDLEYDIR:-}" ]
-then
-  die "Set MEDLEYDIR to your Medley install path, e.g. MEDLEYDIR=/path/to/medley ./do-bench.sh bench-1"
-fi
+# The Name of the benchmark, human-readable
+BENCHNAME="$1"
+# The name of the benchmark file to load
+BENCHFILE="$2"
+# The name of the function to call.
+BENCHFN="$3"
 
-TOOLSDIR="${PROJECTDIR}/tools"
-RESULTSROOT="${PROJECTDIR}/Results"
+GABRIELDIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 
-DISPLAY=localhost:0
-export DISPLAY
-export MEDLEYDIR
+TOOLSDIR="{GABRIEL}<tools>"
+BENCHROOTDIR="{GABRIEL}<Benchmarks>"
+RESULTSROOTDIR="{GABRIEL}<Results>"
+DATADIR="{GABRIEL}<data>"
+RESULTSDIR="${RESULTSROOTDIR}${BENCHNAME}>"
 
-SUITE="${1:-}"
+LOADS_SEXPR="(FILESLOAD (COMPILED) ${BENCHFILE})"
 
-[ -n "$SUITE" ] || die "Usage: ./do-bench.sh bench-1|bench-2|bench-3|bench-4|bench-5"
+# Create the .cm file that will drive Medley
+driverfiledir="/tmp/benchmarks-$$"
+mkdir -p "${driverfiledir}"
+cmfile="${driverfiledir}/benchmark.cm"
+startfile="${driverfiledir}/start.lisp"
 
-case "$SUITE" in
-    bench-1)
-        BENCHDIR="${PROJECTDIR}/Benchmarks/BENCH-1"
-        RESULTSDIR="${RESULTSROOT}/BENCH-1"
-        BENCHFILE="NEW-BENCH-1.LCOM"
-        BENCHFN="IL:BENCH-1"
+cat >"${startfile}" <<EOF
+(PROGN
+  (PSEUDOHOST 'GABRIEL "{DSK}${GABRIELDIR}")
+  (MEDLEY-INIT-VARS 'GREET)
+  (SETQ SYSOUTGAG T)
+  (SETQ *UPPER-CASE-FILE-NAMES* NIL)
+  (SETQ NO-HELP NIL)
+  (SETQ *BENCHMARKS-DATA-DIR* "${DATADIR}")
+  (SETQ *BENCHMARKS-TOOLS-DIR* "${TOOLSDIR}")
+  (SETQ *BENCHMARKS-RESULTS-DIR* "${RESULTSDIR}")
 
-        [ -f "${TOOLSDIR}/GABRIEL-TIMERS.LCOM" ] || die "Missing ${TOOLSDIR}/GABRIEL-TIMERS.LCOM"
-        [ -f "${TOOLSDIR}/GABRIEL-OTHER.LCOM" ] || die "Missing ${TOOLSDIR}/GABRIEL-OTHER.LCOM"
-        [ -f "${TOOLSDIR}/GABRIEL-TAK.LCOM" ] || die "Missing ${TOOLSDIR}/GABRIEL-TAK.LCOM"
-        [ -f "${BENCHDIR}/TAK.LCOM" ] || die "Missing ${BENCHDIR}/TAK.LCOM"
-        [ -f "${BENCHDIR}/ARITH-BENCHMARKS.LCOM" ] || die "Missing ${BENCHDIR}/ARITH-BENCHMARKS.LCOM"
-        [ -f "${BENCHDIR}/IO-BENCHMARKS.LCOM" ] || die "Missing ${BENCHDIR}/IO-BENCHMARKS.LCOM"
-        [ -f "${BENCHDIR}/${BENCHFILE}" ] || die "Missing ${BENCHDIR}/${BENCHFILE}"
+  (PROGN
+    (PUSHNEW DIRECTORIES "${TOOLSDIR}")
+    (PUSHNEW DIRECTORIES "${BENCHROOTDIR}")
+    ${LOADS_SEXPR})
 
-        LOADS='
-  (LOAD '"'"'{UNIX}'"${TOOLSDIR}"'/GABRIEL-TIMERS.LCOM)
-  (LOAD '"'"'{UNIX}'"${TOOLSDIR}"'/GABRIEL-OTHER.LCOM)
-  (LOAD '"'"'{UNIX}'"${TOOLSDIR}"'/GABRIEL-TAK.LCOM)
-  (LOAD '"'"'{UNIX}'"${BENCHDIR}"'/TAK.LCOM)
-  (LOAD '"'"'{UNIX}'"${BENCHDIR}"'/ARITH-BENCHMARKS.LCOM)
-  (LOAD '"'"'{UNIX}'"${BENCHDIR}"'/IO-BENCHMARKS.LCOM)
-  (LOAD '"'"'{UNIX}'"${BENCHDIR}"'/'"${BENCHFILE}"')
-'
-        ;;
-    bench-2)
-        BENCHDIR="${PROJECTDIR}/Benchmarks/BENCH-2"
-        RESULTSDIR="${RESULTSROOT}/BENCH-2"
-        BENCHFILE="NEW-BENCH-2.LCOM"
-        BENCHFN="IL:BENCH-2"
+  (${BENCHFN})
 
-        [ -f "${TOOLSDIR}/GABRIEL-TIMERS.LCOM" ] || die "Missing ${TOOLSDIR}/GABRIEL-TIMERS.LCOM"
-        [ -f "${TOOLSDIR}/GABRIEL-OTHER.LCOM" ] || die "Missing ${TOOLSDIR}/GABRIEL-OTHER.LCOM"
-        [ -f "${BENCHDIR}/IO-BENCHMARKS.LCOM" ] || die "Missing ${BENCHDIR}/IO-BENCHMARKS.LCOM"
-        [ -f "${BENCHDIR}/${BENCHFILE}" ] || die "Missing ${BENCHDIR}/${BENCHFILE}"
-
-        LOADS='
-  (LOAD '"'"'{UNIX}'"${TOOLSDIR}"'/GABRIEL-TIMERS.LCOM)
-  (LOAD '"'"'{UNIX}'"${TOOLSDIR}"'/GABRIEL-OTHER.LCOM)
-  (LOAD '"'"'{UNIX}'"${BENCHDIR}"'/IO-BENCHMARKS.LCOM)
-  (LOAD '"'"'{UNIX}'"${BENCHDIR}"'/'"${BENCHFILE}"')
-'
-        ;;
-    bench-3)
-        BENCHDIR="${PROJECTDIR}/Benchmarks/BENCH-3"
-        RESULTSDIR="${RESULTSROOT}/BENCH-3"
-        BENCHFILE="NEW-BENCH-3.LCOM"
-        BENCHFN="IL:BENCH-3"
-
-        [ -f "${TOOLSDIR}/GABRIEL-TIMERS.LCOM" ] || die "Missing ${TOOLSDIR}/GABRIEL-TIMERS.LCOM"
-        [ -f "${TOOLSDIR}/GABRIEL-OTHER.LCOM" ] || die "Missing ${TOOLSDIR}/GABRIEL-OTHER.LCOM"
-        [ -f "${BENCHDIR}/IO-BENCHMARKS.LCOM" ] || die "Missing ${BENCHDIR}/IO-BENCHMARKS.LCOM"
-        [ -f "${BENCHDIR}/${BENCHFILE}" ] || die "Missing ${BENCHDIR}/${BENCHFILE}"
-
-        LOADS='
-  (LOAD '"'"'{UNIX}'"${TOOLSDIR}"'/GABRIEL-TIMERS.LCOM)
-  (LOAD '"'"'{UNIX}'"${TOOLSDIR}"'/GABRIEL-OTHER.LCOM)
-  (LOAD '"'"'{UNIX}'"${BENCHDIR}"'/IO-BENCHMARKS.LCOM)
-  (LOAD '"'"'{UNIX}'"${BENCHDIR}"'/'"${BENCHFILE}"')
-'
-        ;;
-    bench-4)
-        BENCHDIR="${PROJECTDIR}/Benchmarks/BENCH-4"
-        RESULTSDIR="${RESULTSROOT}/BENCH-4"
-        BENCHFILE="NEW-BENCH-4.LCOM"
-        BENCHFN="IL:BENCH-4"
-
-        [ -f "${TOOLSDIR}/GABRIEL-TIMERS.LCOM" ] || die "Missing ${TOOLSDIR}/GABRIEL-TIMERS.LCOM"
-        [ -f "${TOOLSDIR}/GABRIEL-OTHER.LCOM" ] || die "Missing ${TOOLSDIR}/GABRIEL-OTHER.LCOM"
-        [ -f "${BENCHDIR}/IO-BENCHMARKS.LCOM" ] || die "Missing ${BENCHDIR}/IO-BENCHMARKS.LCOM"
-        [ -f "${BENCHDIR}/${BENCHFILE}" ] || die "Missing ${BENCHDIR}/${BENCHFILE}"
-
-        LOADS='
-  (LOAD '"'"'{UNIX}'"${TOOLSDIR}"'/GABRIEL-TIMERS.LCOM)
-  (LOAD '"'"'{UNIX}'"${TOOLSDIR}"'/GABRIEL-OTHER.LCOM)
-  (LOAD '"'"'{UNIX}'"${BENCHDIR}"'/IO-BENCHMARKS.LCOM)
-  (LOAD '"'"'{UNIX}'"${BENCHDIR}"'/'"${BENCHFILE}"')
-'
-        ;;
-    bench-5)
-        BENCHDIR="${PROJECTDIR}/Benchmarks/BENCH-5"
-        RESULTSDIR="${RESULTSROOT}/BENCH-5"
-        BENCHFILE="NEW-BENCH-5.LCOM"
-        BENCHFN="IL:BENCH-5"
-
-        [ -f "${TOOLSDIR}/GABRIEL-TIMERS.LCOM" ] || die "Missing ${TOOLSDIR}/GABRIEL-TIMERS.LCOM"
-        [ -f "${BENCHDIR}/MISC-BENCHMARKS.LCOM" ] || die "Missing ${BENCHDIR}/MISC-BENCHMARKS.LCOM"
-        [ -f "${BENCHDIR}/IO-BENCHMARKS.LCOM" ] || die "Missing ${BENCHDIR}/IO-BENCHMARKS.LCOM"
-        [ -f "${BENCHDIR}/${BENCHFILE}" ] || die "Missing ${BENCHDIR}/${BENCHFILE}"
-
-        LOADS='
-  (LOAD '"'"'{UNIX}'"${TOOLSDIR}"'/GABRIEL-TIMERS.LCOM)
-  (LOAD '"'"'{UNIX}'"${BENCHDIR}"'/MISC-BENCHMARKS.LCOM)
-  (LOAD '"'"'{UNIX}'"${BENCHDIR}"'/IO-BENCHMARKS.LCOM)
-  (LOAD '"'"'{UNIX}'"${BENCHDIR}"'/'"${BENCHFILE}"')
-'
-        ;;
-    *)
-        die "Usage: ./do-bench.sh bench-1|bench-2|bench-3|bench-4|bench-5"
-        ;;
-esac
-
-mkdir -p "${RESULTSDIR}"
-
-logindir="/tmp/benchmarks-$$"
-mkdir -p "${logindir}"
-cmfile="${logindir}/hcfiles.cm"
+  (LOGOUT T)
+)
+STOP
+EOF
 
 cat >"${cmfile}" <<EOF
 "
-
-(PROGN
-  (IL:MEDLEY-INIT-VARS 'IL:GREET)
-  (SETQ SYSOUTGAG T)
-  (IL:SETQ IL:*UPPER-CASE-FILE-NAMES* NIL)
-  (IL:SETQ IL:NO-HELP NIL)
-
-  (IL:PSEUDOHOST 'GABRIEL '{UNIX}${BENCHDIR}/)
-
-${LOADS}
-
-  (${BENCHFN}
-    '{UNIX}${TOOLSDIR}/
-    '{UNIX}${BENCHDIR}/
-    '{UNIX}${RESULTSDIR}/)
-
-  (IL:DRIBBLE)
-  (IL:LOGOUT T)
-)
-
+(LOAD '${startfile})
 "
 EOF
+
 
 if [ -d "${MEDLEYDIR}/loadups/build" ]
 then
     touch "${MEDLEYDIR}/loadups/build/.skip"
 fi
 
-printf '%s\n' "Running ${SUITE}"
-printf '%s\n' "  BENCHDIR   = ${BENCHDIR}"
-printf '%s\n' "  RESULTSDIR = ${RESULTSDIR}"
-printf '%s\n' "  CMFILE     = ${cmfile}"
+printf '%s\n' "Running benchmarks"
+printf '%s\n' "  BENCHROOTDIR   = ${BENCHROOTDIR}"
+printf '%s\n' "  RESULTSDIR     = ${RESULTSDIR}"
+printf '%s\n' "  CMFILE         = ${cmfile}"
 
-/bin/sh "${MEDLEYDIR}/scripts/medley/medley.command" \
+/bin/sh "${MEDLEYDIR}/scripts/medley/medley.sh" \
+    -m 256 \
     --config - \
+    -ps 2 \
     --id bench_+ \
     --geometry 1024x768 \
     --noscroll \
-    --logindir "${logindir}" \
+    --logindir "${driverfiledir}" \
     --greet - \
     --rem.cm "${cmfile}" \
-    --apps
+    --apps \
+    -- \
+    -timer 1000
